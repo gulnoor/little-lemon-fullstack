@@ -41,11 +41,11 @@ export default function Home() {
       <section>
         <h1>Our Specials</h1>
         {specials.map((item) => (
-          <>
+          <div key={item.name}>
             <h1>{item.name}</h1>
             <Image width={200} height={200} src={item.image} alt={item.name} />
             <p>{item.description}</p>
-          </>
+          </div>
         ))}
       </section>
       <section>
