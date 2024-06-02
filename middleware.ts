@@ -9,7 +9,6 @@ export function middleware(request: NextRequest) {
     const modifiedRequest = new Request(request, {
       headers: requestHeaders,
     });
-
     return NextResponse.next({
       request: modifiedRequest,
     });

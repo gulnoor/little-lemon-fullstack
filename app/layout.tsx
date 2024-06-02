@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import NavRail from "./ui/NavRail";
+import Footer from "./ui/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +16,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const LINKS = [
+    { name: "Home", href: "/" },
+    { name: "Menu", href: "/menu" },
+    { name: "Reservation", href: "/reservation" },
+    { name: "Login", href: "/login" },
+  ];
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NavRail links={LINKS}></NavRail>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

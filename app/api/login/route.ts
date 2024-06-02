@@ -11,7 +11,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const { username, password } = body;
     const user = await User.findOne({ username });
     if (user === null) {
-      return NextResponse.json("User not found");
+      return NextResponse.json({ message: "User not found" });
     }
     const passwordCorrect = await bcrypt.compare(password, user.passwordHash);
     if (passwordCorrect) {
@@ -22,9 +22,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
           expiresIn: 1800,
         }
       );
-      return NextResponse.json({token});
+      return NextResponse.json({ message: "login successful", token });
     }
-    return NextResponse.json({ error: "password incorrect" });
+    return NextResponse.json({ message: "password incorrect" });
   } catch (err) {
     console.log(err);
     return new Response(err);

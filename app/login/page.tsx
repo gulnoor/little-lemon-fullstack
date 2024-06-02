@@ -7,7 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
-    const data = serialize(e.target, { hash: "true" });
+    const data = serialize(e.target, { hash: true });
     fetch("/api/login", {
       method: "POST",
       headers: {
@@ -16,10 +16,10 @@ const Login = () => {
       body: JSON.stringify({ username, password }),
     })
       .then((response) => {
-        response.text().then((text) => console.log(text));
+        response.json().then((res) => console.log(res.message));
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
   return (
