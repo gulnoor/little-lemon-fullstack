@@ -18,7 +18,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     // check if user exists in database
     const user = await User.findById(decodedUser.id);
     if (user) {
-      const body = await request.json()
+      const body = await request.json();
       // FIXME:any random time can create an order
       // Verify time in db before saving booking
       // ...........

@@ -7,7 +7,7 @@ POST http://localhost:3000/api/order HTTP/1.1
 Content-Type: : application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWQiOiI2NjUzNzdkNTIzMTljODI5NjFkMjIzOWIiLCJpYXQiOjE3MTc0MDA1NjJ9.At8mdCYgOneRWeAyOK7A_-FrtIQE6FOOdkVEPNsTzLI
 
-{"username":"testuser","password":"testpassword"}
+{"items":["6652a3679410615f08881889","6652a3679410615f0888188d"]}
 ###
 POST http://localhost:3000/api/user HTTP/1.1
 Content-Type: : application/json
@@ -34,4 +34,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc
 }
 
 ###
-
+GET http://localhost:3000/api/order HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWQiOiI2NjUzNzdkNTIzMTljODI5NjFkMjIzOWIiLCJpYXQiOjE3MTc0MDA1NjJ9.At8mdCYgOneRWeAyOK7A_-FrtIQE6FOOdkVEPNsTzLI
+###
+GET http://localhost:3000/api/menu HTTP/1.1

@@ -1,9 +1,6 @@
-import React from 'react'
+const Dashboard = async () => {
+  const orders = await fetch("/api/orders", { method: "GET" });
+  return <div>orders</div>;
+};
 
-const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
-
-export default Dashboard
+export default Dashboard;

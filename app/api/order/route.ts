@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import dbConnect from "@/app/lib/connectDatabase";
-import User from "@/app/lib/models/user";
 import Order from "@/app/lib/models/order";
+import User from "@/app/lib/models/user";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest, response: NextResponse) {
@@ -33,6 +33,33 @@ export async function POST(request: NextRequest, response: NextResponse) {
       user.orders = user.orders.concat(savedOrder.id);
       await user.save();
       return NextResponse.json(savedOrder);
+    }
+    return new Response("User does not exist");
+  } catch (err) {
+    console.log(err);
+    return new Response(err);
+  }
+}
+export async function GET(request: NextRequest, response: NextResponse) {
+  await dbConnect();
+  try {
+    const token = request.headers.get("authToken");
+
+    // decode token
+    const decodedUser = jwt.verify(token, process.env.JWT_SEKRET);
+    if (!decodedUser.id) {
+      return NextResponse.json({ error: "token invalid" });
+    }
+    // check if user exists in database
+    let user = await User.findById(decodedUser.id);
+    if (user) {
+      await user.populate({
+        path: "orders",
+        select: "items",
+        populate: { path: "items", select: "name price" },
+      });
+      // await user.populate("orders.items");
+      return NextResponse.json(user);
     }
     return new Response("User does not exist");
   } catch (err) {
