@@ -20,7 +20,7 @@ export async function middleware(request: NextRequest) {
     `-------------------------
     Method: ${request.method}
     Path: ${request.url}
-    Body: ${body}
+    Body: ${JSON.stringify(body)}
     -----------------------`
   );
   if (token && token.startsWith("Bearer ")) {
