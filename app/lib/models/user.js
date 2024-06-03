@@ -11,6 +11,12 @@ const userSchema = mongoose.Schema({
       ref: "Order",
     },
   ],
+  reservations: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "reservation",
+    },
+  ],
 });
 userSchema.set("toJSON", {
   transform: (document, returnedObject) => {

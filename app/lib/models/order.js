@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  items: [{ type: mongoose.Schema.Types.ObjectId, ref: "menuItem" }],
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  items: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "menuItem", required: true },
+  ],
   // date: { type: Date, required: true },
 });
 

@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 import dbConnect from "@/app/lib/connectDatabase";
 import User from "@/app/lib/models/user";
-import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
+import Reservation from "@/app/lib/models/reservation";
 
 export async function POST(request: NextRequest, response: NextResponse) {
   await dbConnect();
@@ -18,21 +18,16 @@ export async function POST(request: NextRequest, response: NextResponse) {
     // check if user exists in database
     const user = await User.findById(decodedUser.id);
     if (user) {
-      // FIXME:any random item id can create an order
-      // Verify items ids in request body before saving order
+      const body = await request.json()
+      // FIXME:any random time can create an order
+      // Verify time in db before saving booking
       // ...........
-      // save order to orders collection
-      const body = await request.json();
-
-      const order = new Order({ ...body, userId: user.id });
-      if (order.items.length < 1) {
-        return new Response("Order cannot be empty");
-      }
-      const savedOrder = await order.save();
-      // update orders in user document
-      user.orders = user.orders.concat(savedOrder.id);
+      const reservation = new Reservation({ ...body, userId: user.id });
+      const savedReservation = await reservation.save();
+      // // update orders in user document
+      user.reservations = user.reservations.concat(savedReservation.id);
       await user.save();
-      return NextResponse.json(savedOrder);
+      return NextResponse.json(savedReservation);
     }
     return new Response("User does not exist");
   } catch (err) {

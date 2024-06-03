@@ -29,6 +29,19 @@ const Reservation = () => {
   const availTimes = ["dhai", "teen", "sarhe char"];
   const handleSubmit = (values) => {
     console.log(values);
+    fetch("/api/reservation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+      .then((response) => {
+        response.json().then((res) => console.log(res.message));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   return (
     <Formik

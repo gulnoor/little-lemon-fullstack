@@ -5,7 +5,7 @@ Content-Type: : application/json
 ###
 POST http://localhost:3000/api/order HTTP/1.1
 Content-Type: : application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWQiOiI2NjUzNzdkNTIzMTljODI5NjFkMjIzOWIiLCJpYXQiOjE3MTczMTc0NjEsImV4cCI6MTcxNzMxOTI2MX0.mF1dpl_WjQ_gmDstxUBtbiFIRkPolfoicEZjhxA_E14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWQiOiI2NjUzNzdkNTIzMTljODI5NjFkMjIzOWIiLCJpYXQiOjE3MTc0MDA1NjJ9.At8mdCYgOneRWeAyOK7A_-FrtIQE6FOOdkVEPNsTzLI
 
 {"username":"testuser","password":"testpassword"}
 ###
@@ -18,9 +18,20 @@ Content-Type: : application/json
     "password":"testpassword2"
 }
 ###
-GET http://localhost:3000/api/order HTTP/1.1
+POST http://localhost:3000/api/reservation HTTP/1.1
 Content-Type: : application/json
-Authorization: Bearer xxx
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3R1c2VyIiwiaWQiOiI2NjUzNzdkNTIzMTljODI5NjFkMjIzOWIiLCJpYXQiOjE3MTc0MDA1NjJ9.At8mdCYgOneRWeAyOK7A_-FrtIQE6FOOdkVEPNsTzLI
+
+{
+    "persons": "2",
+    "date": "02-02-2025",
+    "time": "dhai",
+    "firstName": "test",
+    "lastName": "user",
+    "email": "ggnnn@example.com",
+    "specialRequest": "no ketchup"
+
+}
 
 ###
 

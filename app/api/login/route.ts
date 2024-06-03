@@ -17,10 +17,10 @@ export async function POST(req: NextRequest, res: NextResponse) {
     if (passwordCorrect) {
       const token = jwt.sign(
         { username, id: user.id },
-        process.env.JWT_SEKRET,
-        {
-          expiresIn: 1800,
-        }
+        process.env.JWT_SEKRET
+        // ,{
+        //   expiresIn: 1800,
+        // }
       );
       return NextResponse.json({ message: "login successful", token });
     }
