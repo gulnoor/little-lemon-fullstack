@@ -56,7 +56,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
       await user.populate({
         path: "orders",
         select: "items",
-        populate: { path: "items"},
+        populate: { path: "items" },
       });
 
       return NextResponse.json(user);

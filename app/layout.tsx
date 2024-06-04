@@ -26,8 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavRail links={LINKS}></NavRail>
-        <TokenProvider>{children}</TokenProvider>
+        <TokenProvider>
+          <NavRail links={LINKS}></NavRail>
+          {children}
+        </TokenProvider>
         <Footer />
       </body>
     </html>
