@@ -1,12 +1,7 @@
+"use client";
 import { createContext, useEffect, useState } from "react";
-interface TokenContextProps {
-  token: string | null;
-  setToken: React.Dispatch<React.SetStateAction<string | null>>;
-}
 
-export const TokenContext = createContext<TokenContextProps | undefined>(
-  undefined
-);
+export const TokenContext = createContext(null);
 
 const TokenProvider = ({ children }) => {
   if (!window.localStorage.getItem("token")) {
@@ -15,7 +10,7 @@ const TokenProvider = ({ children }) => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   useEffect(() => {
-    window.localStorage.setItem("token", token!);
+    window.localStorage.setItem("token", token);
   }, [token]);
 
   return (

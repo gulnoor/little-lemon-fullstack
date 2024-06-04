@@ -56,9 +56,9 @@ export async function GET(request: NextRequest, response: NextResponse) {
       await user.populate({
         path: "orders",
         select: "items",
-        populate: { path: "items", select: "name price" },
+        populate: { path: "items"},
       });
-      // await user.populate("orders.items");
+
       return NextResponse.json(user);
     }
     return new Response("User does not exist");

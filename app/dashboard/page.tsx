@@ -1,6 +1,11 @@
+import TokenProvider from "../lib/contexts/tokenContext";
+
 const Dashboard = async () => {
-  const orders = await fetch("/api/orders", { method: "GET" });
-  return <div>orders</div>;
+  return (
+    <TokenProvider>
+      <div>gg</div>;
+    </TokenProvider>
+  );
 };
 
 export default Dashboard;

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavRail from "./ui/NavRail";
 import Footer from "./ui/footer";
+import TokenProvider from "./lib/contexts/tokenContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NavRail links={LINKS}></NavRail>
-        {children}
+        <TokenProvider>{children}</TokenProvider>
         <Footer />
       </body>
     </html>

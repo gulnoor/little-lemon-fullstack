@@ -1,8 +1,10 @@
 "use client";
 import serialize from "form-serialize";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TokenContext } from "../lib/contexts/tokenContext";
 
 const Login = () => {
+  const { token, setToken } = useContext(TokenContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const submitHandler = (e) => {
@@ -16,7 +18,12 @@ const Login = () => {
       body: JSON.stringify({ username, password }),
     })
       .then((response) => {
-        response.json().then((res) => console.log(res.message));
+        response.json().then((res) => {
+          if ((res.message == "login successful")) {
+            setToken(() => res.token);
+          }
+          console.log(res);
+        });
       })
       .catch((error) => {
         console.error(error);
