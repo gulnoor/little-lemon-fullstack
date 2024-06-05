@@ -39,7 +39,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
     console.log(err);
     return new Response(err);
   }
-}
+}  
 export async function GET(request: NextRequest, response: NextResponse) {
   await dbConnect();
   try {

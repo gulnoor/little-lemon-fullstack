@@ -4,7 +4,10 @@ import "./globals.css";
 import NavRail from "./ui/NavRail";
 import Footer from "./ui/footer";
 import TokenProvider from "./lib/contexts/tokenContext";
+import dynamic from "next/dynamic";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
+// const NoSSRTokenProvider = dynamic(() => import("./lib/contexts/tokenContext"), { ssr: false });
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,20 +21,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const LINKS = [
-    { name: "Home", href: "/" },
-    { name: "Menu", href: "/menu" },
-    { name: "Reservation", href: "/reservation" },
-    { name: "Login", href: "/login" },
+    {
+      name: "Home",
+      href: "/",
+      image: "/assets/nav-icons/home_FILL0_wght400_GRAD0_opsz24 (1).svg",
+    },
+    {
+      name: "Menu",
+      href: "/menu",
+      image: "/assets/nav-icons/restaurant_menu_FILL0_wght400_GRAD0_opsz24.svg",
+    },
+    {
+      name: "Reservation",
+      href: "/reservation",
+      image:
+        "/assets/nav-icons/table_restaurant_FILL0_wght400_GRAD0_opsz24.svg",
+    },
   ];
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <TokenProvider>
-          <NavRail links={LINKS}></NavRail>
-          {children}
-        </TokenProvider>
-        <Footer />
-      </body>
+      <AppRouterCacheProvider>
+        <body className={`${inter.className}`}>
+          <TokenProvider>
+            <NavRail links={LINKS}></NavRail>
+            <main className="md:ml-[100px]">{children}</main>
+            <Footer />
+          </TokenProvider>
+        </body>
+      </AppRouterCacheProvider>
     </html>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import serialize from "form-serialize";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
     })
       .then((response) => {
         response.json().then((res) => {
-          if ((res.message == "login successful")) {
+          if (res.message == "login successful") {
             setToken(() => res.token);
           }
           console.log(res);
@@ -29,6 +29,9 @@ const Login = () => {
         console.error(error);
       });
   };
+  useEffect(() => {
+    window.localStorage.setItem("token", token);
+  }, [token]);
   return (
     <div>
       <form action="" onSubmit={submitHandler}>

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { Button } from "@mui/material";
+//TODO: fetch specials from server
 const specials = [
   {
     name: "Baklava",
@@ -37,7 +39,14 @@ const specials = [
 ];
 export default function Home() {
   return (
-    <main>
+    <main className="">
+      <section className=" flex flex-col p-4 ">
+        <h1>Little Lemon</h1>
+        <h2>Chicago</h2>
+        <p>traditional recipes served with a modern twist</p>
+        <Button variant="contained">Order Online</Button>
+        <Button variant="contained">Reserve a Table</Button>
+      </section>
       <section>
         <h1>Our Specials</h1>
         {specials.map((item) => (
