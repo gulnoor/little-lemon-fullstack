@@ -1,9 +1,10 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import TokenProvider from "../lib/contexts/tokenContext";
 import NavRail from "./NavRail";
-import Footer from "./footer";
 import { Inter } from "next/font/google";
-
+import Footer from "./footer";
+import { useContext } from "react";
+import { ThemeContext } from "../lib/contexts/themeContext";
 const inter = Inter({ subsets: ["latin"] });
 const LINKS = [
   {
@@ -22,9 +23,10 @@ const LINKS = [
     image: "/assets/nav-icons/table_restaurant_FILL0_wght400_GRAD0_opsz24.svg",
   },
 ];
-const RootComponent = ({children}) => {
+const HtmlComponent = ({ children }) => {
+  const { theme } = useContext(ThemeContext);
   return (
-    <html lang="en">
+    <html className={`${theme}`} lang="en">
       <AppRouterCacheProvider>
         <body className={`${inter.className}`}>
           <TokenProvider>
@@ -38,4 +40,4 @@ const RootComponent = ({children}) => {
   );
 };
 
-export default RootComponent;
+export default HtmlComponent;

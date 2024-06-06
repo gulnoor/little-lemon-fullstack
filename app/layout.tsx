@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import dynamic from "next/dynamic";
-import RootComponent from "./ui/RootComponent";
+import "./ui/material3-tokens/dark.css";
+import "./ui/material3-tokens/light.css";
+// import dynamic from "next/dynamic";
+import ThemeComponent from "./ui/ThemeComponent";
 
 // const NoSSRTokenProvider = dynamic(() => import("./lib/contexts/tokenContext"), { ssr: false });
 
@@ -15,5 +17,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <RootComponent>{children}</RootComponent>;
+  return <ThemeComponent>{children}</ThemeComponent>;
 }

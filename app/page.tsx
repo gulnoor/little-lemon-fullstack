@@ -41,7 +41,7 @@ const specials = [
 export default function Home() {
   return (
     <main>
-      <section className="flex flex-row flex-wrap-reverse justify-between" >
+      <section className="flex flex-row flex-wrap-reverse justify-between">
         <div className=" flex flex-col ">
           <h1>Little Lemon</h1>
           <h2>Chicago</h2>
@@ -49,7 +49,12 @@ export default function Home() {
           <Button variant="contained">Order Online</Button>
           <Button variant="contained">Reserve a Table</Button>
         </div>
-        <Image src={"/assets/images/Asset 9@4x.png"} width={150} height={253.13} alt={`Little Lemon Logo`} />
+        <Image
+          src={"/assets/images/Asset 9@4x.png"}
+          width={150}
+          height={253.13}
+          alt={`Little Lemon Logo`}
+        />
       </section>
       <OurSpecials items={specials} />
       <section className="">

@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import { TokenContext } from "../lib/contexts/tokenContext";
-import { useContext } from "react";
 import Image from "next/image";
+import { useContext } from "react";
+import { TokenContext } from "../lib/contexts/tokenContext";
+import { ThemeContext } from "../lib/contexts/themeContext";
 
 const NavLink = (props) => {
   return (
@@ -10,6 +11,7 @@ const NavLink = (props) => {
       className="flex flex-col justify-center items-center p-2"
       key={props.name}
       href={props.href}
+      onClick={props.onClick}
     >
       <Image
         src={props.image}
@@ -18,12 +20,14 @@ const NavLink = (props) => {
         alt={`${props.name} icon`}
       />
       <p>{props.name}</p>
+      {props.children}
     </Link>
   );
 };
 
 const NavRail = ({ links }) => {
-  const { token} = useContext(TokenContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { token } = useContext(TokenContext);
   return (
     <nav className="flex flex-row h-fit w-full bottom-0 md:flex-col justify-between md:justify-start items-center md:w-fit md:min-h-screen md:p-4 fixed ">
       {links.map(
@@ -53,6 +57,19 @@ const NavRail = ({ links }) => {
           }
         ></NavLink>
       )}
+      {
+        <NavLink
+          name="Toggle Theme"
+          key={"theme"}
+          href={""}
+          image={
+            "/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
+          }
+          onClick={toggleTheme}
+        >
+          {theme}
+        </NavLink>
+      }
     </nav>
   );
 };
