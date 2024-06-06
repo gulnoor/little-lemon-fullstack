@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import OurSpecials from "./ui/OurSpecials";
 import localFont from "next/font/local";
 import logo from "../public/assets/images/Asset 9@4x.png";
+import bros from "../public/assets/images/Mario and Adrian A.jpg";
 
 const displayFont = localFont({ src: "../public/fonts/jellies.regular.ttf" });
 //TODO: fetch specials from server
@@ -52,7 +53,7 @@ export default function Home() {
           >
             LITTLE LEMON
           </h1>
-          <h2 className="text-6xl mb-8">Chicago</h2>
+          <h2 className="text-6xl mb-8 text-[var(--md-sys-color-on-primary-container))]">Chicago</h2>
           <p className="text-2xl mb-5">
             traditional recipes served with a modern twist
           </p>
@@ -76,9 +77,9 @@ export default function Home() {
         />
       </section>
       <OurSpecials items={specials} />
-      <section className="">
-        <h1>About Us</h1>
-        <article>
+      <h1 className="ml-10" >About Us</h1>
+      <section className="flex flex-wrap-reverse justify-evenly items-center bg-[var(--md-sys-color-surface-container-highest)]">
+        <article className="min-w-[550px]">
           <p>
             Based in Chicago, Illinois, Little Lemon is a family-owned
             Mediterranean restaurant, focused on traditional recipes served with
@@ -100,9 +101,15 @@ export default function Home() {
           </p>
         </article>
         <Image
-          width={200}
-          height={200}
-          src="/assets/images/Mario and Adrian A.jpg"
+          style={{
+            objectFit: "cover",
+            borderRadius: "24px",
+            maxWidth: "500px",
+            width:"40%"
+          }}
+          width={300}
+          height={0}
+          src={bros}
           alt="Mario and Adrian"
         />
       </section>

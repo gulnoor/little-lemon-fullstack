@@ -20,19 +20,19 @@ body {
   /* color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-start-rgb)) */
 }
-@layer base{
-  h1{
-    @apply text-5xl mb-3
+@layer base {
+  h1 {
+    @apply text-5xl mb-3;
   }
-  h2{
+  h2 {
     @apply text-3xl
-    mb-2
+    mb-2;
   }
-  section{
-    @apply  md:p-8 rounded-3xl m-10
+  section {
+    @apply md:p-8 rounded-3xl m-10;
   }
-  article{
-    @apply max-w-2xl mx-auto
+  article {
+    @apply max-w-2xl ;
   }
 }
 @layer utilities {

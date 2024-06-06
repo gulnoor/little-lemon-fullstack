@@ -66,6 +66,7 @@ const HtmlComponent = ({ children }) => {
                 style: {
                   border: "2px solid",
                   borderRadius: "999px",
+                  boxSizing: "border-box",
                   minHeight: "48px",
                   "&:hover": {
                     border: "2px solid",
