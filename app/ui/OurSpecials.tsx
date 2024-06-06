@@ -1,17 +1,14 @@
 "use client";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+
 const OurSpecials = ({ items }) => {
   return (
     <section>
       <h1>Our Specials</h1>
       <Swiper
-        modules={Navigation}
         spaceBetween={50}
         slidesPerView={3}
         onSwiper={(swiper) => console.log(swiper)}

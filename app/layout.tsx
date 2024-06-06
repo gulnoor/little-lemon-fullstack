@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import NavRail from "./ui/NavRail";
-import Footer from "./ui/footer";
-import TokenProvider from "./lib/contexts/tokenContext";
 import dynamic from "next/dynamic";
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import RootComponent from "./ui/RootComponent";
 
 // const NoSSRTokenProvider = dynamic(() => import("./lib/contexts/tokenContext"), { ssr: false });
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,35 +15,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const LINKS = [
-    {
-      name: "Home",
-      href: "/",
-      image: "/assets/nav-icons/home_FILL0_wght400_GRAD0_opsz24 (1).svg",
-    },
-    {
-      name: "Menu",
-      href: "/menu",
-      image: "/assets/nav-icons/restaurant_menu_FILL0_wght400_GRAD0_opsz24.svg",
-    },
-    {
-      name: "Reservation",
-      href: "/reservation",
-      image:
-        "/assets/nav-icons/table_restaurant_FILL0_wght400_GRAD0_opsz24.svg",
-    },
-  ];
-  return (
-    <html lang="en">
-      <AppRouterCacheProvider>
-        <body className={`${inter.className}`}>
-          <TokenProvider>
-            <NavRail links={LINKS}></NavRail>
-            <main className="md:ml-[136px]">{children}</main>
-            <Footer />
-          </TokenProvider>
-        </body>
-      </AppRouterCacheProvider>
-    </html>
-  );
+  return <RootComponent>{children}</RootComponent>;
 }
