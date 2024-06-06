@@ -22,10 +22,17 @@ body {
 }
 @layer base{
   h1{
-    @apply text-4xl
+    @apply text-4xl mb-3
   }
   h2{
     @apply text-3xl
+    mb-2
+  }
+  section{
+    @apply  md:p-8
+  }
+  article{
+    @apply max-w-2xl mx-auto
   }
 }
 @layer utilities {

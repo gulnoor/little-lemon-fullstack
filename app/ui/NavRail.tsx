@@ -25,7 +25,7 @@ const NavLink = (props) => {
 const NavRail = ({ links }) => {
   const { token} = useContext(TokenContext);
   return (
-    <nav className="flex flex-row h-fit w-full bottom-0 md:flex-col justify-between md:justify-start items-center md:w-fit md:min-h-screen fixed ">
+    <nav className="flex flex-row h-fit w-full bottom-0 md:flex-col justify-between md:justify-start items-center md:w-fit md:min-h-screen md:p-4 fixed ">
       {links.map(
         (link: { key: String; name: String; href: String; image: String }) => (
           <NavLink

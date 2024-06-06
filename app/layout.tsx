@@ -44,7 +44,7 @@ export default function RootLayout({
         <body className={`${inter.className}`}>
           <TokenProvider>
             <NavRail links={LINKS}></NavRail>
-            <main className="md:ml-[100px]">{children}</main>
+            <main className="md:ml-[136px]">{children}</main>
             <Footer />
           </TokenProvider>
         </body>
