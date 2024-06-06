@@ -3,12 +3,11 @@
 import ThemeProvider from "../lib/contexts/themeContext";
 import HtmlComponent from "./HtmlComponent";
 
-
-
 const RootComponent = ({ children }) => {
+  
   return (
     <ThemeProvider>
-      <HtmlComponent>{children}</HtmlComponent>
+        <HtmlComponent>{children}</HtmlComponent>
     </ThemeProvider>
   );
 };

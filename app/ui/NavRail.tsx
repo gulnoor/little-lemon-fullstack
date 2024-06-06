@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
 
@@ -28,8 +28,9 @@ const NavLink = (props) => {
 const NavRail = ({ links }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
+  useEffect(() => window.localStorage.setItem("theme", theme), [theme]);
   return (
-    <nav className="flex flex-row h-fit w-full bottom-0 md:flex-col justify-between md:justify-start items-center md:w-fit md:min-h-screen md:p-4 fixed ">
+    <nav className="flex flex-row h-fit w-full bottom-0 md:flex-col justify-between md:justify-start items-center md:w-fit md:min-h-screen md:p-4 fixed md:py-10">
       {links.map(
         (link: { key: String; name: String; href: String; image: String }) => (
           <NavLink

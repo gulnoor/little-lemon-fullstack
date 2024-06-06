@@ -22,14 +22,14 @@ body {
 }
 @layer base{
   h1{
-    @apply text-4xl mb-3
+    @apply text-5xl mb-3
   }
   h2{
     @apply text-3xl
     mb-2
   }
   section{
-    @apply  md:p-8
+    @apply  md:p-8 rounded-3xl m-10
   }
   article{
     @apply max-w-2xl mx-auto
