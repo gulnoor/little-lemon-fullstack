@@ -32,7 +32,7 @@ body {
     @apply md:p-8 rounded-3xl m-10;
   }
   article {
-    @apply max-w-2xl ;
+    @apply max-w-2xl;
   }
 }
 @layer utilities {
