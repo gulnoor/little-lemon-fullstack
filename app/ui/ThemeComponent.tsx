@@ -75,9 +75,9 @@ const RootComponent = ({ children }) => {
   // );
 
   return (
-      <ThemeProvider>
-        <HtmlComponent>{children}</HtmlComponent>
-      </ThemeProvider>
+    <ThemeProvider>
+      <HtmlComponent>{children}</HtmlComponent>
+    </ThemeProvider>
   );
 };
 

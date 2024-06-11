@@ -2,7 +2,7 @@ import TokenProvider from "../lib/contexts/tokenContext";
 import NavRail from "./NavRail";
 import { Inter } from "next/font/google";
 import Footer from "./footer";
-import { useContext, useEffect, useMemo, useRef } from "react";
+import { useContext, useRef } from "react";
 import { ThemeContext as MyThemeContext } from "../lib/contexts/themeContext";
 
 const inter = Inter({ subsets: ["latin"] });
