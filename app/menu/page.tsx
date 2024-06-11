@@ -1,6 +1,6 @@
-import { Button } from "@mui/material";
 import dbConnect from "../lib/connectDatabase";
 import MenuItem from "../lib/models/menuItem";
+import MyButton from "../ui/MyButton";
 
 const Menu = async () => {
   await dbConnect();
@@ -12,8 +12,8 @@ const Menu = async () => {
           <h2>{item.name}</h2>
           <p>{item.description}</p>
           <p>Price: ${item.price}</p>
-          <Button variant="outlined">-</Button>
-          <Button variant="outlined">+</Button>
+          <MyButton variant="outlined">-</MyButton>
+          <MyButton variant="outlined">+</MyButton>
         </div>
       ))}
     </>

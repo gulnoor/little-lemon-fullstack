@@ -1,11 +1,9 @@
-import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import TokenProvider from "../lib/contexts/tokenContext";
 import NavRail from "./NavRail";
 import { Inter } from "next/font/google";
 import Footer from "./footer";
 import { useContext, useEffect, useMemo, useRef } from "react";
 import { ThemeContext as MyThemeContext } from "../lib/contexts/themeContext";
-import { useColorScheme } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 const LINKS = [
@@ -28,7 +26,6 @@ const LINKS = [
 const HtmlComponent = ({ children }) => {
   const { theme } = useContext(MyThemeContext);
   const htmlRef = useRef(null);
-
 
   // const cssvarstheme = experimental_extendTheme({
   //   colorSchemes: {
@@ -168,17 +165,16 @@ const HtmlComponent = ({ children }) => {
           }}
         />
       </head>
-      <AppRouterCacheProvider>
-        <body
-          className={`${inter.className} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)]`}
-        >
-          <TokenProvider>
-            <NavRail links={LINKS}></NavRail>
-            <main className=" overflow-hidden md:ml-[136px]">{children}</main>
-            <Footer />
-          </TokenProvider>
-        </body>
-      </AppRouterCacheProvider>
+
+      <body
+        className={`${inter.className} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)]`}
+      >
+        <TokenProvider>
+          <NavRail links={LINKS}></NavRail>
+          <main className=" overflow-hidden md:ml-[136px]">{children}</main>
+          <Footer />
+        </TokenProvider>
+      </body>
     </html>
   );
 };

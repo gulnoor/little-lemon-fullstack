@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useContext, useEffect } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
-import { useColorScheme } from "@mui/material";
 
 const NavLink = (props) => {
   return (
