@@ -45,7 +45,7 @@ const specials = [
 ];
 export default function Home() {
   return (
-    <main>
+    <>
       <section className="bg-[var(--md-sys-color-primary-container)] flex flex-row  justify-evenly min-h-[650px]">
         <div className=" flex flex-col justify-center">
           <h1
@@ -113,6 +113,6 @@ export default function Home() {
           alt="Mario and Adrian"
         />
       </section>
-    </main>
+    </>
   );
 }

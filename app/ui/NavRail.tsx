@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
 
@@ -20,7 +20,7 @@ const NavLink = (props) => {
         alt={`${props.name} icon`}
       />
       <p>{props.name}</p>
-      {props.children}
+      <p>{props.children}</p>
     </Link>
   );
 };
@@ -28,6 +28,10 @@ const NavLink = (props) => {
 const NavRail = ({ links }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   return (
     <nav className="flex flex-row h-fit w-full bottom-0 md:flex-col justify-between md:justify-start items-center md:w-fit md:min-h-screen md:p-4 fixed md:py-10">
       {links.map(
@@ -67,7 +71,7 @@ const NavRail = ({ links }) => {
           }
           onClick={toggleTheme}
         >
-          {theme}
+          {isMounted && theme}
         </NavLink>
       }
     </nav>

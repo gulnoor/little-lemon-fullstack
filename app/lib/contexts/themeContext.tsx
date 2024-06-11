@@ -15,7 +15,7 @@ const ThemeProvider = ({ children }) => {
     } else if (typeof window !== "undefined") {
       return window.localStorage.getItem("theme");
     }
-    return "light";
+    return "";
   }
   const toggleTheme = () => {
     if (theme === "light") {
