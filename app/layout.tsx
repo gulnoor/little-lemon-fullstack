@@ -3,13 +3,9 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import "./ui/material3-tokens/dark.css";
 import "./ui/material3-tokens/light.css";
-import ThemeComponent from "./ui/ThemeComponent";
 import ThemeProvider, { ThemeContext } from "./lib/contexts/themeContext";
 import TokenProvider from "./lib/contexts/tokenContext";
-import NavRail from "./ui/NavRail";
-import Footer from "./ui/footer";
-import { useContext, useEffect } from "react";
-import App from "./ui/material3-tokens/App";
+import App from "./ui/App";
 // import dynamic from "next/dynamic";
 // const NoSSRTokenProvider = dynamic(() => import("./lib/contexts/tokenContext"), { ssr: false });
 

@@ -1,8 +1,8 @@
 "use client";
 import { useContext } from "react";
-import NavRail from "../NavRail";
-import Footer from "../footer";
-import { ThemeContext } from "../../lib/contexts/themeContext";
+import NavRail from "./NavRail";
+import Footer from "./footer";
+import { ThemeContext } from "../lib/contexts/themeContext";
 const LINKS = [
   {
     name: "Home",
