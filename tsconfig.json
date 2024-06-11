@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/lib/contexts/tokenContext.tsx", "app/ui/OurSpecials.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/lib/contexts/tokenContext.tsx", "app/ui/OurSpecials.jsx", "app/lib/contexts/cartContext.jsx", "app/menu/page.jsx", "app/ui/MenuItem.jsx"],
   "exclude": ["node_modules"]
 }

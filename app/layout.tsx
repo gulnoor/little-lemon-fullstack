@@ -6,6 +6,7 @@ import "./ui/material3-tokens/light.css";
 import ThemeProvider, { ThemeContext } from "./lib/contexts/themeContext";
 import TokenProvider from "./lib/contexts/tokenContext";
 import App from "./ui/App";
+import CartProvider from "./lib/contexts/cartContext";
 // import dynamic from "next/dynamic";
 // const NoSSRTokenProvider = dynamic(() => import("./lib/contexts/tokenContext"), { ssr: false });
 
@@ -40,7 +41,9 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <ThemeProvider>
           <TokenProvider>
-            <App>{children}</App>
+            <CartProvider>
+              <App>{children}</App>
+            </CartProvider>
           </TokenProvider>
         </ThemeProvider>
       </body>
