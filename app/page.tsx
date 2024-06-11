@@ -46,41 +46,38 @@ const specials = [
 export default function Home() {
   return (
     <>
-      <section className="bg-[var(--md-sys-color-primary-container)] flex flex-row  justify-evenly min-h-[650px]">
-        <div className=" flex flex-col justify-center">
+      <section className="bg-[var(--md-sys-color-primary-container)] flex flex-row  justify-evenly min-h-[520px] md:min-h-[650px]">
+        <div className="  flex flex-col gap-2 sm:gap-0 justify-center items-center sm:items-start">
           <h1
-            className={`${displayFont.className} mb-6 text-8xl text-[var(--md-sys-color-primary)]`}
+            className={` sm:text-left  text-center  ${displayFont.className}  mb-6 text-6xl sm:text-7xl md:text-8xl text-[var(--md-sys-color-primary)]`}
           >
             LITTLE LEMON
           </h1>
-          <h2 className="text-6xl mb-8 text-[var(--md-sys-color-on-primary-container))]">
+          <h2 className="text-4xl md:text-6xl sm:mb-8 text-[var(--md-sys-color-on-primary-container))]">
             Chicago
           </h2>
-          <p className="text-2xl mb-5">
+          <h5 className="text-center sm:text-left sm:mb-5">
             traditional recipes served with a modern twist
-          </p>
-          <MyButton
-            style={{ marginBottom: "12px" }}
-            href={"/menu"}
-            variant={"outlined"}
-          >
-            ORDER ONLINE
+          </h5>
+          <MyButton style={"sm:mb-4"} href={"/menu"} variant={"outlined"}>
+            VIEW MENU
           </MyButton>
           <MyButton href={"/reservation"} variant={""}>
             RESERVE A TABLE
           </MyButton>
         </div>
         <Image
+          className="hidden sm:block"
           src={logo}
           alt={`Little Lemon Logo`}
           style={{ objectFit: "contain", maxWidth: "150px" }}
         />
       </section>
       <OurSpecials items={specials} />
-      <h1 className="ml-10">About Us</h1>
-      <section className="flex flex-wrap-reverse justify-evenly items-center bg-[var(--md-sys-color-surface-container-highest)]">
-        <article className="min-w-[550px]">
-          <p>
+      <h1 className="ml-6 md:ml-10">About Us</h1>
+      <section className="mb-[60px] md:mb-0 flex flex-wrap-reverse justify-between items-center bg-[var(--md-sys-color-surface-container-highest)]">
+        <article className="flex flex-col w-full lg:w-3/5 my-4">
+          <p className="text-justify">
             Based in Chicago, Illinois, Little Lemon is a family-owned
             Mediterranean restaurant, focused on traditional recipes served with
             a modern twist. The chefs draw inspiration from Italian, Greek, and
@@ -90,7 +87,7 @@ export default function Home() {
             the day.
           </p>
           <br />
-          <p>
+          <p className="text-justify">
             Little Lemon is owned by two Italian brothers, Mario and Adrian, who
             moved to the United States to pursue their shared dream of owning a
             restaurant. To craft the menu, Mario relies on family recipes and
@@ -101,14 +98,11 @@ export default function Home() {
           </p>
         </article>
         <Image
+          className="w-full h-full lg:w-[35%] lg:h-[400px]"
           style={{
             objectFit: "cover",
-            borderRadius: "24px",
-            maxWidth: "500px",
-            width: "40%",
+            borderRadius: "60px",
           }}
-          width={300}
-          height={0}
           src={bros}
           alt="Mario and Adrian"
         />

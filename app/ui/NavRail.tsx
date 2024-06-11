@@ -8,7 +8,7 @@ import { ThemeContext } from "../lib/contexts/themeContext";
 const NavLink = (props) => {
   return (
     <Link
-      className="flex flex-col justify-center items-center p-2"
+      className={`${props.className} flex flex-col justify-center items-center p-2`}
       key={props.name}
       href={props.href}
       onClick={props.onClick}
@@ -33,7 +33,7 @@ const NavRail = ({ links }) => {
     setIsMounted(true);
   }, []);
   return (
-    <nav className="flex flex-row h-fit w-full bottom-0 md:flex-col justify-between md:justify-start items-center md:w-fit md:min-h-screen md:p-4 fixed md:py-10">
+    <nav className="z-50 bg-[var(--md-sys-color-surface)] flex flex-row h-fit w-full bottom-0 md:flex-col justify-evenly md:justify-start  md:w-fit md:min-h-screen md:p-4 fixed md:py-20">
       {links.map(
         (link: { key: String; name: String; href: String; image: String }) => (
           <NavLink
@@ -63,6 +63,7 @@ const NavRail = ({ links }) => {
       )}
       {
         <NavLink
+          className="hidden md:flex "
           name="Toggle Theme"
           key={"theme"}
           href={""}
