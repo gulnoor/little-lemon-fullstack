@@ -62,7 +62,7 @@ export default function Home() {
           <MyButton style={"sm:mb-4"} href={"/menu"} variant={"outlined"}>
             VIEW MENU
           </MyButton>
-          <MyButton href={"/reservation"} variant={""}>
+          <MyButton href={"/booking"} variant={""}>
             RESERVE A TABLE
           </MyButton>
         </div>

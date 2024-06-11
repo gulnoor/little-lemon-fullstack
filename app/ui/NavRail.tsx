@@ -33,7 +33,7 @@ const NavRail = ({ links }) => {
     setIsMounted(true);
   }, []);
   return (
-    <nav className="z-50 bg-[var(--md-sys-color-surface)] flex flex-row h-fit w-full bottom-0 md:flex-col justify-evenly md:justify-start  md:w-fit md:min-h-screen md:p-4 fixed md:py-20">
+    <nav className="bg-[var(--md-sys-color-surface)] md:rounded-r-[40px] md:my-auto z-50 flex flex-row h-fit w-full bottom-0 md:top-0 md:bottom-0 md:flex-col justify-evenly md:justify-start  md:w-fit md:min-h-[97vh] md:p-4 fixed md:py-20">
       {links.map(
         (link: { key: String; name: String; href: String; image: String }) => (
           <NavLink
