@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import dbConnect from "../lib/connectDatabase";
 import MenuItem from "../lib/models/menuItem";
 
-const Menu = async () => {z
+const Menu = async () => {
   await dbConnect();
   const menu = await MenuItem.find({});
   return (
