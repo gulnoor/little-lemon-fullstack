@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { Button } from "@mui/material";
 import OurSpecials from "./ui/OurSpecials";
 import localFont from "next/font/local";
 import logo from "../public/assets/images/Asset 9@4x.png";
 import bros from "../public/assets/images/Mario and Adrian A.jpg";
+import MyButton from "./ui/MyButton";
 
 const displayFont = localFont({ src: "../public/fonts/jellies.regular.ttf" });
 //TODO: fetch specials from server
@@ -53,22 +53,22 @@ export default function Home() {
           >
             LITTLE LEMON
           </h1>
-          <h2 className="text-6xl mb-8 text-[var(--md-sys-color-on-primary-container))]">Chicago</h2>
+          <h2 className="text-6xl mb-8 text-[var(--md-sys-color-on-primary-container))]">
+            Chicago
+          </h2>
           <p className="text-2xl mb-5">
             traditional recipes served with a modern twist
           </p>
-          <Button
-            sx={{ marginTop: "12px", width: "fit-content", fontSize: "1.6rem" }}
-            variant="outlined"
+          <MyButton
+            style={{ marginBottom: "12px" }}
+            href={"/menu"}
+            variant={"outlined"}
           >
-            Order Online
-          </Button>
-          <Button
-            sx={{ marginTop: "12px", width: "fit-content", fontSize: "1.6rem" }}
-            variant="contained"
-          >
-            Reserve a Table
-          </Button>
+            ORDER ONLINE
+          </MyButton>
+          <MyButton href={"/reservation"} variant={""}>
+            RESERVE A TABLE
+          </MyButton>
         </div>
         <Image
           src={logo}
@@ -77,7 +77,7 @@ export default function Home() {
         />
       </section>
       <OurSpecials items={specials} />
-      <h1 className="ml-10" >About Us</h1>
+      <h1 className="ml-10">About Us</h1>
       <section className="flex flex-wrap-reverse justify-evenly items-center bg-[var(--md-sys-color-surface-container-highest)]">
         <article className="min-w-[550px]">
           <p>
@@ -105,7 +105,7 @@ export default function Home() {
             objectFit: "cover",
             borderRadius: "24px",
             maxWidth: "500px",
-            width:"40%"
+            width: "40%",
           }}
           width={300}
           height={0}
