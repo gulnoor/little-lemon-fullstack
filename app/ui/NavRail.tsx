@@ -64,7 +64,7 @@ const NavRail = ({ links }) => {
           ></NavLink>
         )
       )}
-      { (
+      {
         <NavLink
           className="hidden md:flex md:mt-auto "
           key={"theme"}
@@ -73,7 +73,7 @@ const NavRail = ({ links }) => {
           theme={theme}
           onClick={toggleTheme}
         ></NavLink>
-      )}
+      }
       {token ? (
         <NavLink
           className="  "
