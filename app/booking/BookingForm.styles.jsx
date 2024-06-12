@@ -25,21 +25,12 @@ export const StyledTextField = styled(TextField)`
     props.name === "lastName"
       ? "49%"
       : "100%"};
-
   & .MuiOutlinedInput-root > fieldset {
     border-width: 2px;
   }
-
-  /* & Input {
-    color: var(--md-sys-color-on-surface);
+  & Input {
     color-scheme: ${(props) => (props.theme === "light" ? "light" : "dark")};
-    &:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0px 1000px var(--md-sys-color-secondary-container)
-        inset;
-      -webkit-text-fill-color: var(--md-sys-color-on-secondary-container);
-    }
-  } */
-
+  }
   @media screen and (max-width: 600px) {
     width: 100%;
   }
@@ -48,18 +39,10 @@ export const StyledSelect = styled(Select)`
   margin-bottom: 1rem;
   width: ${(props) =>
     props.name === "date" || props.name === "time" ? "49%" : "100%"};
-
   & .MuiOutlinedInput-root > fieldset {
     border-width: 2px;
   }
-
-  /* & Input {
-    color: var(--md-sys-color-on-surface);
+  & Input {
     color-scheme: ${(props) => (props.theme === "light" ? "light" : "dark")};
-    &:-webkit-autofill {
-      -webkit-box-shadow: 0 0 0px 1000px var(--md-sys-color-secondary-container)
-        inset;
-      -webkit-text-fill-color: var(--md-sys-color-on-secondary-container);
-    }
-  } */
+  }
 `;

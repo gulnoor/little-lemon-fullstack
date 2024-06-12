@@ -48,6 +48,7 @@ const Login = () => {
         {/* TODO: add error message components */}
         <TextField
           sx={{
+            maxWidth: "600px",
             "& .MuiInputBase-root": {
               backgroundColor: "var(--md-sys-color-surface-container-highest)",
             },
@@ -67,6 +68,7 @@ const Login = () => {
         </TextField>
         <TextField
           sx={{
+            maxWidth: "600px",
             "& .MuiInputBase-root": {
               backgroundColor: "var(--md-sys-color-surface-container-highest)",
             },

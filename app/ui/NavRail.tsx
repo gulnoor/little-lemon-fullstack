@@ -10,12 +10,18 @@ import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24
 const NavLink = (props) => {
   return (
     <Link
-      className={`${props.className} flex flex-col justify-center items-center p-2`}
+      className={`flex flex-col justify-center items-center p-2 ${props.className}`}
       key={props.name}
       href={props.href}
       onClick={props.onClick}
     >
       <Image
+        style={{
+          filter:
+            props.theme === "dark"
+              ? "invert(80%) sepia(9%) saturate(214%) hue-rotate(0deg) brightness(103%) contrast(81%)"
+              : "invert(9%) sepia(19%) saturate(404%) hue-rotate(5deg) brightness(97%) contrast(97%)",
+        }}
         src={props.image}
         width={30}
         height={30}
@@ -38,15 +44,15 @@ const NavRail = ({ links }) => {
   return (
     <nav
       className="
-    bg-[var(--md-sys-color-surface-container-highest)] md:bg-transparent
-    z-50 
+    fixed
+    bottom-0 md:top-0 md:bottom-0
     flex flex-row md:flex-col
+    justify-evenly md:justify-start
     h-fit md:h-full
-    bottom-0 md:top-0 md:bottom-0 
-    justify-evenly md:justify-start 
-    w-full md:w-[140px]  
+    w-full md:w-[140px] 
+    bg-[var(--md-sys-color-surface-container-highest)] md:bg-transparent
     md:p-4 md:py-20
-    fixed 
+    z-50
     "
     >
       {links.map(
@@ -56,6 +62,7 @@ const NavRail = ({ links }) => {
             href={link.href}
             name={link.name}
             image={link.image}
+            theme={theme}
           ></NavLink>
         )
       )}
@@ -65,6 +72,7 @@ const NavRail = ({ links }) => {
           key={"theme"}
           href={""}
           image={theme === "dark" ? sun : moon}
+          theme={theme}
           onClick={toggleTheme}
         ></NavLink>
       }
@@ -73,12 +81,14 @@ const NavRail = ({ links }) => {
           name="Dashboard"
           key={"dashboard"}
           href={"/dashboard"}
+          theme={theme}
           image="/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
         ></NavLink>
       ) : (
         <NavLink
           name="Login"
           key={"login"}
+          theme={theme}
           href={"/login"}
           image={
             "/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
