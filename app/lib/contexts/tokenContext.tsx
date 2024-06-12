@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
 
-export const TokenContext = createContext({ token: null });
+export const TokenContext = createContext({ token: "" });
 
 const TokenProvider = ({ children }) => {
   // function readToken() {
