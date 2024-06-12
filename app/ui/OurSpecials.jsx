@@ -45,7 +45,7 @@ export const OurSpecials = ({ items }) => {
       <h1 className="ml-4 md:ml-10">Our Specials</h1>
       <swiper-container
         init="false"
-        class="flex rounded-3xl md:m-10 p-6 h-[500px]"
+        class="flex rounded-3xl md:m-10 p-2 h-[500px]"
         ref={swiperElRef}
         navigation="true"
         pagination="true"
