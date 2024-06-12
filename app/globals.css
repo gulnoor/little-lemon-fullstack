@@ -20,7 +20,12 @@
 body {
   /* color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-start-rgb)) */
-
+}
+.dark .nav-icon {
+  filter: invert(80%) sepia(9%) saturate(214%) hue-rotate(0deg) brightness(103%) contrast(81%);
+}
+.light .nav-icon {
+  filter: invert(9%) sepia(19%) saturate(404%) hue-rotate(5deg) brightness(97%) contrast(97%);
 }
 @layer base {
   h1 {

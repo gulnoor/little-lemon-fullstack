@@ -1,5 +1,5 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import NavRail from "./NavRail";
 import Footer from "./footer";
 import { ThemeContext } from "../lib/contexts/themeContext";
@@ -21,10 +21,16 @@ const LINKS = [
   },
 ];
 const App = ({ children }) => {
+  const appRef = useRef(null)
   const { theme } = useContext(ThemeContext);
+  useEffect(()=>{
+    appRef.current.classList.add(theme)
+
+  },[])
 
   return (
     <div
+    ref={appRef}
       suppressHydrationWarning
       className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)]`}
       id="app"

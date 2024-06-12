@@ -15,18 +15,15 @@ const NavLink = (props) => {
       href={props.href}
       onClick={props.onClick}
     >
-      <Image
-        style={{
-          filter:
-            props.theme === "dark"
-              ? "invert(80%) sepia(9%) saturate(214%) hue-rotate(0deg) brightness(103%) contrast(81%)"
-              : "invert(9%) sepia(19%) saturate(404%) hue-rotate(5deg) brightness(97%) contrast(97%)",
-        }}
-        src={props.image}
-        width={30}
-        height={30}
-        alt={`${props.name} icon`}
-      />
+      {
+        <Image
+          className="nav-icon"
+          src={props.image}
+          width={30}
+          height={30}
+          alt={`${props.name} icon`}
+        />
+      }
       <p>{props.name}</p>
       <p>{props.children}</p>
     </Link>
@@ -39,6 +36,7 @@ const NavRail = ({ links }) => {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
+    console.log(isMounted);
   }, []);
 
   return (
@@ -66,7 +64,7 @@ const NavRail = ({ links }) => {
           ></NavLink>
         )
       )}
-      {
+      { (
         <NavLink
           className="hidden md:flex md:mt-auto "
           key={"theme"}
@@ -75,9 +73,10 @@ const NavRail = ({ links }) => {
           theme={theme}
           onClick={toggleTheme}
         ></NavLink>
-      }
+      )}
       {token ? (
         <NavLink
+          className="  "
           name="Dashboard"
           key={"dashboard"}
           href={"/dashboard"}
@@ -86,6 +85,7 @@ const NavRail = ({ links }) => {
         ></NavLink>
       ) : (
         <NavLink
+          className="  "
           name="Login"
           key={"login"}
           theme={theme}
