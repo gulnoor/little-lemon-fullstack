@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
+import sun from "@/public/assets/nav-icons/light_mode_FILL0_wght400_GRAD0_opsz24.svg";
+import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24.svg";
 
 const NavLink = (props) => {
   return (
@@ -34,7 +36,19 @@ const NavRail = ({ links }) => {
   }, []);
 
   return (
-    <nav className="bg-[var(--md-sys-color-surface)] md:bg-transparent md:rounded-r-[40px] md:my-auto z-50 flex flex-row h-fit w-full bottom-0 md:top-0 md:bottom-0 md:flex-col justify-evenly md:justify-start  md:w-fit md:min-h-[97vh] md:p-4 fixed md:py-20">
+    <nav
+      className="
+    bg-[var(--md-sys-color-surface-container-highest)] 
+    z-50 
+    flex flex-row md:flex-col
+    h-fit md:h-full
+    bottom-0 md:top-0 md:bottom-0 
+    justify-evenly md:justify-start 
+    w-full md:w-[140px]  
+    md:p-4 md:py-20
+    fixed 
+    "
+    >
       {links.map(
         (link: { key: String; name: String; href: String; image: String }) => (
           <NavLink
@@ -45,6 +59,15 @@ const NavRail = ({ links }) => {
           ></NavLink>
         )
       )}
+      {
+        <NavLink
+          className="hidden md:flex md:mt-auto "
+          key={"theme"}
+          href={""}
+          image={theme === "dark" ? sun : moon}
+          onClick={toggleTheme}
+        ></NavLink>
+      }
       {token ? (
         <NavLink
           name="Dashboard"
@@ -62,20 +85,6 @@ const NavRail = ({ links }) => {
           }
         ></NavLink>
       )}
-      {
-        <NavLink
-          className="hidden md:flex "
-          name="Toggle Theme"
-          key={"theme"}
-          href={""}
-          image={
-            "/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
-          }
-          onClick={toggleTheme}
-        >
-          {isMounted && theme}
-        </NavLink>
-      }
     </nav>
   );
 };

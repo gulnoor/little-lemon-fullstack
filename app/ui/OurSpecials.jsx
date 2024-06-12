@@ -4,7 +4,6 @@ import { useRef, useEffect } from "react";
 import { register } from "swiper/element/bundle";
 import "swiper/css";
 import "swiper/element/css/effect-coverflow";
-import { EffectCards } from "swiper/modules";
 register();
 
 export const OurSpecials = ({ items }) => {
