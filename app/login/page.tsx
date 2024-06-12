@@ -2,7 +2,7 @@
 import * as Yup from "yup";
 import { useContext } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
-import { ErrorMessage, Field, useFormik } from "formik";
+import { useFormik } from "formik";
 import { TextField } from "@mui/material";
 
 const Login = () => {
@@ -40,7 +40,7 @@ const Login = () => {
 
   return (
     <section>
-      <h1 className="mb-8">Log In to make your Reservation</h1>
+      <h1 className="mb-8 ">Log In to make your Reservation</h1>
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col gap-4 justify-center "
@@ -50,6 +50,9 @@ const Login = () => {
           sx={{
             "& .MuiInputBase-root": {
               backgroundColor: "var(--md-sys-color-surface-container-highest)",
+            },
+            " & .MuiOutlinedInput-root > fieldset": {
+              borderWidth: "2px",
             },
           }}
           id="email"
@@ -66,6 +69,9 @@ const Login = () => {
           sx={{
             "& .MuiInputBase-root": {
               backgroundColor: "var(--md-sys-color-surface-container-highest)",
+            },
+            " & .MuiOutlinedInput-root > fieldset": {
+              borderWidth: "2px",
             },
           }}
           id="password"

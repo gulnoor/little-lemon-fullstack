@@ -38,7 +38,7 @@ const NavRail = ({ links }) => {
   return (
     <nav
       className="
-    bg-[var(--md-sys-color-surface-container-highest)] 
+    bg-[var(--md-sys-color-surface-container-highest)] md:bg-transparent
     z-50 
     flex flex-row md:flex-col
     h-fit md:h-full

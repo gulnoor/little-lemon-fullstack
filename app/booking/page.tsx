@@ -46,16 +46,6 @@ const Styledh1 = styled.h1`
     font-size: 7vw;
   }
 `;
-const StyledContainer = styled.div`
-  border-top: 2px solid var(--md-sys-color-outline);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 70px);
-  justify-content: space-around;
-  width: 100%;
-  grid-gap: 16px;
-  min-height: 16px;
-  padding: 16px 0;
-`;
 
 const StyledChip = styled.div`
   display: inline-flex;
@@ -209,7 +199,7 @@ const BookingForm = () => {
             Available Times
           </h1>
         )}
-        <StyledContainer>
+        <div className="border-t-[color:var(--md-sys-color-outline)] grid grid-cols-[repeat(auto-fill,70px)] justify-around w-full gap-4 min-h-[16px] px-0 py-4 border-t-2 border-solid">
           {availTimes.map((time, i) => {
             return (
               <StyledChip
@@ -222,7 +212,7 @@ const BookingForm = () => {
               </StyledChip>
             );
           })}
-        </StyledContainer>
+        </div>
         <MyTextInput
           formik={formik}
           label="First Name"

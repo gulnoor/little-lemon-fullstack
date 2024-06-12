@@ -30,7 +30,7 @@ export const StyledTextField = styled(TextField)`
     border-width: 2px;
   }
 
-  & Input {
+  /* & Input {
     color: var(--md-sys-color-on-surface);
     color-scheme: ${(props) => (props.theme === "light" ? "light" : "dark")};
     &:-webkit-autofill {
@@ -38,7 +38,7 @@ export const StyledTextField = styled(TextField)`
         inset;
       -webkit-text-fill-color: var(--md-sys-color-on-secondary-container);
     }
-  }
+  } */
 
   @media screen and (max-width: 600px) {
     width: 100%;
@@ -53,7 +53,7 @@ export const StyledSelect = styled(Select)`
     border-width: 2px;
   }
 
-  & Input {
+  /* & Input {
     color: var(--md-sys-color-on-surface);
     color-scheme: ${(props) => (props.theme === "light" ? "light" : "dark")};
     &:-webkit-autofill {
@@ -61,5 +61,5 @@ export const StyledSelect = styled(Select)`
         inset;
       -webkit-text-fill-color: var(--md-sys-color-on-secondary-container);
     }
-  }
+  } */
 `;

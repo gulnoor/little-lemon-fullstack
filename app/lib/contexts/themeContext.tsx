@@ -1,10 +1,12 @@
 "use client";
+import { useColorScheme } from "@mui/material";
 import { createContext, useEffect, useState } from "react";
 
 export const ThemeContext = createContext(null);
 
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(getTheme());
+  const { mode, setMode } = useColorScheme();
   function getTheme() {
     if (
       typeof window !== "undefined" &&
@@ -20,8 +22,10 @@ const ThemeProvider = ({ children }) => {
   const toggleTheme = () => {
     if (theme === "light") {
       setTheme(() => "dark");
+      setMode("dark");
     } else {
       setTheme(() => "light");
+      setMode("light");
     }
   };
 
