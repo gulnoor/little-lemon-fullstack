@@ -27,6 +27,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
     return NextResponse.json({ message: "password incorrect" });
   } catch (err) {
     console.log(err);
-    return new Response(err);
+    return NextResponse.json({ message: err.message });
   }
 }

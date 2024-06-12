@@ -25,6 +25,7 @@ const App = ({ children }) => {
 
   return (
     <div
+      suppressHydrationWarning
       className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)]`}
       id="app"
     >

@@ -21,7 +21,9 @@ const TokenProvider = ({ children }) => {
   useEffect(() => {
     setToken(() => window.localStorage.getItem("token"));
   }, []);
-
+  useEffect(() => {
+    window.localStorage.setItem("token", token);
+  }, [token]);
   return (
     <TokenContext.Provider value={{ token, setToken }}>
       {children}

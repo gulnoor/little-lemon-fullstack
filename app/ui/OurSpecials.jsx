@@ -13,11 +13,11 @@ export const OurSpecials = ({ items }) => {
   useEffect(() => {
     swiperElRef.current.addEventListener("swiperprogress", (e) => {
       const [swiper, progress] = e.detail;
-      console.log(progress);
+      // console.log(progress);
     });
 
     swiperElRef.current.addEventListener("swiperslidechange", (e) => {
-      console.log("slide changed");
+      // console.log("slide changed");
     });
     const swiperParams = {
       breakpoints: {

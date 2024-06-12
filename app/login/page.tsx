@@ -1,57 +1,89 @@
 "use client";
-import serialize from "form-serialize";
-import { useContext, useEffect, useState } from "react";
+import * as Yup from "yup";
+import { useContext } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
+import { ErrorMessage, Field, useFormik } from "formik";
+import { TextField } from "@mui/material";
 
 const Login = () => {
   const { token, setToken } = useContext(TokenContext);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const data = serialize(e.target, { hash: true });
-    fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((response) => {
-        response.json().then((res) => {
-          if (res.message == "login successful") {
-            setToken(() => res.token);
-          }
-          console.log(res);
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+  const submitHandler = async (values) => {
+    console.log(values);
+    console.log(JSON.stringify({ ...values }));
+
+    try {
+      let response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...values }),
       });
+      response = await response.json();
+      if (response.message == "login successful") {
+        setToken(() => response.token);
+      }
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
-  useEffect(() => {
-    window.localStorage.setItem("token", token);
-  }, [token]);
+
+  const formik = useFormik({
+    initialValues: { email: "", password: "" },
+    onSubmit: submitHandler,
+    validationSchema: Yup.object({
+      email: Yup.string().email("Email is invalid").required(),
+      password: Yup.string().required(),
+    }),
+  });
+
   return (
-    <div>
-      <form action="" onSubmit={submitHandler}>
-        <label htmlFor="username">Username</label>
-        <input
-          onChange={(e) => setUsername((prev) => e.target.value)}
-          value={username}
-          type="text"
-          name="username"
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          value={password}
-          onChange={(e) => setPassword((prev) => e.target.value)}
-          type="text"
+    <section>
+      <h1 className="mb-8">Log In to make your Reservation</h1>
+      <form
+        onSubmit={formik.handleSubmit}
+        className="flex flex-col gap-4 justify-center "
+      >
+        {/* TODO: add error message components */}
+        <TextField
+          sx={{
+            "& .MuiInputBase-root": {
+              backgroundColor: "var(--md-sys-color-surface-container-highest)",
+            },
+          }}
+          id="email"
+          name="email"
+          label="Email"
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+          // type="email"
+          {...formik.getFieldProps("email")}
+        >
+          gg
+        </TextField>
+        <TextField
+          sx={{
+            "& .MuiInputBase-root": {
+              backgroundColor: "var(--md-sys-color-surface-container-highest)",
+            },
+          }}
+          id="password"
           name="password"
-        />
-        <input type="submit" />
+          label="Password"
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+          // type="email"
+          {...formik.getFieldProps("password")}
+        ></TextField>
+        <button
+          className=" bg-[var(--md-sys-color-primary)] w-fit text-xl min-h-[48px] rounded-full  text-[var(--md-sys-color-on-primary)] flex justify-center items-center px-4 py-3"
+          type="submit"
+        >
+          Log In
+        </button>
       </form>
-    </div>
+    </section>
   );
 };
 
