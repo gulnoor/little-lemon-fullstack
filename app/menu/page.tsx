@@ -6,8 +6,14 @@ import "./menu.scss";
 // import MyButton from "../ui/MyButton";
 
 const Menu = async () => {
-  await dbConnect();
-  const menu = await MenuItem.find({});
+  let menu = [];
+  try {
+    await dbConnect();
+    menu = await MenuItem.find({});
+  } catch (err) {
+    console.log(err);
+    return <h1>couldn't connect to databse :( please refresh the page</h1>;
+  }
   return (
     <>
       <div className=" menu-hero">
