@@ -12,7 +12,7 @@ const Menu = async () => {
     menu = await MenuItem.find({});
   } catch (err) {
     console.log(err);
-    return <h1>couldn't connect to databse :( please refresh the page</h1>;
+    return <h1>couldn&apos;t connect to databse :( please refresh the page</h1>;
   }
   return (
     <>
