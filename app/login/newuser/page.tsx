@@ -6,11 +6,13 @@ import { MyTextField } from "@/app/ui/material3-inputs/inputs";
 import { ThemeContext } from "@emotion/react";
 import Alert from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
+import { AlertContext } from "@/app/lib/contexts/AlertContext";
 
 const NewUser = () => {
   //TODO: move focus/ highlight/scroll to invalid input when submit is clicked
-  const [open, setOpen] = useState(false);
-  const [alert, setAlert] = useState({ type: "", message: "" });
+  // const [open, setOpen] = useState(false);
+  // const [alert, setAlert] = useState({ type: "", message: "" });
+  const { setOpen, setAlert } = useContext(AlertContext);
 
   const { theme } = useContext(ThemeContext);
   const submitHandler = async (values) => {
@@ -26,7 +28,6 @@ const NewUser = () => {
       });
       response = await response.json();
       setAlert(response);
-      console.log(response);
       setOpen(true);
     } catch (err) {
       console.log(err);
@@ -66,7 +67,7 @@ const NewUser = () => {
       w-full md:w-3/4 
       max-w-[600px]"
     >
-      <Snackbar
+      {/* <Snackbar
         onClose={() => {
           setOpen(false);
           setAlert({ type: "", message: "" });
@@ -85,7 +86,7 @@ const NewUser = () => {
         >
           {alert.message}
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
       <MyTextField
         label={"First Name"}
         formik={formik}

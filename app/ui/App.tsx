@@ -2,6 +2,7 @@
 import { useContext, useEffect, useRef } from "react";
 import NavRail from "./NavRail";
 import Footer from "./footer";
+import AlertProvider from "@/app/lib/contexts/AlertContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
 const LINKS = [
   {
@@ -28,18 +29,20 @@ const App = ({ children }) => {
   }, []);
 
   return (
-    <div
-      ref={appRef}
-      suppressHydrationWarning
-      className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)]`}
-      id="app"
-    >
-      <NavRail links={LINKS}></NavRail>
-      <main id="main" className=" overflow-hidden md:ml-[140px]">
-        {children}
-      </main>
-      <Footer />
-    </div>
+    <AlertProvider>
+      <div
+        ref={appRef}
+        suppressHydrationWarning
+        className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)]`}
+        id="app"
+      >
+        <NavRail links={LINKS}></NavRail>
+        <main id="main" className=" overflow-hidden md:ml-[140px]">
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </AlertProvider>
   );
 };
 

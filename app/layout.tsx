@@ -1,7 +1,6 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import "./ui/material3-tokens/dark.css";
 import "./ui/material3-tokens/light.css";
 import ThemeProvider from "./lib/contexts/themeContext";
@@ -10,7 +9,6 @@ import App from "./ui/App";
 import localFont from "next/font/local";
 import CartProvider from "./lib/contexts/cartContext";
 import MUICustomThemeProvider from "./lib/contexts/MuiThemeContext";
-import { useEffect, useRef } from "react";
 // import dynamic from "next/dynamic";
 // const NoSSRTokenProvider = dynamic(() => import("./lib/contexts/tokenContext"), { ssr: false });
 
