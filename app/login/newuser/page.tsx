@@ -12,7 +12,7 @@ const NewUser = () => {
   //TODO: move focus/ highlight/scroll to invalid input when submit is clicked
   // const [open, setOpen] = useState(false);
   // const [alert, setAlert] = useState({ type: "", message: "" });
-  const { setOpen, setAlert } = useContext(AlertContext);
+  const { openAlert } = useContext(AlertContext);
 
   const { theme } = useContext(ThemeContext);
   const submitHandler = async (values) => {
@@ -27,12 +27,10 @@ const NewUser = () => {
         body: JSON.stringify(values),
       });
       response = await response.json();
-      setAlert(response);
-      setOpen(true);
+      openAlert(response);
     } catch (err) {
       console.log(err);
-      setAlert(err);
-      setOpen(true);
+      openAlert(err);
     }
   };
 

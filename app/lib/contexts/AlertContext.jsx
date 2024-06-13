@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 import Alert from "@mui/material/Alert";
 import { Snackbar } from "@mui/material";
 
@@ -8,9 +8,15 @@ export const AlertContext = createContext(null);
 const AlertProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
+  const openAlert = useMemo(() => {
+    return (alert) => {
+      setAlert(alert);
+      setOpen(true);
+    };
+  }, []);
 
   return (
-    <AlertContext.Provider value={{ setOpen, setAlert }}>
+    <AlertContext.Provider value={{ openAlert }}>
       <Snackbar
         onClose={() => {
           setOpen(false);
