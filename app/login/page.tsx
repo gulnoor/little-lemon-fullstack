@@ -5,9 +5,11 @@ import * as Yup from "yup";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { useFormik } from "formik";
 import { TextField } from "@mui/material";
+import { AlertContext } from "../lib/contexts/AlertContext";
 
 const Login = () => {
-  const { token, setToken } = useContext(TokenContext);
+  const { setToken } = useContext(TokenContext);
+  const { openAlert } = useContext(AlertContext);
   const submitHandler = async (values) => {
     console.log(values);
 
@@ -20,12 +22,13 @@ const Login = () => {
         body: JSON.stringify({ ...values }),
       });
       response = await response.json();
-      if (response.message == "login successful") {
-        setToken(() => response.token);
+      if (response.message === "login successful") {
+        setToken(response.token);
       }
-      console.log(response);
+      openAlert(response);
     } catch (err) {
       console.log(err);
+      openAlert(err);
     }
   };
 

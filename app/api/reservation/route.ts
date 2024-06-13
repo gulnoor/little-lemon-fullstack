@@ -22,14 +22,22 @@ export async function POST(request: NextRequest, response: NextResponse) {
     if (!token) {
       const reservation = new Reservation({ ...body });
       const savedReservation = await reservation.save();
-      return NextResponse.json(savedReservation);
+      const responseBody = savedReservation.toJSON();
+      return NextResponse.json({
+        type: "success",
+        message: "Reservation made successfully. Thank You",
+        body: responseBody,
+      });
     }
     // case 2: user logged in
     // decode token
     // FIXME: Older tokens that didn't have expiry are still working
     const decodedUser = jwt.verify(token, process.env.JWT_SEKRET);
     if (!decodedUser.id) {
-      return NextResponse.json({ error: "token invalid" });
+      return NextResponse.json({
+        type: "error",
+        message: "Token invalid. Please login again.",
+      });
     }
     // check if user exists in database
     const user = await User.findById(decodedUser.id);
@@ -39,7 +47,12 @@ export async function POST(request: NextRequest, response: NextResponse) {
       // // update orders in user document
       user.reservations = user.reservations.concat(savedReservation.id);
       await user.save();
-      return NextResponse.json(savedReservation);
+      const responseBody = savedReservation.toJSON();
+      return NextResponse.json({
+        type: "success",
+        message: "Reservation made successfully. Thank You",
+        body: responseBody,
+      });
     }
     //token received but user not found
     return NextResponse.json({

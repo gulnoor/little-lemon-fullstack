@@ -10,6 +10,7 @@ import { fetchAPI } from "./availTimesAPI";
 import { ThemeContext } from "../lib/contexts/themeContext";
 import Image from "next/image";
 import { TokenContext } from "../lib/contexts/tokenContext";
+import { AlertContext } from "../lib/contexts/AlertContext";
 
 function camelCase(str) {
   return str
@@ -83,7 +84,7 @@ export const MyTextInput = ({ label, formik, type }) => {
     ></StyledTextField>
   );
 };
-const handleSubmit = async (values, token) => {
+const handleSubmit = async (values, token, openAlert) => {
   let response = null;
   try {
     response = await fetch("/api/reservation", {
@@ -95,13 +96,13 @@ const handleSubmit = async (values, token) => {
       body: JSON.stringify({ ...values }),
     });
     response = await response.json();
-    console.log(response);
+    openAlert(response);
   } catch (err) {
-    //TODO: add error component
-    console.log(err);
+    openAlert(err);
   }
 };
 const BookingForm = () => {
+  const { openAlert } = useContext(AlertContext);
   const chipRefs = useRef([]);
   const [availTimes, setAvailTimes] = useState([]);
   const { theme } = useContext(ThemeContext);
@@ -118,7 +119,7 @@ const BookingForm = () => {
       specialRequest: "",
     },
     onSubmit: (values) => {
-      handleSubmit(values, token);
+      handleSubmit(values, token, openAlert);
     },
     validationSchema: yup.object({
       date: yup.date().required(),

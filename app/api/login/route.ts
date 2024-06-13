@@ -12,7 +12,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const user = await User.findOne({ username });
     if (user === null) {
       //TODO: redirect to registeration page
-      return NextResponse.json({ message: "User not found" });
+      return NextResponse.json({type:"error", message: "User not found" });
     }
     const passwordCorrect = await bcrypt.compare(password, user.passwordHash);
     if (passwordCorrect) {
@@ -23,11 +23,15 @@ export async function POST(req: NextRequest, res: NextResponse) {
         //   expiresIn: 1800,
         // }
       );
-      return NextResponse.json({ message: "login successful", token });
+      return NextResponse.json({
+        type: "success",
+        message: "login successful",
+        token,
+      });
     }
-    return NextResponse.json({ message: "password incorrect" });
+    return NextResponse.json({ type: "error", message: "password incorrect" });
   } catch (err) {
     console.log(err);
-    return NextResponse.json({ message: err.message });
+    return NextResponse.json({ type: "error", message: err.message });
   }
 }
