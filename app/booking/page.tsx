@@ -9,6 +9,7 @@ import { MyForm, StyledTextField } from "./BookingForm.styles";
 import { fetchAPI } from "./availTimesAPI";
 import { ThemeContext } from "../lib/contexts/themeContext";
 import Image from "next/image";
+import { TokenContext } from "../lib/contexts/tokenContext";
 
 function camelCase(str) {
   return str
@@ -82,14 +83,29 @@ export const MyTextInput = ({ label, formik, type }) => {
     ></StyledTextField>
   );
 };
-
+const handleSubmit = async (values, token) => {
+  let response = null;
+  try {
+    response = await fetch("/api/reservation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authentication: token,
+      },
+      body: JSON.stringify(values),
+    });
+    response = await response.json();
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+};
 const BookingForm = () => {
   const chipRefs = useRef([]);
   const [availTimes, setAvailTimes] = useState([]);
   const { theme } = useContext(ThemeContext);
-  const handleSubmit = (values) => {
-    console.log(values);
-  };
+  const { token } = useContext(TokenContext);
+
   const formik = useFormik({
     initialValues: {
       persons: "",
@@ -100,28 +116,25 @@ const BookingForm = () => {
       email: "",
       specialRequest: "",
     },
-    onSubmit: handleSubmit,
+    onSubmit: (values) => {
+      handleSubmit(values, token);
+    },
     validationSchema: yup.object({
-      date: yup.date(),
+      date: yup.date().required(),
       persons: yup.number().min(1, "min 1 person").max(10).required(),
       time: yup.string().required(),
       occasion: yup.string().optional(),
       firstName: yup
         .string()
         .required("No name no party")
-        .min(1, "Name must be at least one character long"),
+        .min(2, "Name must be at least two character long"),
       lastName: yup.string().optional(),
       email: yup.string().email(),
       specialRequest: yup.string().optional(),
     }),
   });
   useEffect(() => {
-    // dispatch({
-    //   actionType: "resetTime",
-    // });
-
     formik.setFieldValue("time", "");
-
     fetchAPI(formik.values.date)
       .then(function (resolvedValue) {
         setAvailTimes(resolvedValue);
@@ -199,7 +212,17 @@ const BookingForm = () => {
             Available Times
           </h1>
         )}
-        <div className="border-t-[color:var(--md-sys-color-outline)] grid grid-cols-[repeat(auto-fill,70px)] justify-around w-full gap-4 min-h-[16px] px-0 py-4 border-t-2 border-solid">
+        <div
+          className="
+        grid grid-cols-[repeat(auto-fill,70px)] 
+        justify-around 
+        w-full 
+        gap-4 
+        min-h-[16px] 
+        px-0 py-4 
+        border-solid 
+        border-t-2 border-t-[color:var(--md-sys-color-outline)]"
+        >
           {availTimes.map((time, i) => {
             return (
               <StyledChip
@@ -229,7 +252,6 @@ const BookingForm = () => {
           formik={formik}
           type="textarea"
         ></MyTextInput>
-        {/* <BookingSummary bookingData={formik.values}/> */}
         <Button
           variant="contained"
           sx={{

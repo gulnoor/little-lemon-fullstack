@@ -16,7 +16,6 @@ const TokenProvider = ({ children }) => {
     }
     return "";
   }
-//FIXME: refreshing any page adds dashboard link to navrail even if token is not set (actually it gets set to "null" as string maybe??)
   // TODO: use isClient state and verify token from server after reading it from local storage
   const [token, setToken] = useState(getToken());
 

@@ -8,7 +8,23 @@ export async function POST(request: NextRequest, response: NextResponse) {
   await dbConnect();
   try {
     const token = request.headers.get("authToken");
-
+    const body = await request.json();
+    const { date, time } = body;
+    const alreadyTaken = await Reservation.find({ date, time });
+    if (alreadyTaken.length !== 0) {
+      return NextResponse.json({
+        type: "error",
+        message: "Date and time is already booked",
+      });
+    }
+    // two cases:
+    // case 1. guest
+    if (!token) {
+      const reservation = new Reservation({ ...body });
+      const savedReservation = await reservation.save();
+      return NextResponse.json(savedReservation);
+    }
+    // case 2: user logged in
     // decode token
     // FIXME: Older tokens that didn't have expiry are still working
     const decodedUser = jwt.verify(token, process.env.JWT_SEKRET);
@@ -18,10 +34,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
     // check if user exists in database
     const user = await User.findById(decodedUser.id);
     if (user) {
-      const body = await request.json();
-      // FIXME:any random time can create an order
-      // Verify time in db before saving booking
-      // ...........
       const reservation = new Reservation({ ...body, userId: user.id });
       const savedReservation = await reservation.save();
       // // update orders in user document
@@ -29,9 +41,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
       await user.save();
       return NextResponse.json(savedReservation);
     }
+    //token received but user not found
     return new Response("User does not exist");
   } catch (err) {
-    console.log(err);
-    return new Response(err);
+    return NextResponse.json({ type: "error", messsage: err.message });
   }
 }

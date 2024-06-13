@@ -24,25 +24,26 @@ const TextInput = ({ label, ...props }) => {
     </>
   );
 };
-const Reservation = () => {
-  //TODO: get times from db based on selected date
-  const availTimes = ["dhai", "teen", "sarhe char"];
-  const handleSubmit = (values) => {
-    console.log(values);
-    fetch("/api/reservation", {
+const handleSubmit = async (values) => {
+  let response = null;
+  try {
+    response = await fetch("/api/reservation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(values),
-    })
-      .then((response) => {
-        response.json().then((res) => console.log(res.message));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+    });
+    response = await response.json();
+    console.log(response.message);
+  } catch (err) {
+    console.error(err);
+  }
+};
+const Reservation = () => {
+  //TODO: get times from db based on selected date
+  const availTimes = ["dhai", "teen", "sarhe char"];
+
   return (
     <Formik
       initialValues={{

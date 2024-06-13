@@ -10,7 +10,11 @@ import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24
 const NavLink = (props) => {
   return (
     <Link
-      className={`flex flex-col justify-center items-center p-2 ${props.className}`}
+      className={`
+        flex flex-col 
+        justify-center items-center
+        p-2 
+        ${props.className}`}
       key={props.name}
       href={props.href}
       onClick={props.onClick}
@@ -66,7 +70,9 @@ const NavRail = ({ links }) => {
       )}
       {
         <NavLink
-          className="hidden md:flex md:mt-auto "
+          className="
+          hidden md:flex 
+          md:mt-auto "
           key={"theme"}
           href={""}
           image={theme === "dark" ? sun : moon}
@@ -76,7 +82,6 @@ const NavRail = ({ links }) => {
       }
       {token ? (
         <NavLink
-          className="  "
           name="Dashboard"
           key={"dashboard"}
           href={"/dashboard"}
@@ -85,7 +90,6 @@ const NavRail = ({ links }) => {
         ></NavLink>
       ) : (
         <NavLink
-          className="  "
           name="Login"
           key={"login"}
           theme={theme}

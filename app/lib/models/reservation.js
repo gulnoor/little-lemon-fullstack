@@ -7,7 +7,7 @@ const reservationSchema = new mongoose.Schema({
   time: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: String,
-  email: { type: String, required: true },
+  email: String,
   specialRequest: String,
 });
 
