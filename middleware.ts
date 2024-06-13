@@ -24,14 +24,18 @@ export async function middleware(request: NextRequest) {
     -----------------------`
   );
   const requestHeaders = new Headers(request.headers);
+  console.log("gg");
   if (token && token.startsWith("Bearer ")) {
     token = token.replace("Bearer ", "");
-    requestHeaders.set("authToken", token);
+  requestHeaders.set("authToken", token);
   }
-  const modifiedRequest = new Request(request, {
-    headers: requestHeaders,
-  });
-  return NextResponse.next({
+    console.log("gg");
+    
+    const modifiedRequest = new Request(request.url, {
+      headers: requestHeaders,
+      });
+    console.log("ff");
+return NextResponse.next({
     request: modifiedRequest,
   });
 }
