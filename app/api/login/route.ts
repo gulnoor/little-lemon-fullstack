@@ -11,6 +11,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const { username, password } = body;
     const user = await User.findOne({ username });
     if (user === null) {
+      //TODO: redirect to registeration page
       return NextResponse.json({ message: "User not found" });
     }
     const passwordCorrect = await bcrypt.compare(password, user.passwordHash);

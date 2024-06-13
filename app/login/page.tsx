@@ -10,7 +10,6 @@ const Login = () => {
   const { token, setToken } = useContext(TokenContext);
   const submitHandler = async (values) => {
     console.log(values);
-    console.log(JSON.stringify({ ...values }));
 
     try {
       let response = await fetch("/api/login", {
@@ -55,6 +54,7 @@ const Login = () => {
             borderWidth: "2px",
           },
         }}
+        type="email"
         id="email"
         name="email"
         label="Email"
@@ -62,9 +62,7 @@ const Login = () => {
         helperText={formik.touched.email && formik.errors.email}
         // type="email"
         {...formik.getFieldProps("email")}
-      >
-        gg
-      </TextField>
+      ></TextField>
       <TextField
         sx={{
           maxWidth: "600px",
@@ -78,6 +76,7 @@ const Login = () => {
         id="password"
         name="password"
         label="Password"
+        type="password"
         error={formik.touched.password && Boolean(formik.errors.password)}
         helperText={formik.touched.password && formik.errors.password}
         // type="email"

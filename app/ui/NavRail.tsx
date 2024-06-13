@@ -68,7 +68,7 @@ const NavRail = ({ links }) => {
           ></NavLink>
         )
       )}
-      {
+      {isMounted && (
         <NavLink
           className="
           hidden md:flex 
@@ -79,26 +79,28 @@ const NavRail = ({ links }) => {
           theme={theme}
           onClick={toggleTheme}
         ></NavLink>
-      }
-      {token ? (
-        <NavLink
-          name="Dashboard"
-          key={"dashboard"}
-          href={"/dashboard"}
-          theme={theme}
-          image="/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
-        ></NavLink>
-      ) : (
-        <NavLink
-          name="Login"
-          key={"login"}
-          theme={theme}
-          href={"/login"}
-          image={
-            "/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
-          }
-        ></NavLink>
       )}
+      {isMounted ? (
+        token ? (
+          <NavLink
+            name="Dashboard"
+            key={"dashboard"}
+            href={"/dashboard"}
+            theme={theme}
+            image="/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
+          ></NavLink>
+        ) : (
+          <NavLink
+            name="Login"
+            key={"login"}
+            theme={theme}
+            href={"/login"}
+            image={
+              "/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
+            }
+          ></NavLink>
+        )
+      ) : null}
     </nav>
   );
 };

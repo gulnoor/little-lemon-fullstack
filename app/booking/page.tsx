@@ -97,6 +97,7 @@ const handleSubmit = async (values, token) => {
     response = await response.json();
     console.log(response);
   } catch (err) {
+    //TODO: add error component
     console.log(err);
   }
 };
