@@ -42,7 +42,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
       return NextResponse.json(savedReservation);
     }
     //token received but user not found
-    return new Response("User does not exist");
+    return NextResponse.json({ type: "error", messsage: "user does not exist" });
   } catch (err) {
     return NextResponse.json({ type: "error", messsage: err.message });
   }

@@ -92,7 +92,7 @@ const handleSubmit = async (values, token) => {
         "Content-Type": "application/json",
         Authentication: token,
       },
-      body: JSON.stringify(values),
+      body: JSON.stringify({...values}),
     });
     response = await response.json();
     console.log(response);
