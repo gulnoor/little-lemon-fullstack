@@ -14,24 +14,28 @@ const AlertProvider = ({ children }) => {
       setOpen(true);
     };
   }, []);
+  const handleClose = useMemo(() => {
+    return (event, reason) => {
+      if (reason === "clickaway") {
+        return;
+      }
+      setOpen(false);
+      //   setAlert({ type: "", message: "" });
+    };
+  }, []);
 
   return (
     <AlertContext.Provider value={{ openAlert }}>
-      <Snackbar
-        onClose={() => {
-          setOpen(false);
-          setAlert({ type: "", message: "" });
-        }}
-        open={open}
-        autoHideDuration={6000}
-      >
+      <Snackbar onClose={handleClose} open={open} autoHideDuration={6000}>
         <Alert
-          onClose={() => {
-            setOpen(false);
-            setAlert({ type: "", message: "" });
-          }}
+          onClose={handleClose}
           variant="filled"
-          sx={{ width: "100%" }}
+          sx={{
+            width: "100%",
+            minHeight: "80px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
           severity={alert.type}
         >
           {alert.message}

@@ -13,29 +13,23 @@ const MUICustomThemeProvider = ({ children }) => {
         colorSchemes: {
           light: {
             palette: {
+              mode: "light",
               primary: {
-                main: "rgb(111 93 14)",
-                contrastText: "rgb(255 255 255)",
+                main: "#6f5d0e",
               },
               secondary: {
-                main: "rgb(103 94 64)",
-              },
-              error: {
-                main: "rgb(186 26 26)",
+                main: "#675e40",
               },
             },
           },
           dark: {
             palette: {
+              mode: "dark",
               primary: {
-                main: "rgb(221 198 110)",
-                contrastText: "rgb(58 48 0)",
+                main: "#ddc66e",
               },
               secondary: {
-                main: "rgb(210 198 161)",
-              },
-              error: {
-                main: "rgb(255 180 171)",
+                main: "#d2c6a1",
               },
             },
           },
