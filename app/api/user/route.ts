@@ -21,7 +21,12 @@ export async function POST(request: NextRequest, response: NextResponse) {
     userData.passwordHash = hash;
     const user = new User(userData);
     const savedUser = await user.save();
-    return NextResponse.json(savedUser);
+    const responseBody = await savedUser.toJSON();
+    return NextResponse.json({
+      type: "success",
+      message: "Account created successfully",
+      body: responseBody,
+    });
   } catch (error) {
     console.log(error);
     if (error.message.includes("E11000 duplicate key error")) {

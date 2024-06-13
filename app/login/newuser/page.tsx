@@ -1,13 +1,17 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { TokenContext } from "@/app/lib/contexts/tokenContext";
 import { MyTextField } from "@/app/ui/material3-inputs/inputs";
 import { ThemeContext } from "@emotion/react";
+import Alert from "@mui/material/Alert";
+import { Snackbar } from "@mui/material";
 
 const NewUser = () => {
-  const { token, setToken } = useContext(TokenContext);
+  //TODO: move focus/ highlight/scroll to invalid input when submit is clicked
+  const [open, setOpen] = useState(false);
+  const [alert, setAlert] = useState({ type: "", message: "" });
+
   const { theme } = useContext(ThemeContext);
   const submitHandler = async (values) => {
     console.log(values);
@@ -21,10 +25,13 @@ const NewUser = () => {
         body: JSON.stringify(values),
       });
       response = await response.json();
+      setAlert(response);
       console.log(response);
+      setOpen(true);
     } catch (err) {
-      //TODO: add error component
       console.log(err);
+      setAlert(err);
+      setOpen(true);
     }
   };
 
@@ -59,7 +66,26 @@ const NewUser = () => {
       w-full md:w-3/4 
       max-w-[600px]"
     >
-      {/* TODO: add response error message components */}
+      <Snackbar
+        onClose={() => {
+          setOpen(false);
+          setAlert({ type: "", message: "" });
+        }}
+        open={open}
+        autoHideDuration={6000}
+      >
+        <Alert
+          onClose={() => {
+            setOpen(false);
+            setAlert({ type: "", message: "" });
+          }}
+          variant="filled"
+          sx={{ width: "100%" }}
+          severity={alert.type}
+        >
+          {alert.message}
+        </Alert>
+      </Snackbar>
       <MyTextField
         label={"First Name"}
         formik={formik}
