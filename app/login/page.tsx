@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import cat from "@/public/assets/images/a cute cat made of lemons.png";
 import { TextField } from "@mui/material";
 import Image from "next/image";
+import MyButton from "../ui/MyButton";
 
 const Login = () => {
   const { token, setToken } = useContext(TokenContext);
@@ -53,7 +54,8 @@ const Login = () => {
             sx={{
               maxWidth: "600px",
               "& .MuiInputBase-root": {
-                backgroundColor: "var(--md-sys-color-surface-container-highest)",
+                backgroundColor:
+                  "var(--md-sys-color-surface-container-highest)",
               },
               " & .MuiOutlinedInput-root > fieldset": {
                 borderWidth: "2px",
@@ -73,7 +75,8 @@ const Login = () => {
             sx={{
               maxWidth: "600px",
               "& .MuiInputBase-root": {
-                backgroundColor: "var(--md-sys-color-surface-container-highest)",
+                backgroundColor:
+                  "var(--md-sys-color-surface-container-highest)",
               },
               " & .MuiOutlinedInput-root > fieldset": {
                 borderWidth: "2px",
@@ -87,6 +90,9 @@ const Login = () => {
             // type="email"
             {...formik.getFieldProps("password")}
           ></TextField>
+          <MyButton variant={"text"} style={""} textSize={"text-lg"}>
+            Don&apos;t have an account? Register for free
+          </MyButton>
           <button
             className=" bg-[var(--md-sys-color-primary)] max-w-[600px] text-xl min-h-[48px] rounded-full  text-[var(--md-sys-color-on-primary)] flex justify-center items-center px-4 py-3"
             type="submit"

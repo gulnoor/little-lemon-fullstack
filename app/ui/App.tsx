@@ -21,16 +21,15 @@ const LINKS = [
   },
 ];
 const App = ({ children }) => {
-  const appRef = useRef(null)
+  const appRef = useRef(null);
   const { theme } = useContext(ThemeContext);
-  useEffect(()=>{
-    appRef.current.classList.add(theme)
-
-  },[])
+  useEffect(() => {
+    appRef.current.classList.add(theme);
+  }, []);
 
   return (
     <div
-    ref={appRef}
+      ref={appRef}
       suppressHydrationWarning
       className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)]`}
       id="app"
