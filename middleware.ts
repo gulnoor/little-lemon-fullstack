@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 //   return obj;
 // }
 export async function middleware(request: NextRequest) {
-  let token = request.headers.get("authorization");
+  let token = request.headers.get("Authorization");
   let body = {};
   try {
     if (request.method === "POST") {
@@ -21,7 +21,6 @@ export async function middleware(request: NextRequest) {
       -----------------------`
     );
     const requestHeaders = new Headers(request.headers);
-    console.log("gg");
     if (token && token.startsWith("Bearer ")) {
       token = token.replace("Bearer ", "");
       requestHeaders.set("authToken", token);
