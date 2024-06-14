@@ -62,7 +62,7 @@ const NewUser = () => {
       gap-5
       justify-center 
       w-full md:w-3/4 
-      max-w-[600px]"
+      max-w-[600px] animate__animated animate__fadeInUp animate__faster"
     >
       {/* <Snackbar
         onClose={() => {
