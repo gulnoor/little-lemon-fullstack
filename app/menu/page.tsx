@@ -3,6 +3,20 @@ import dbConnect from "../lib/connectDatabase";
 import bgimg2 from "/public/assets/images/restauranfood.webp";
 import MenuItem from "../lib/models/menuItem";
 import "./menu.scss";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Divider,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Typography,
+} from "@mui/material";
+import React from "react";
 // import MyButton from "../ui/MyButton";
 
 const Menu = async () => {
@@ -23,35 +37,60 @@ const Menu = async () => {
         </div>
         <Image className="menuheroimg" alt={"hero image"} src={bgimg2} />
       </div>
-      <section className="p-0 flex flex-wrap justify-center gap-3 md:gap-0">
-        {menu.map((item) => (
-          <div
-            className=" max-h-[220px] rounded-2xl flex items-center w-full xl:w-[43%] bg-[var(--md-sys-color-surface-container-high)] md:p-2 md:m-4 "
-            key={item.name}
-          >
-            <div>
-              <Image
-                className="ml-3 w-[100px] h-[100px] md:w-[200px] md:h-[200px]"
-                width={200}
-                height={200}
-                src={item.image}
-                alt={item.name}
-                style={{
-                  objectFit: "cover",
-                  maxWidth: "200px",
-                  borderRadius: "32px",
-                }}
-              />
-            </div>
-            <div className="flex flex-col justify-center m-4">
-              <h2>{item.name}</h2>
-              <p className="line-clamp-2">{item.description}</p>
-              <p>Price: ${item.price}</p>
-            </div>
-            {/* <MyButton variant="outlined">-</MyButton>
-            <MyButton variant="outlined">+</MyButton> */}
-          </div>
-        ))}
+      <section className="p-0 flex flex-wrap justify-around ">
+        <List
+          className="lg:w-[49%]"
+          sx={{
+            borderRadius: "18px",
+            bgcolor: "var(--md-sys-color-surface-container-high)",
+          }}
+        >
+          {menu.map((item) => (
+            <>
+              <ListItem key={item.id}>
+                <ListItemAvatar>
+                  <Image
+                    className="w-[70px] h-[90px] md:w-[150px] md:h-[150px] object-cover mr-3"
+                    style={{ borderRadius: "18px" }}
+                    src={item.image}
+                    width={150}
+                    height={150}
+                    alt={item.name}
+                  ></Image>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={item.name}
+                  secondary={
+                    <React.Fragment>{item.description}</React.Fragment>
+                  }
+                ></ListItemText>
+                <p>{"$" + item.price}</p>
+              </ListItem>
+              <Divider variant="inset" component="li" />
+            </>
+          ))}
+        </List>
+        <Card className="hidden lg:block lg:w-[49%]">
+          <CardMedia
+            component="img"
+            alt="green iguana"
+            height="140"
+            image="/static/images/cards/contemplative-reptile.jpg"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Lizard
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Lizards are a widespread group of squamate reptiles, with over
+              6,000 species, ranging across all continents except Antarctica
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">Share</Button>
+            <Button size="small">Learn More</Button>
+          </CardActions>
+        </Card>
       </section>
     </>
   );

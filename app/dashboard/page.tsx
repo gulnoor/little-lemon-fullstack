@@ -15,9 +15,8 @@ import {
 
 const Dashboard = () => {
   const { openAlert } = useContext(AlertContext);
-  const [data, setData] = useState({ body: { reservations: [] } });
   const { token, setToken } = useContext(TokenContext);
-  const router = useRouter();
+  const [data, setData] = useState({ body: { reservations: [] } });
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,23 +42,8 @@ const Dashboard = () => {
   }, []);
   return (
     <>
-      <button
-        className="
-              bg-[var(--md-sys-color-primary)] 
-              w-full
-              min-h-[48px] 
-              text-xl text-[var(--md-sys-color-on-primary)] 
-              rounded-full  
-              flex justify-center items-center 
-              px-4 py-3"
-        onClick={() => {
-          setToken("");
-          router.push("/login");
-        }}
-      >
-        Log out
-      </button>
       <List
+        className="animate__animated history animate__faster"
         sx={{
           borderRadius: "16px",
           bgcolor: "var(--md-sys-color-surface-container)",
