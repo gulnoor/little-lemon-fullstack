@@ -46,8 +46,19 @@ const specials = [
 export default function Home() {
   return (
     <>
-      <section className="bg-[var(--md-sys-color-primary-container)] flex flex-row  justify-evenly min-h-[520px] md:min-h-[650px]">
-        <div className="  flex flex-col gap-2 sm:gap-0 justify-center items-center sm:items-start">
+      <section
+        className="
+        bg-[var(--md-sys-color-primary-container)] 
+        flex flex-row justify-evenly 
+        min-h-[520px] md:min-h-[650px]
+        animate__animated animate__fadeInUp animate__faster"
+      >
+        <div
+          className="
+        flex flex-col 
+        gap-2 sm:gap-0 
+        justify-center items-center sm:items-start"
+        >
           <h1
             className={` sm:text-left  text-center  ${displayFont.className}  mb-6 text-6xl sm:text-7xl md:text-8xl text-[var(--md-sys-color-primary)]`}
           >
@@ -75,7 +86,13 @@ export default function Home() {
       </section>
       <OurSpecials items={specials} />
       <h1 className="ml-6 md:ml-10">About Us</h1>
-      <section className="mb-[60px] md:mb-0 flex flex-wrap-reverse justify-between items-center bg-[var(--md-sys-color-surface-container-highest)]">
+      <section
+        className="
+      mb-[60px] md:mb-0 
+      flex flex-wrap-reverse 
+      justify-between items-center 
+      bg-[var(--md-sys-color-surface-container-highest)]"
+      >
         <article className="flex flex-col w-full lg:w-3/5 my-4">
           <p className="text-justify">
             Based in Chicago, Illinois, Little Lemon is a family-owned

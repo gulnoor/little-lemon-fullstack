@@ -47,7 +47,7 @@ const Login = () => {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex flex-col gap-11 justify-center w-full md:w-3/4 max-w-[600px]"
+      className="animate__animated animate__fadeInUp animate__faster flex flex-col gap-11 justify-center w-full md:w-3/4 max-w-[600px]"
     >
       {/* TODO: add error message components */}
       <TextField
