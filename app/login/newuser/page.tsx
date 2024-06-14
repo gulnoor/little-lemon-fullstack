@@ -4,8 +4,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { MyTextField } from "@/app/ui/material3-inputs/inputs";
 import { ThemeContext } from "@emotion/react";
-import Alert from "@mui/material/Alert";
-import { Snackbar } from "@mui/material";
+
 import { AlertContext } from "@/app/lib/contexts/AlertContext";
 
 const NewUser = () => {

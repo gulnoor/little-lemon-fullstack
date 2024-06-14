@@ -40,7 +40,6 @@ const NavRail = ({ links }) => {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
-    console.log(isMounted);
   }, []);
 
   return (

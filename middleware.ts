@@ -18,19 +18,17 @@ export async function middleware(request: NextRequest) {
       Method: ${request.method}
       Path: ${request.url}
       Body: ${JSON.stringify(body)}
-      -----------------------`
+      ________________________`
     );
     const requestHeaders = new Headers(request.headers);
     if (token && token.startsWith("Bearer ")) {
       token = token.replace("Bearer ", "");
       requestHeaders.set("authToken", token);
     }
-    console.log("gg");
 
     const modifiedRequest = new Request(request.url, {
       headers: requestHeaders,
     });
-    console.log("ff");
     return NextResponse.next({
       request: modifiedRequest,
     });
@@ -39,5 +37,5 @@ export async function middleware(request: NextRequest) {
   }
 }
 export const config = {
-  matcher: ["/api/order", "/api/reservation"],
+  matcher: ["/api/order", "/api/reservation", "/api/user"],
 };

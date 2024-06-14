@@ -8,16 +8,16 @@ export async function POST(req: NextRequest, res: NextResponse) {
   await dbConnect();
   try {
     const body = await req.json();
-    const { username, password } = body;
-    const user = await User.findOne({ username });
+    const { email, password } = body;
+    const user = await User.findOne({ email });
     if (user === null) {
       //TODO: redirect to registeration page
-      return NextResponse.json({type:"error", message: "User not found" });
+      return NextResponse.json({ type: "error", message: "User not found" });
     }
     const passwordCorrect = await bcrypt.compare(password, user.passwordHash);
     if (passwordCorrect) {
       const token = jwt.sign(
-        { username, id: user.id },
+        { email, id: user.id },
         process.env.JWT_SEKRET
         // ,{
         //   expiresIn: 1800,
