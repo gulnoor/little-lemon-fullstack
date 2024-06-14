@@ -5,6 +5,7 @@ const Layout = ({ children }) => {
     <>
       <section>
         <h1>Dashboard</h1>
+        
         {children}
       </section>
     </>

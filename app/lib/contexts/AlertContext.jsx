@@ -26,7 +26,7 @@ const AlertProvider = ({ children }) => {
 
   return (
     <AlertContext.Provider value={{ openAlert }}>
-      <Snackbar onClose={handleClose} open={open} autoHideDuration={6000}>
+      <Snackbar anchorOrigin={{horizontal:"right",vertical:"bottom"}} onClose={handleClose} open={open} autoHideDuration={6000}>
         <Alert
           onClose={handleClose}
           variant="filled"

@@ -2,11 +2,13 @@
 import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { AlertContext } from "../lib/contexts/AlertContext";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const { openAlert } = useContext(AlertContext);
   const [data, setData] = useState({ body: { reservations: [] } });
-  const { token } = useContext(TokenContext);
+  const { token, setToken } = useContext(TokenContext);
+  const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,6 +34,15 @@ const Dashboard = () => {
   }, []);
   return (
     <div>
+      <button
+        onClick={() => {
+          setToken("");
+          router.push("/login");
+        }}
+      >
+        Log out
+      </button>
+
       {data.body.reservations &&
         data.body.reservations.map((res) => <p key={res.id}>{res.date}</p>)}
     </div>

@@ -6,8 +6,10 @@ import { TokenContext } from "../lib/contexts/tokenContext";
 import { useFormik } from "formik";
 import { TextField } from "@mui/material";
 import { AlertContext } from "../lib/contexts/AlertContext";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router = useRouter();
   const { setToken } = useContext(TokenContext);
   const { openAlert } = useContext(AlertContext);
   const submitHandler = async (values) => {
@@ -24,6 +26,7 @@ const Login = () => {
       response = await response.json();
       if (response.message === "login successful") {
         setToken(response.token);
+        router.push("/dashboard");
       }
       openAlert(response);
     } catch (err) {

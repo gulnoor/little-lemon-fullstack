@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 declare global {
   var mongoose: any; // This must be a `var` and not a `let / const`
 }
-console.log("running connectdb file");
+// console.log("running connectdb file");
 
 const MONGODB_URI = process.env.MONGODB_URI_TEST!;
 
