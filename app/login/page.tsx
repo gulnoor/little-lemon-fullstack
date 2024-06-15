@@ -24,14 +24,14 @@ const Login = () => {
         body: JSON.stringify({ ...values }),
       });
       response = await response.json();
+      openAlert(response);
       if (response.message === "login successful") {
         setToken(response.token);
         router.push("/dashboard");
       }
-      openAlert(response);
     } catch (err) {
       console.log(err);
-      openAlert(err);
+      openAlert({ type: "error", message: err.message });
     }
   };
 

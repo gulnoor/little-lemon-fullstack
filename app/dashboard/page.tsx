@@ -3,7 +3,6 @@ import EventSeatIcon from "@mui/icons-material/EventSeat";
 import React, { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { AlertContext } from "../lib/contexts/AlertContext";
-import { useRouter } from "next/navigation";
 import {
   Divider,
   List,
@@ -35,7 +34,7 @@ const Dashboard = () => {
         }
         openAlert(data);
       } catch (err) {
-        openAlert(err);
+        openAlert({ type: "error", message: err.message });
       }
     };
     fetchData();

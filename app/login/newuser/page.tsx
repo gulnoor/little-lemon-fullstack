@@ -1,16 +1,13 @@
 "use client";
-import { useContext, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { MyTextField } from "@/app/ui/material3-inputs/inputs";
-import { ThemeContext } from "@emotion/react";
-
+import { useContext } from "react";
 import { AlertContext } from "@/app/lib/contexts/AlertContext";
+import { ThemeContext } from "@/app/lib/contexts/themeContext";
 
 const NewUser = () => {
   //TODO: move focus/ highlight/scroll to invalid input when submit is clicked
-  // const [open, setOpen] = useState(false);
-  // const [alert, setAlert] = useState({ type: "", message: "" });
   const { openAlert } = useContext(AlertContext);
 
   const { theme } = useContext(ThemeContext);
@@ -29,7 +26,7 @@ const NewUser = () => {
       openAlert(response);
     } catch (err) {
       console.log(err);
-      openAlert(err);
+      openAlert({ type: "error", message: err.message });
     }
   };
 
@@ -64,26 +61,6 @@ const NewUser = () => {
       w-full md:w-3/4 
       max-w-[600px] animate__animated animate__fadeInUp animate__faster"
     >
-      {/* <Snackbar
-        onClose={() => {
-          setOpen(false);
-          setAlert({ type: "", message: "" });
-        }}
-        open={open}
-        autoHideDuration={6000}
-      >
-        <Alert
-          onClose={() => {
-            setOpen(false);
-            setAlert({ type: "", message: "" });
-          }}
-          variant="filled"
-          sx={{ width: "100%" }}
-          severity={alert.type}
-        >
-          {alert.message}
-        </Alert>
-      </Snackbar> */}
       <MyTextField
         label={"First Name"}
         formik={formik}

@@ -1,14 +1,14 @@
 "use client";
-import styled from "@emotion/styled";
+import * as yup from "yup";
+import Image from "next/image";
 import heroImg from "/public/assets/images/corporate-memphis/Mesa de trabajo 1.png";
+import styled from "@emotion/styled";
 import { Button, MenuItem } from "@mui/material";
 import { useFormik } from "formik";
 import { useContext, useEffect, useRef, useState } from "react";
-import * as yup from "yup";
 import { MyForm, StyledTextField } from "./BookingForm.styles";
 import { fetchAPI } from "./availTimesAPI";
 import { ThemeContext } from "../lib/contexts/themeContext";
-import Image from "next/image";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { AlertContext } from "../lib/contexts/AlertContext";
 
@@ -48,7 +48,6 @@ const Styledh1 = styled.h1`
     font-size: 7vw;
   }
 `;
-
 const StyledChip = styled.div`
   display: inline-flex;
   height: 48px;
@@ -98,7 +97,7 @@ const handleSubmit = async (values, token, openAlert) => {
     response = await response.json();
     openAlert(response);
   } catch (err) {
-    openAlert(err);
+    openAlert({ type: "error", message: err.message });
   }
 };
 const BookingForm = () => {
@@ -177,6 +176,7 @@ const BookingForm = () => {
         />
       </StyledHero>
       <MyForm onSubmit={formik.handleSubmit}>
+        <h2>Find a Table</h2>
         <MyTextInput
           label="Persons"
           type="number"
@@ -204,7 +204,7 @@ const BookingForm = () => {
             ))}
         </StyledTextField>
         {formik.values.date && (
-          <h1
+          <h2
             className="title-large"
             style={{
               color: "var(--md-sys-color-on-surface)",
@@ -212,7 +212,7 @@ const BookingForm = () => {
             }}
           >
             Available Times
-          </h1>
+          </h2>
         )}
         <div
           className="
@@ -238,6 +238,7 @@ const BookingForm = () => {
             );
           })}
         </div>
+        <h2>Contact Information</h2>
         <MyTextInput
           formik={formik}
           label="First Name"
