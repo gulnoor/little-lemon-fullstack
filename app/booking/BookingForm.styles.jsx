@@ -11,7 +11,7 @@ export const MyForm = styled.form`
   @media screen and (min-width: 601px) {
     width: 80%;
   }
-  @media screen and (min-width: 841px) {
+  @media screen and (min-width: 1100px) {
     width: 55%;
   }
 `;

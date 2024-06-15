@@ -177,7 +177,9 @@ const BookingForm = () => {
         />
       </StyledHero>
       <MyForm onSubmit={formik.handleSubmit}>
-        <h2>Find a Table</h2>
+        <h2 className="text-[var(--md-sys-color-primary)] mb-4">
+          Find a Table
+        </h2>
         <MyTextInput
           label="Persons"
           type="number"
@@ -239,7 +241,9 @@ const BookingForm = () => {
             );
           })}
         </div>
-        <h2>Contact Information</h2>
+        <h2 className="text-[var(--md-sys-color-primary)]  w-full mb-4">
+          Contact Information
+        </h2>
         <MyTextInput
           formik={formik}
           label="First Name"
@@ -261,11 +265,11 @@ const BookingForm = () => {
           type="submit"
           variant="contained"
           sx={{
-            width: "80%",
-            margin: "auto",
+            width: "100%",
+            // margin: "auto",
           }}
         >
-          Submit
+          Make Reservation
         </Button>
       </MyForm>
     </>

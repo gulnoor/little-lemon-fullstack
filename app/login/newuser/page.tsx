@@ -39,7 +39,7 @@ const NewUser = () => {
       lastName: "",
       email: "",
       password: "",
-    },
+    },  
     onSubmit: submitHandler,
     validationSchema: Yup.object({
       //TODO: add phone number validation etc
