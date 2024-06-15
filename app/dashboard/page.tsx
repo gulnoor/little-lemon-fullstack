@@ -11,6 +11,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import errorParser from "../lib/clientErrorHandler";
 
 const Dashboard = () => {
   const { openAlert } = useContext(AlertContext);
@@ -34,7 +35,7 @@ const Dashboard = () => {
         }
         openAlert(data);
       } catch (err) {
-        openAlert({ type: "error", message: err.message });
+        openAlert(errorParser(err));
       }
     };
     fetchData();

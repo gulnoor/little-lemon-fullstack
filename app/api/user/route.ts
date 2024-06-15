@@ -2,8 +2,8 @@ import dbConnect from "@/app/lib/connectDatabase";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
-import menuItem from "@/app/lib/models/menuItem";
 import { NextRequest, NextResponse } from "next/server";
+import serverErrorHandler from "@/app/lib/serverErrorHandler";
 
 export async function POST(request: NextRequest, response: NextResponse) {
   await dbConnect();
@@ -83,6 +83,6 @@ export async function GET(request: NextRequest) {
       message: "user does not exist",
     });
   } catch (err) {
-    return NextResponse.json({ type: "error", message: err.message });
+    return serverErrorHandler(err);
   }
 }
