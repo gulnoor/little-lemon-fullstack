@@ -24,6 +24,9 @@ const NewUser = () => {
       });
       response = await response.json();
       openAlert(response);
+      if (response.type === "success") {
+        router.push("/login");
+      }
     } catch (err) {
       console.log(err);
       openAlert({ type: "error", message: err.message });
