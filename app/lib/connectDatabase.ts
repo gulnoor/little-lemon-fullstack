@@ -39,8 +39,5 @@ async function dbConnect() {
 
   return cached.conn;
 }
-require("./models/order");
-require("./models/reservation");
-require("./models/menuItem");
-require("./models/user");
+
 export default dbConnect;
