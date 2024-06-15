@@ -101,8 +101,8 @@ const handleSubmit = async (values, token, openAlert) => {
   }
 };
 const BookingForm = () => {
-  const { openAlert } = useContext(AlertContext);
   const chipRefs = useRef([]);
+  const { openAlert } = useContext(AlertContext);
   const [availTimes, setAvailTimes] = useState([]);
   const { theme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
@@ -115,6 +115,7 @@ const BookingForm = () => {
       firstName: "",
       lastName: "",
       email: "",
+      contact: "",
       specialRequest: "",
     },
     onSubmit: (values) => {
@@ -249,6 +250,7 @@ const BookingForm = () => {
           formik={formik}
           type="text"
         ></MyTextInput>
+        <MyTextInput label="Contact" formik={formik} type="text"></MyTextInput>
         <MyTextInput label="Email" formik={formik} type="email"></MyTextInput>
         <MyTextInput
           label="Special Request"
@@ -256,12 +258,12 @@ const BookingForm = () => {
           type="textarea"
         ></MyTextInput>
         <Button
+          type="submit"
           variant="contained"
           sx={{
             width: "80%",
             margin: "auto",
           }}
-          type="submit"
         >
           Submit
         </Button>

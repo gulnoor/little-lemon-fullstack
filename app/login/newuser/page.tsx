@@ -32,7 +32,6 @@ const NewUser = () => {
 
   const formik = useFormik({
     initialValues: {
-      contact: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -41,9 +40,8 @@ const NewUser = () => {
     onSubmit: submitHandler,
     validationSchema: Yup.object({
       //TODO: add phone number validation etc
-      contact: Yup.string(),
       password: Yup.string().min(8).max(16).required(),
-      email: Yup.string().email(),
+      email: Yup.string().email().required(),
       firstName: Yup.string()
         .required("No name no party")
         .min(2, "Name must be at least two character long"),
@@ -75,13 +73,7 @@ const NewUser = () => {
         className="w-full  lg:w-[48%]"
         type={"text"}
       />
-      <MyTextField
-        label={"Contact"}
-        formik={formik}
-        className={"w-full"}
-        theme={theme}
-        type={"text"}
-      />
+
       <MyTextField
         label={"Email"}
         formik={formik}

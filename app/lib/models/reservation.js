@@ -4,6 +4,7 @@ const reservationSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   persons: { type: Number, required: true },
   date: { type: Date, required: true },
+  contact: { type: String, required: true },
   time: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: String,
