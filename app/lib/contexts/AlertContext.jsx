@@ -35,6 +35,7 @@ const AlertProvider = ({ children }) => {
             minHeight: "80px",
             justifyContent: "center",
             alignItems: "center",
+            fontSize:'20px'
           }}
           severity={alert.type}
         >

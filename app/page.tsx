@@ -51,7 +51,7 @@ export default function Home() {
         bg-[var(--md-sys-color-primary-container)] 
         flex flex-row justify-evenly 
         min-h-[520px] md:min-h-[650px]
-        animate__animated animate__fadeInUp animate__faster"
+        animate__animated animate__zoomIn animate__faster"
       >
         <div
           className="

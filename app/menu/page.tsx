@@ -30,12 +30,16 @@ const Menu = async () => {
   }
   return (
     <>
-      <div className=" menu-hero">
+      <div className=" menu-hero ">
         <div className="menu-title">
           <h1>Menu</h1>
           <p>traditional recipes served with a modern twist</p>
         </div>
-        <Image className="menuheroimg" alt={"hero image"} src={bgimg2} />
+        <Image
+          className="menuheroimg animate__animated animate__faster animate__zoomIn"
+          alt={"hero image"}
+          src={bgimg2}
+        />
       </div>
       <section className="p-0 flex flex-wrap justify-around ">
         <List

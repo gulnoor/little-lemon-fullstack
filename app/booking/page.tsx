@@ -164,7 +164,7 @@ const BookingForm = () => {
 
   return (
     <>
-      <StyledHero>
+      <StyledHero className="animate__animated animate__faster animate__zoomIn">
         <Styledh1>Reservation</Styledh1>
         <Image
           src={heroImg}

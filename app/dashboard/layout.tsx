@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <section className="animate__animated animate__fadeIn animate__faster">
+      <section className="animate__animated animate__zoomIn animate__faster">
         <h1>Dashboard</h1>
         <button
           className="

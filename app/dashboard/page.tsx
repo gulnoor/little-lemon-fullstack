@@ -43,7 +43,7 @@ const Dashboard = () => {
   return (
     <>
       <List
-        className="animate__animated history animate__faster"
+        className=""
         sx={{
           borderRadius: "16px",
           bgcolor: "var(--md-sys-color-surface-container)",
