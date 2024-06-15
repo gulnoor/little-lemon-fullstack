@@ -19,4 +19,4 @@ orderSchema.set("toJSON", {
     delete returnedObject.__v;
   },
 });
-export default mongoose.models.order || mongoose.model("order", orderSchema);
+export default mongoose.models?.order || mongoose.model("order", orderSchema);

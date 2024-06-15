@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+console.log('running connectDB file');
+
 declare global {
   var mongoose: any; // This must be a `var` and not a `let / const`
 }

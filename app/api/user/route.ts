@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
 import { NextRequest, NextResponse } from "next/server";
 import serverErrorHandler from "@/app/lib/serverErrorHandler";
+import { unstable_noStore } from "next/cache";
 
 export async function POST(request: NextRequest, response: NextResponse) {
   await dbConnect();
@@ -44,6 +45,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
   }
 }
 export async function GET(request: NextRequest) {
+  unstable_noStore();
+  await dbConnect();
   const token = request.headers.get("authToken");
 
   if (!token) {

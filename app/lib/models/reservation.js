@@ -21,5 +21,5 @@ reservationSchema.set("toJSON", {
     delete returnedObject.__v;
   },
 });
-export default mongoose.models.reservation ||
+export default mongoose.models?.reservation ||
   mongoose.model("reservation", reservationSchema);

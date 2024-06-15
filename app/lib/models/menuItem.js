@@ -16,5 +16,5 @@ menuItemSchema.set("toJSON", {
     delete returnedObject.__v;
   },
 });
-export default mongoose.models.menuItem ||
+export default mongoose.models?.menuItem ||
   mongoose.model("menuItem", menuItemSchema);

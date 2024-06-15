@@ -28,4 +28,4 @@ userSchema.set("toJSON", {
     delete returnedObject.passwordHash;
   },
 });
-export default mongoose.models.user || mongoose.model("user", userSchema);
+export default mongoose.models?.user || mongoose.model("user", userSchema);
