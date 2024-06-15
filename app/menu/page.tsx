@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import bgimg2 from "/public/assets/images/restauranfood.webp";
 import "./menu.scss";
@@ -14,18 +13,22 @@ import {
 import React, { useEffect, useState } from "react";
 import Cart from "../ui/Cart";
 import MenuItem from "../ui/MenuItem";
+import dbConnect from "../lib/connectDatabase";
+import menuItem from "../lib/models/menuItem";
 // import MyButton from "../ui/MyButton";
 
-const Menu = () => {
-  const [menu, setmenu] = useState([]);
-  useEffect(() => {
-    const fetchMenu = async () => {
-      const response = await fetch("/api/menu", { method: "GET" });
-      const data = await response.json();
-      setmenu(data);
-    };
-    fetchMenu();
-  }, []);
+const Menu = async () => {
+  // await dbConnect();
+
+  const data = await menuItem.find({});
+  const menu = data.map((item) => ({
+    id: item._id.toString(),
+    name: item.name,
+    description: item.description,
+    price: item.price,
+    image: item.image,
+  }));
+
   return (
     <>
       <Cart />
