@@ -21,6 +21,7 @@
 *.pem
 .anima
 .vscode
+TODO.md
 
 # debug
 npm-debug.log*

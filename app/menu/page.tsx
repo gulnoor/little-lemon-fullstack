@@ -17,6 +17,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import Cart from "../ui/Cart";
 // import MyButton from "../ui/MyButton";
 
 const Menu = async () => {
@@ -30,6 +31,7 @@ const Menu = async () => {
   }
   return (
     <>
+      <Cart />
       <div className=" menu-hero ">
         <div className="menu-title">
           <h1>Menu</h1>
