@@ -57,9 +57,9 @@ export async function POST(request: NextRequest, response: NextResponse) {
     //token received but user not found
     return NextResponse.json({
       type: "error",
-      messsage: "user not found in database",
+      message: "user not found in database",
     });
   } catch (err) {
-    return NextResponse.json({ type: "error", messsage: err.message });
+    return NextResponse.json({ type: "error", message: err.message });
   }
 }

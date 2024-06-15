@@ -80,9 +80,9 @@ export async function GET(request: NextRequest) {
     //token received but user not found
     return NextResponse.json({
       type: "error",
-      messsage: "user does not exist",
+      message: "user does not exist",
     });
   } catch (err) {
-    return NextResponse.json({ type: "error", messsage: err.message });
+    return NextResponse.json({ type: "error", message: err.message });
   }
 }
