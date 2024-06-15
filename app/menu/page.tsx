@@ -1,7 +1,6 @@
+"use client";
 import Image from "next/image";
-import dbConnect from "../lib/connectDatabase";
 import bgimg2 from "/public/assets/images/restauranfood.webp";
-import MenuItem from "../lib/models/menuItem";
 import "./menu.scss";
 import {
   Button,
@@ -9,26 +8,24 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Divider,
   List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Cart from "../ui/Cart";
+import MenuItem from "../ui/MenuItem";
 // import MyButton from "../ui/MyButton";
 
-const Menu = async () => {
-  let menu = [];
-  try {
-    await dbConnect();
-    menu = await MenuItem.find({});
-  } catch (err) {
-    console.log(err);
-    return <h1>couldn&apos;t connect to databse :( please refresh the page</h1>;
-  }
+const Menu = () => {
+  const [menu, setmenu] = useState([]);
+  useEffect(() => {
+    const fetchMenu = async () => {
+      const response = await fetch("/api/menu", { method: "GET" });
+      const data = await response.json();
+      setmenu(data);
+    };
+    fetchMenu();
+  }, []);
   return (
     <>
       <Cart />
@@ -52,28 +49,7 @@ const Menu = async () => {
           }}
         >
           {menu.map((item) => (
-            <>
-              <ListItem key={item.id}>
-                <ListItemAvatar>
-                  <Image
-                    className="w-[70px] h-[90px] md:w-[150px] md:h-[150px] object-cover mr-3"
-                    style={{ borderRadius: "18px" }}
-                    src={item.image}
-                    width={150}
-                    height={150}
-                    alt={item.name}
-                  ></Image>
-                </ListItemAvatar>
-                <ListItemText
-                  primary={item.name}
-                  secondary={
-                    <React.Fragment>{item.description}</React.Fragment>
-                  }
-                ></ListItemText>
-                <p>{"$" + item.price}</p>
-              </ListItem>
-              <Divider variant="inset" component="li" />
-            </>
+            <MenuItem key={item.id} item={item}></MenuItem>
           ))}
         </List>
         <Card className="hidden lg:block lg:w-[49%]">

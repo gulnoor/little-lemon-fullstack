@@ -12,7 +12,7 @@ const Cart = ({}) => {
         {cartState.map((item) => {
           return (
             <>
-              <h2>item.id</h2>
+              <h2>{item.id}</h2>
               <p>{item.quantity}</p>
             </>
           );

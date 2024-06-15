@@ -8,9 +8,9 @@ const cartReducer = (prevState, action) => {
   console.log("action: ", action);
   switch (action.type) {
     case "add":
-      return { count: prevState.count + 1 };
+      return [];
     case "remove":
-      return { count: prevState.count - 1 };
+      return [];
     default:
       return prevState;
   }
