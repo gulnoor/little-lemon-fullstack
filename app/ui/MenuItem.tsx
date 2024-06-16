@@ -4,15 +4,18 @@ import {
   ListItemAvatar,
   ListItemText,
   Divider,
-  ListItemButton,
+  Button,
 } from "@mui/material";
 import Image from "next/image";
-import React from "react";
+import React, { useContext, useState } from "react";
+import { CartContext } from "../lib/contexts/cartContext";
 
 const MenuItem = ({ item }) => {
+  const { updateCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(1);
   return (
     <>
-      <ListItem key={item.id}>
+      <ListItem alignItems="flex-start" key={item.id}>
         <ListItemAvatar>
           <Image
             className="w-[70px] h-[90px] md:w-[150px] md:h-[150px] object-cover mr-3"
@@ -23,14 +26,37 @@ const MenuItem = ({ item }) => {
             alt={item.name}
           ></Image>
         </ListItemAvatar>
-        <ListItemText
-          primary={item.name}
-          secondary={<React.Fragment>{item.description}</React.Fragment>}
-        >
-          <p>{"$" + item.price}</p>
-        </ListItemText>
-        <ListItemButton>add</ListItemButton>
-        <ListItemButton>remove</ListItemButton>
+        <div>
+          <ListItemText
+            primary={item.name}
+            secondary={<React.Fragment>{item.description}</React.Fragment>}
+          >
+            <p>{"$" + item.price}</p>
+          </ListItemText>
+          <div className="flex justify-end">
+            <Button
+              onClick={() =>
+                updateCart({
+                  type: "add",
+                  payload: { id: item.id, price: item.price, name: item.name },
+                })
+              }
+            >
+              +
+            </Button>
+            {quantity}
+            <Button
+              onClick={() =>
+                updateCart({
+                  type: "remove",
+                  payload: { id: item.id, price: item.price, name: item.name },
+                })
+              }
+            >
+              -
+            </Button>
+          </div>
+        </div>
       </ListItem>
       <Divider variant="inset" component="li" />
     </>

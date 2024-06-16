@@ -10,7 +10,6 @@ import {
   List,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import Cart from "../ui/Cart";
 import MenuItem from "../ui/MenuItem";
 import dbConnect from "../lib/connectDatabase";
@@ -31,7 +30,6 @@ const Menu = async () => {
 
   return (
     <>
-      <Cart />
       <div className=" menu-hero ">
         <div className="menu-title">
           <h1>Menu</h1>
@@ -55,7 +53,9 @@ const Menu = async () => {
             <MenuItem key={item.id} item={item}></MenuItem>
           ))}
         </List>
-        <Card className="hidden lg:block lg:w-[49%]">
+        <Cart />
+
+        {/* <Card className="hidden lg:block lg:w-[49%]">
           <CardMedia
             component="img"
             alt="green iguana"
@@ -75,7 +75,7 @@ const Menu = async () => {
             <Button size="small">Share</Button>
             <Button size="small">Learn More</Button>
           </CardActions>
-        </Card>
+        </Card> */}
       </section>
     </>
   );
