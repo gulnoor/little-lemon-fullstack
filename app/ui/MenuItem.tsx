@@ -35,25 +35,34 @@ const MenuItem = ({ item }) => {
           </ListItemText>
           <div className="flex justify-end">
             <Button
-              onClick={() =>
-                updateCart({
-                  type: "add",
-                  payload: { id: item.id, price: item.price, name: item.name },
-                })
-              }
+              onClick={() => {
+                setQuantity((prev) => prev + 1);
+              }}
             >
-              +
+              inc
             </Button>
             {quantity}
             <Button
+              onClick={() => {
+                setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
+              }}
+            >
+              dec
+            </Button>
+            <Button
               onClick={() =>
                 updateCart({
-                  type: "remove",
-                  payload: { id: item.id, price: item.price, name: item.name },
+                  type: "add",
+                  payload: {
+                    id: item.id,
+                    price: item.price,
+                    name: item.name,
+                    quantity,
+                  },
                 })
               }
             >
-              -
+              Add to Cart
             </Button>
           </div>
         </div>

@@ -19,18 +19,26 @@ const cartReducer = (prevState, action) => {
       if (existingItem) {
         return prevState.map((cartItem) =>
           cartItem.id === payload.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            ? { ...cartItem, quantity: cartItem.quantity + payload.quantity }
             : cartItem
         );
       } else {
-        return [...prevState, { ...payload, quantity: 1 }];
+        return [...prevState, { ...payload, quantity: payload.quantity }];
       }
 
-    case "remove":
+    case "inc":
       return prevState.map((item) =>
-        item.id === payload.id ? { ...item, quantity: item.quantity - 1 } : item
+        item.id === payload.id ? { ...item, quantity: item.quantity + 1 } : item
       );
-      x;
+    case "dec":
+      return payload.quantity === 1
+        ? prevState.filter((item) => item.id !== payload.id)
+        : prevState.map((item) =>
+            item.id === payload.id
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          );
+
     default:
       return prevState;
   }
