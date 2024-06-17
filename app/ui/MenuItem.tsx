@@ -39,7 +39,7 @@ const MenuItem = ({ item }) => {
                 setQuantity((prev) => prev + 1);
               }}
             >
-              inc
+              +
             </Button>
             {quantity}
             <Button
@@ -47,7 +47,7 @@ const MenuItem = ({ item }) => {
                 setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
               }}
             >
-              dec
+              -
             </Button>
             <Button
               onClick={() =>
