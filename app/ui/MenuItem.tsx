@@ -16,6 +16,11 @@ const MenuItem = ({ item }) => {
   return (
     <>
       <ListItem
+        sx={{
+          "@media screen and (min-width: 768px)": {
+            padding: "16px",
+          },
+        }}
         className=" rounded-lg bg-[var(--md-sys-color-surface-container-high)]"
         alignItems="flex-start"
         key={item.id}
@@ -30,28 +35,30 @@ const MenuItem = ({ item }) => {
             alt={item.name}
           ></Image>
         </ListItemAvatar>
-        <div className="w-full">
+        <div className="w-full h-full flex flex-col">
           <ListItemText
             primary={item.name}
             secondary={<React.Fragment>{item.description}</React.Fragment>}
           >
             <p>{"$" + item.price}</p>
           </ListItemText>
-          <div className="flex justify-end items-center">
+          <div className="flex mt-auto justify-end items-center">
             <Button
-              onClick={() => {
-                setQuantity((prev) => prev + 1);
-              }}
-            >
-              +
-            </Button>
-            {quantity}
-            <Button
+              variant="outlined"
               onClick={() => {
                 setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
               }}
             >
               -
+            </Button>
+            <span className="px-4">{quantity}</span>
+            <Button
+              variant="outlined"
+              onClick={() => {
+                setQuantity((prev) => prev + 1);
+              }}
+            >
+              +
             </Button>
             <Button
               onClick={() =>

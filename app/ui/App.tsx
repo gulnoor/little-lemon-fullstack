@@ -33,11 +33,11 @@ const App = ({ children }) => {
       <div
         ref={appRef}
         suppressHydrationWarning
-        className={`${theme}  text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)]`}
+        className={`${theme}  text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)] `}
         id="app"
       >
         <NavRail links={LINKS}></NavRail>
-        <main id="main" className=" overflow-hidden md:ml-[110px]">
+        <main id="main" className="p-2 md:p-6 md:pl-0  overflow-clip md:ml-[110px]">
           {children}
         </main>
         <Footer />

@@ -36,7 +36,6 @@ const MUICustomThemeProvider = ({ children }) => {
         },
         components: {
           MuiButton: {
-            
             variants: [
               {
                 props: {
@@ -52,7 +51,7 @@ const MUICustomThemeProvider = ({ children }) => {
                   variant: "text",
                 },
                 style: {
-minWidth:"48px"
+                  minWidth: "48px",
                 },
               },
               {
@@ -61,6 +60,7 @@ minWidth:"48px"
                 },
                 style: {
                   border: "2px solid",
+                  minWidth: "48px",
                   borderRadius: "999px",
                   boxSizing: "border-box",
                   minHeight: "48px",

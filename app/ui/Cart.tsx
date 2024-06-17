@@ -15,15 +15,17 @@ const Cart = ({}) => {
   const { cartState, updateCart } = useContext(CartContext);
   return (
     <List
-      style={{ padding: "8px" }}
+      style={{ padding: "12px", position: "sticky" }}
       className="
       hidden lg:flex flex-col 
       gap-2 
+      h-[100vh]
+      top-2
       rounded-xl 
       bg-[var(--md-sys-color-surface-container)] 
       lg:w-[38%]"
     >
-      <h2>Cart</h2>
+      <h2 className="p-4">Cart</h2>
       {cartState.map((item) => {
         return (
           <ListItem
@@ -31,7 +33,7 @@ const Cart = ({}) => {
             key={item?.id}
           >
             <ListItemText
-              className="pl-4"
+              className="pl-4 w-full"
               primary={item?.name}
               secondary={item?.price}
             />

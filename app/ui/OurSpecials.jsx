@@ -41,7 +41,7 @@ export const OurSpecials = ({ items }) => {
 
   return (
     <>
-      <h1 className="ml-4 md:ml-10">Our Specials</h1>
+      <h1 className="m-6 md:m-10">Our Specials</h1>
       <swiper-container
         init="false"
         class="flex rounded-3xl md:m-10 p-2 h-[500px]"

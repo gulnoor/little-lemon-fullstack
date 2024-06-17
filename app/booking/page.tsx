@@ -23,13 +23,13 @@ function camelCase(str) {
 const StyledHero = styled.div`
   display: flex;
   background: var(--md-sys-color-tertiary-container);
-  margin: 8px 8px 0 8px;
+  margin-left: 0;
   border-radius: 16px;
   justify-content: center;
   align-items: center;
   color: var(--md-sys-color-on-tertiary-container);
   @media screen and (min-width: 768px) {
-    margin: 8px 8px 0 32px;
+    margin-left: 28px;
   }
   @media screen and (max-width: 601px) {
     & > img {

@@ -50,7 +50,7 @@ export default function Home() {
         className="
         bg-[var(--md-sys-color-primary-container)] 
         flex flex-row justify-evenly 
-        min-h-[520px] md:min-h-[650px]
+        min-h-[520px] md:min-h-[670px]
         animate__animated animate__zoomIn animate__faster"
       >
         <div
@@ -85,7 +85,7 @@ export default function Home() {
         />
       </section>
       <OurSpecials items={specials} />
-      <h1 className="ml-6 md:ml-10">About Us</h1>
+      <h1 className="m-6 md:m-10">About Us</h1>
       <section
         className="
       mb-[60px] md:mb-0 

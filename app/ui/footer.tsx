@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 const Footer = () => {
   return (
-    <footer className="md:ml-[110px]  mb-20 md:mb-0 pb-4">
+    <footer className="px-2  md:pr-6 md:pl-0 md:ml-[110px]  mb-16 md:mb-0 pb-4">
       <section className="md:mb-0 bg-[var(--md-sys-color-primary-container)] text-[var(--md-sys-color-on-primary-container)] flex flex-col">
         <h2 className="px-4">Find us on social media</h2>
         <div className="flex gap-2 items-center p-6">
