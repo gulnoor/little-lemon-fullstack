@@ -7,5 +7,5 @@ export default function serverErrorHandler(error) {
     message = "Internal Database Error: Please try again";
     return NextResponse.json({ type: "error", message });
   }
-  return NextResponse.json({ type: "error", message: error.message });
+  return NextResponse.json({ type: "error", message });
 }

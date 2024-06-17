@@ -5,7 +5,6 @@ import User from "@/app/lib/models/user";
 import { NextRequest, NextResponse } from "next/server";
 import serverErrorHandler from "@/app/lib/serverErrorHandler";
 import { unstable_noStore } from "next/cache";
-import { redirect } from "next/navigation";
 
 export async function POST(request: NextRequest, response: NextResponse) {
   await dbConnect();

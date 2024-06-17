@@ -6,6 +6,8 @@ import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
 import sun from "@/public/assets/nav-icons/light_mode_FILL0_wght400_GRAD0_opsz24.svg";
 import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24.svg";
+import cart from "@/public/assets/nav-icons/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg";
+import { Badge } from "@mui/material";
 
 const NavLink = (props) => {
   return (
@@ -49,6 +51,7 @@ const NavRail = ({ links }) => {
     bottom-0 md:top-0 md:bottom-0
     flex flex-row md:flex-col
     justify-evenly md:justify-start
+    items-center
     h-fit md:h-full
     w-full md:w-[140px] 
     bg-[var(--md-sys-color-surface-container-highest)] md:bg-transparent
@@ -66,6 +69,19 @@ const NavRail = ({ links }) => {
             theme={theme}
           ></NavLink>
         )
+      )}
+      {isMounted && (
+        <Badge
+          color="primary"
+          variant="dot"
+          style={{
+            width: "fit-content",
+          }}
+        >
+          <NavLink key={"cart"} href={"/checkout"} image={cart} theme={theme}>
+            Cart
+          </NavLink>
+        </Badge>
       )}
       {isMounted && (
         <NavLink

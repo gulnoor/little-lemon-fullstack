@@ -37,7 +37,7 @@ const App = ({ children }) => {
         id="app"
       >
         <NavRail links={LINKS}></NavRail>
-        <main id="main" className=" overflow-hidden md:ml-[140px]">
+        <main id="main" className=" overflow-hidden md:ml-[110px]">
           {children}
         </main>
         <Footer />

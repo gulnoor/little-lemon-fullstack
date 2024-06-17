@@ -14,7 +14,15 @@ import {
 const Cart = ({}) => {
   const { cartState, updateCart } = useContext(CartContext);
   return (
-    <List style={{padding:"8px"}} className="hidden rounded-xl bg-[var(--md-sys-color-surface-container)] lg:flex flex-col gap-2 lg:w-[38%]">
+    <List
+      style={{ padding: "8px" }}
+      className="
+      hidden lg:flex flex-col 
+      gap-2 
+      rounded-xl 
+      bg-[var(--md-sys-color-surface-container)] 
+      lg:w-[38%]"
+    >
       <h2>Cart</h2>
       {cartState.map((item) => {
         return (
@@ -22,7 +30,6 @@ const Cart = ({}) => {
             className=" rounded-lg bg-[var(--md-sys-color-surface-container-high)]"
             key={item?.id}
           >
-            {/* <div className="w-4/5"> */}
             <ListItemText
               className="pl-4"
               primary={item?.name}
@@ -41,14 +48,11 @@ const Cart = ({}) => {
                 -
               </Button>
             </div>
-            {/* </div> */}
             <ListItemButton
               className="w-fit"
               onClick={() => updateCart({ type: "delete", payload: item })}
             >
-              < DeleteIcon 
-              className="w-fit"
-              />
+              <DeleteIcon className="w-fit" />
             </ListItemButton>
           </ListItem>
         );

@@ -1,9 +1,11 @@
-import React from 'react'
+import Cart from "../ui/Cart";
 
 const Checkout = () => {
   return (
-    <div>Checkout</div>
-  )
-}
+    <section>
+      <Cart />
+    </section>
+  );
+};
 
-export default Checkout
+export default Checkout;
