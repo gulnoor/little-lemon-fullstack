@@ -41,12 +41,10 @@ const Menu = async () => {
           src={bgimg2}
         />
       </div>
-      <section className="p-0 flex flex-wrap justify-around ">
+      <section className="p-0 flex  flex-wrap justify-around ">
         <List
-          className="lg:w-[49%]"
+          className="lg:w-[60%] flex flex-col gap-2"
           sx={{
-            borderRadius: "18px",
-            bgcolor: "var(--md-sys-color-surface-container-high)",
           }}
         >
           {menu.map((item) => (

@@ -15,7 +15,11 @@ const MenuItem = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
   return (
     <>
-      <ListItem alignItems="flex-start" key={item.id}>
+      <ListItem
+        className=" rounded-lg bg-[var(--md-sys-color-surface-container-high)]"
+        alignItems="flex-start"
+        key={item.id}
+      >
         <ListItemAvatar>
           <Image
             className="w-[70px] h-[90px] md:w-[150px] md:h-[150px] object-cover mr-3"
@@ -26,14 +30,14 @@ const MenuItem = ({ item }) => {
             alt={item.name}
           ></Image>
         </ListItemAvatar>
-        <div>
+        <div className="w-full">
           <ListItemText
             primary={item.name}
             secondary={<React.Fragment>{item.description}</React.Fragment>}
           >
             <p>{"$" + item.price}</p>
           </ListItemText>
-          <div className="flex justify-end">
+          <div className="flex justify-end items-center">
             <Button
               onClick={() => {
                 setQuantity((prev) => prev + 1);
@@ -67,7 +71,6 @@ const MenuItem = ({ item }) => {
           </div>
         </div>
       </ListItem>
-      <Divider variant="inset" component="li" />
     </>
   );
 };

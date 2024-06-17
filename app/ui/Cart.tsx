@@ -14,11 +14,12 @@ import {
 const Cart = ({}) => {
   const { cartState, updateCart } = useContext(CartContext);
   return (
-    <List className="hidden rounded-xl bg-[var(--md-sys-color-surface-container)] lg:block lg:w-[40%]">
+    <List style={{padding:"8px"}} className="hidden rounded-xl bg-[var(--md-sys-color-surface-container)] lg:flex flex-col gap-2 lg:w-[38%]">
+      <h2>Cart</h2>
       {cartState.map((item) => {
         return (
           <ListItem
-            className="m-2 rounded-lg bg-[var(--md-sys-color-surface-container-high)]"
+            className=" rounded-lg bg-[var(--md-sys-color-surface-container-high)]"
             key={item?.id}
           >
             {/* <div className="w-4/5"> */}
@@ -27,7 +28,7 @@ const Cart = ({}) => {
               primary={item?.name}
               secondary={item?.price}
             />
-            <div className="flex items-center">
+            <div className="ml-auto flex items-center">
               <Button
                 onClick={() => updateCart({ type: "inc", payload: item })}
               >
@@ -45,7 +46,9 @@ const Cart = ({}) => {
               className="w-fit"
               onClick={() => updateCart({ type: "delete", payload: item })}
             >
-              <DeleteIcon />
+              < DeleteIcon 
+              className="w-fit"
+              />
             </ListItemButton>
           </ListItem>
         );
