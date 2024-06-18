@@ -88,6 +88,7 @@ const App = ({ children }) => {
               color: "var(--md-sys-color-on-surface)",
             }}
             sx={{
+              justifyContent: "center",
               minHeight: "60px",
               "@media screen and (min-width: 768px)": {
                 display: "none",
@@ -97,7 +98,9 @@ const App = ({ children }) => {
             <Toolbar>
               <div className="flex flex-grow">
                 <Image src={logo} height={33} className=""></Image>
-                <span>Little Lemon</span>
+                <p className="flex ml-[10px] justify-center items-center  text-[var(--md-sys-color-primary)]">
+                  LITTLE LEMON
+                </p>
               </div>
               {isMounted && (
                 <MaterialUISwitch
