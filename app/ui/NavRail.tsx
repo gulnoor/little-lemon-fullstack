@@ -9,7 +9,7 @@ import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24
 import cart from "@/public/assets/nav-icons/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg";
 import { Badge } from "@mui/material";
 
-const NavLink = (props) => {
+export const NavLink = (props) => {
   return (
     <Link
       className={`

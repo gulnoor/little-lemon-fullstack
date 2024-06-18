@@ -47,8 +47,13 @@ const Login = () => {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="animate__animated animate__fadeInUp animate__faster flex flex-col gap-8 justify-center w-full md:w-3/4 max-w-[600px]"
+      className="
+      bg-[var(--md-sys-color-surface-container)] rounded-lg shadow-xl
+      p-4 md:p-8
+      min-h-[82vh]
+      animate__animated animate__fadeInUp animate__faster flex flex-col gap-8 justify-center w-full md:w-3/4 max-w-[600px]"
     >
+      <h2>Sign in to your account</h2>
       {/* TODO: add error message components */}
       <TextField
         sx={{

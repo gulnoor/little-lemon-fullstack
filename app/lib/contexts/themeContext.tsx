@@ -17,6 +17,10 @@ function getTheme() {
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(getTheme());
   const { mode, setMode } = useColorScheme();
+  const [checked, setchecked] = useState(() =>
+    theme === "dark" ? true : false
+  );
+
   const toggleTheme = () => {
     if (theme === "light") {
       setTheme(() => "dark");
@@ -31,7 +35,7 @@ const ThemeProvider = ({ children }) => {
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, checked, setchecked }}>
       {children}
     </ThemeContext.Provider>
   );
