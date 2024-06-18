@@ -9,7 +9,7 @@ import { AppBar, IconButton, Slide, Toolbar } from "@mui/material";
 import { MaterialUISwitch } from "./ToggleButton";
 import { useTheme } from "@mui/material/styles";
 import Image from "next/image";
-import logo from "@/public/assets/images/Asset 16@4x.png";
+import logo from "@/public/assets/images/Asset 9@4x.png";
 const LINKS = [
   {
     name: "Home",
@@ -97,6 +97,7 @@ const App = ({ children }) => {
             <Toolbar>
               <div className="flex flex-grow">
                 <Image src={logo} height={33} className=""></Image>
+                <span>Little Lemon</span>
               </div>
               {isMounted && (
                 <MaterialUISwitch
