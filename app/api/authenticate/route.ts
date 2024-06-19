@@ -1,6 +1,7 @@
 import serverErrorHandler from "@/app/lib/serverErrorHandler";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
+import User from "@/app/lib/models/user";
 
 export async function POST(request: NextRequest) {
   const token = request.headers.get("authToken");
