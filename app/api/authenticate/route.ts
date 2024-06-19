@@ -3,9 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
 import dbConnect from "@/app/lib/connectDatabase";
+import order from "@/app/lib/models/order";
 
 export async function POST(request: NextRequest) {
   await dbConnect();
+  const Order = order;
   const token = request.headers.get("authToken");
 
   if (!token) {
