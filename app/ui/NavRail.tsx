@@ -80,16 +80,21 @@ const NavRail = ({ links }) => {
           color="primary"
           style={{
             width: "fit-content",
-            
           }}
           sx={{
-            "& span":{
-              top:"14px",
-              right:"8px"
-            }
+            "& span": {
+              top: "14px",
+              right: "8px",
+            },
           }}
         >
-          <NavLink className="p-0" key={"cart"} href={"/checkout"} image={cart} theme={theme}>
+          <NavLink
+            className="p-0"
+            key={"cart"}
+            href={"/checkout"}
+            image={cart}
+            theme={theme}
+          >
             Cart
           </NavLink>
         </Badge>

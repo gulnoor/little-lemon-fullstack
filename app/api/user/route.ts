@@ -2,6 +2,7 @@ import dbConnect from "@/app/lib/connectDatabase";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
+import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
 import serverErrorHandler from "@/app/lib/serverErrorHandler";
 import { unstable_noStore } from "next/cache";
@@ -45,6 +46,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   }
 }
 export async function GET(request: NextRequest) {
+  
   await dbConnect();
   //FIXME: //!Don't use token in "GET" request. not safe 
   unstable_noStore();

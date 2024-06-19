@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 const Login = () => {
   const router = useRouter();
-  const { setToken } = useContext(TokenContext);
+  const { setToken, setLoggedin } = useContext(TokenContext);
   const { openAlert } = useContext(AlertContext);
   const submitHandler = async (values) => {
     console.log(values);
@@ -27,6 +27,7 @@ const Login = () => {
       openAlert(response);
       if (response.message === "login successful") {
         setToken(response.token);
+        setLoggedin(true);
         router.push("/dashboard");
       }
     } catch (err) {

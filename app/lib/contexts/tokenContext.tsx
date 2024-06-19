@@ -51,7 +51,7 @@ const TokenProvider = ({ children }) => {
     window.localStorage.setItem("token", token);
   }, [token]);
   return (
-    <TokenContext.Provider value={{ token, setToken, loggedin }}>
+    <TokenContext.Provider value={{ token, setToken, loggedin, setLoggedin }}>
       {children}
     </TokenContext.Provider>
   );

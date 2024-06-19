@@ -15,7 +15,7 @@ import errorParser from "../lib/clientErrorHandler";
 
 const Dashboard = () => {
   const { openAlert } = useContext(AlertContext);
-  const { token, setToken } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const [data, setData] = useState({ body: { reservations: [] } });
   useEffect(() => {
     const fetchData = async () => {

@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 export const CartContext = createContext(null);
 
@@ -51,8 +51,11 @@ const CartProvider = ({ children }) => {
   const calculateTotal = (items) => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
+  useEffect(() => {
+    setCartTotal(calculateTotal(cartState));
+  }, [cartState]);
   return (
-    <CartContext.Provider value={{ cartState, updateCart }}>
+    <CartContext.Provider value={{ cartState, updateCart, cartTotal }}>
       {children}
     </CartContext.Provider>
   );
