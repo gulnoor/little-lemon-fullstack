@@ -42,12 +42,12 @@ const Menu = async () => {
         />
       </div>
       <section className="p-0 md:pt-6 flex overflow-clip flex-wrap justify-around ">
-        <List className="lg:w-[60%] flex flex-col gap-2 " >
+        <List className="lg:w-[60%] flex flex-col gap-2 ">
           {menu.map((item) => (
             <MenuItem key={item.id} item={item}></MenuItem>
           ))}
         </List>
-        <Cart />
+        <Cart tailwindcss="hidden lg:flex" />
 
         {/* <Card className="hidden lg:block lg:w-[49%]">
           <CardMedia

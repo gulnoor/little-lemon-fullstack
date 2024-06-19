@@ -4,7 +4,7 @@ import NavRail, { NavLink } from "./NavRail";
 import Footer from "./footer";
 import AlertProvider from "@/app/lib/contexts/AlertContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import { AppBar, IconButton, Slide, Toolbar } from "@mui/material";
 import { MaterialUISwitch } from "./ToggleButton";
 import { useTheme } from "@mui/material/styles";
@@ -13,6 +13,7 @@ import logo from "@/public/assets/images/Asset 9@4x.png";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import MyButton from "./MyButton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const LINKS = [
   {
     name: "Home",
@@ -32,6 +33,7 @@ const LINKS = [
 ];
 const App = ({ children }) => {
   const appRef = useRef(null);
+  const router = useRouter();
 
   const { loggedin } = useContext(TokenContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -123,11 +125,12 @@ const App = ({ children }) => {
             )}
             {isMounted ? (
               loggedin ? (
-                <NavLink
-                  href={"/dashboard"}
-                  theme={theme}
-                  image="/assets/nav-icons/account_circle_FILL0_wght400_GRAD0_opsz24.svg"
-                ></NavLink>
+                <IconButton
+                  onClick={() => router.push("/dashboard")}
+                  edge={"end"}
+                >
+                  <AccountCircle className="mx-3" />
+                </IconButton>
               ) : (
                 <Link
                   style={{
@@ -136,13 +139,10 @@ const App = ({ children }) => {
                   }}
                   href={"/login"}
                 >
-                  Log In
+                  LOGIN
                 </Link>
               )
             ) : null}
-            {/* <IconButton edge={"end"}>
-              <ShoppingBagIcon />
-            </IconButton> */}
           </Toolbar>
         </AppBar>
         {children}

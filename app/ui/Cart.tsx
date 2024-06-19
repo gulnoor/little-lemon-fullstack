@@ -11,19 +11,20 @@ import {
   ListItemText,
 } from "@mui/material";
 
-const Cart = ({}) => {
+const Cart = ({ tailwindcss }) => {
   const { cartState, updateCart } = useContext(CartContext);
   return (
     <List
       style={{ padding: "12px", position: "sticky" }}
-      className="
-      hidden lg:flex flex-col 
+      className={`
+      flex-col 
       gap-2 
       h-[100vh]
       top-2
       rounded-xl 
       bg-[var(--md-sys-color-surface-container)] 
-      lg:w-[38%]"
+      lg:w-[38%] 
+      ${tailwindcss}`}
     >
       <h2 className="p-4">Cart</h2>
       {cartState.map((item) => {
