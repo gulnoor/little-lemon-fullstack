@@ -25,6 +25,9 @@ body {
 .nav-icon {
   filter: var(--svg-filter);
 }
+.nav-icon.active-nav {
+  filter: var(--svg-filter-active);
+}
 @layer base {
   h1 {
     @apply text-4xl sm:text-5xl md:text-6xl;

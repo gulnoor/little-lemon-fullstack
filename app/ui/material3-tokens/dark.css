@@ -1,6 +1,8 @@
 .dark {
   --svg-filter: invert(80%) sepia(9%) saturate(214%) hue-rotate(0deg)
     brightness(103%) contrast(81%);
+  --svg-filter-active: invert(74%) sepia(10%) saturate(1508%) hue-rotate(10deg)
+    brightness(103%) contrast(97%);
   --md-sys-color-primary: rgb(221 198 110);
   --md-sys-color-surface-tint: rgb(221 198 110);
   --md-sys-color-on-primary: rgb(58 48 0);

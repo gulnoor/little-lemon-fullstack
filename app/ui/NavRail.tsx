@@ -9,6 +9,7 @@ import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24
 import cart from "@/public/assets/nav-icons/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg";
 import { Badge } from "@mui/material";
 import { CartContext } from "../lib/contexts/cartContext";
+import { usePathname } from "next/navigation";
 
 export const NavLink = (props) => {
   return (
@@ -16,19 +17,21 @@ export const NavLink = (props) => {
       className={`
         ${props.className}
         flex flex-col 
+        py-3
         justify-center items-center
-        p-2 
-        `}
+        ${props.path === props.href ? "text-[var(--md-sys-color-primary)]" : ""}`}
       key={props.name}
       href={props.href}
       onClick={props.onClick}
     >
       {
         <Image
-          className="nav-icon"
+          className={`nav-icon transition-all ${
+            props.path === props.href ? "active-nav scale-125" : ""
+          }`}
           src={props.image}
-          width={30}
-          height={30}
+          width={25}
+          height={25}
           alt={`${props.name} icon`}
         />
       }
@@ -43,6 +46,8 @@ const NavRail = ({ links }) => {
   const { token, loggedin } = useContext(TokenContext);
   const { cartState } = useContext(CartContext);
   const [isMounted, setIsMounted] = useState(false);
+  const path = usePathname();
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -65,6 +70,7 @@ const NavRail = ({ links }) => {
       {links.map(
         (link: { key: String; name: String; href: String; image: String }) => (
           <NavLink
+            path={path}
             key={link.name}
             href={link.href}
             name={link.name}
@@ -73,7 +79,7 @@ const NavRail = ({ links }) => {
           ></NavLink>
         )
       )}
-      {isMounted && (
+      {(
         <Badge
           invisible={cart.length > 0}
           badgeContent={cartState.length}
@@ -89,6 +95,7 @@ const NavRail = ({ links }) => {
           }}
         >
           <NavLink
+            path={path}
             className="p-0"
             key={"cart"}
             href={"/checkout"}
@@ -101,6 +108,7 @@ const NavRail = ({ links }) => {
       )}
       {isMounted && (
         <NavLink
+          path={path}
           className="
           hidden md:flex 
           md:mt-auto "
@@ -114,6 +122,7 @@ const NavRail = ({ links }) => {
       {isMounted ? (
         loggedin ? (
           <NavLink
+            path={path}
             className="hidden md:flex"
             name="Dashboard"
             key={"dashboard"}
@@ -123,6 +132,7 @@ const NavRail = ({ links }) => {
           ></NavLink>
         ) : (
           <NavLink
+            path={path}
             className="hidden md:flex"
             name="Login"
             key={"login"}
