@@ -8,15 +8,17 @@ import sun from "@/public/assets/nav-icons/light_mode_FILL0_wght400_GRAD0_opsz24
 import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24.svg";
 import cart from "@/public/assets/nav-icons/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg";
 import { Badge } from "@mui/material";
+import { CartContext } from "../lib/contexts/cartContext";
 
 export const NavLink = (props) => {
   return (
     <Link
       className={`
+        ${props.className}
         flex flex-col 
         justify-center items-center
         p-2 
-        ${props.className}`}
+        `}
       key={props.name}
       href={props.href}
       onClick={props.onClick}
@@ -39,6 +41,7 @@ export const NavLink = (props) => {
 const NavRail = ({ links }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { token, loggedin } = useContext(TokenContext);
+  const { cartState } = useContext(CartContext);
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
@@ -72,13 +75,21 @@ const NavRail = ({ links }) => {
       )}
       {isMounted && (
         <Badge
+          invisible={cart.length > 0}
+          badgeContent={cartState.length}
           color="primary"
-          variant="dot"
           style={{
             width: "fit-content",
+            
+          }}
+          sx={{
+            "& span":{
+              top:"14px",
+              right:"8px"
+            }
           }}
         >
-          <NavLink key={"cart"} href={"/checkout"} image={cart} theme={theme}>
+          <NavLink className="p-0" key={"cart"} href={"/checkout"} image={cart} theme={theme}>
             Cart
           </NavLink>
         </Badge>
