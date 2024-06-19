@@ -15,7 +15,7 @@ const NewUser = () => {
     console.log(values);
     let response = null;
     try {
-      response = await fetch("/api/user", {
+      response = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const NewUser = () => {
       lastName: "",
       email: "",
       password: "",
-    },  
+    },
     onSubmit: submitHandler,
     validationSchema: Yup.object({
       //TODO: add phone number validation etc

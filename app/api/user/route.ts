@@ -1,55 +1,13 @@
 import dbConnect from "@/app/lib/connectDatabase";
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
 import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
 import reservation from "@/app/lib/models/reservation";
 import serverErrorHandler from "@/app/lib/serverErrorHandler";
-import { unstable_noStore } from "next/cache";
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   await dbConnect();
-  try {
-    // TODO: add password validation
-    const userData = await request.json();
-    const { email } = userData;
-    const alreadyTaken = await User.find({ email });
-    if (alreadyTaken.length !== 0) {
-      return NextResponse.json({
-        type: "error",
-        message: "email already belongs to an account",
-      });
-    }
-    const hash = await bcrypt.hash(userData.password, 10);
-    delete userData.password;
-    userData.passwordHash = hash;
-    const user = new User(userData);
-    const savedUser = await user.save();
-    const responseBody = await savedUser.toJSON();
-    return NextResponse.json({
-      type: "success",
-      message: "Account created successfully",
-      body: responseBody,
-    });
-  } catch (error) {
-    console.log(error);
-    if (error.message.includes("E11000 duplicate key error")) {
-      return NextResponse.json({
-        type: "error",
-        message: "db error: user already taken",
-      });
-    }
-    return NextResponse.json({
-      type: "error",
-      message: error.message,
-    });
-  }
-}
-export async function GET(request: NextRequest) {
-  await dbConnect();
-  //FIXME: //!Don't use token in "GET" request. not safe
-  unstable_noStore();
   const token = request.headers.get("authToken");
   const OrderModel = Order;
   const Reservation = reservation;

@@ -30,13 +30,6 @@ export async function POST(request: NextRequest) {
     // check if user exists in database
     const user = await User.findById(decodedUser.id);
     if (user) {
-      await user.populate({
-        path: "orders",
-        select: "items",
-        populate: { path: "items" },
-      });
-      await user.populate("reservations");
-
       return NextResponse.json({
         type: "success",
         message: "Authentication successfull",

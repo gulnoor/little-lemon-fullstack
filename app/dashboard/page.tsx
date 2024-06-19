@@ -20,12 +20,13 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/authenticate", {
+        const response = await fetch("/api/user", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
             Authorization: `Bearer ${token}`,
           },
+          body: "{}",
         });
         const data = await response.json();
         console.log(data);

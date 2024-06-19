@@ -24,6 +24,7 @@ const TokenProvider = ({ children }) => {
         });
       }
       response = await response.json();
+      //FIXME: //!if there's internal server error other than authentication e.g database => setLoggenin is not executed
       response.type === "success" ? setLoggedin(true) : setLoggedin(false);
       // openAlert(response);
     } catch (err) {
