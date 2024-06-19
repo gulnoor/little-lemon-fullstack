@@ -22,13 +22,13 @@ const MyButton = ({
     border = "";
   }
   const tailwindCSS = `
-  ${style}
   ${bg} ${textColor} ${border} 
   flex justify-center items-center 
   px-4 py-3 
   w-fit 
   min-h-[48px] 
   rounded-full 
+  ${style}
   `;
 
   return (

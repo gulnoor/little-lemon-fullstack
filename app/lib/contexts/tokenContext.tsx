@@ -6,6 +6,7 @@ export const TokenContext = createContext({ token: "" });
 const TokenProvider = ({ children }) => {
   const { openAlert } = useContext(AlertContext);
   const [token, setToken] = useState(getToken());
+  const [loggedin, setLoggedin] = useState(false);
   const authenticate = async () => {
     let response = null;
     try {
@@ -23,7 +24,7 @@ const TokenProvider = ({ children }) => {
         });
       }
       response = await response.json();
-      response.type !== "success" ? setToken("") : null;
+      response.type === "success" ? setLoggedin(true) : setLoggedin(false);
       // openAlert(response);
     } catch (err) {
       // openAlert({ type: "error", message: err.message });
@@ -50,7 +51,7 @@ const TokenProvider = ({ children }) => {
     window.localStorage.setItem("token", token);
   }, [token]);
   return (
-    <TokenContext.Provider value={{ token, setToken }}>
+    <TokenContext.Provider value={{ token, setToken, loggedin }}>
       {children}
     </TokenContext.Provider>
   );

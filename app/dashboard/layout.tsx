@@ -4,7 +4,7 @@ import { TokenContext } from "../lib/contexts/tokenContext";
 import { useRouter } from "next/navigation";
 
 const Layout = ({ children }) => {
-  const {  setToken } = useContext(TokenContext);
+  const { setToken, setLoggedin } = useContext(TokenContext);
   const router = useRouter();
 
   return (
@@ -22,6 +22,7 @@ const Layout = ({ children }) => {
               px-4 py-3"
           onClick={() => {
             setToken("");
+            setLoggedin(false);
             router.push("/login");
           }}
         >

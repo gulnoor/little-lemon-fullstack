@@ -38,7 +38,7 @@ export const NavLink = (props) => {
 
 const NavRail = ({ links }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { token } = useContext(TokenContext);
+  const { token, loggedin } = useContext(TokenContext);
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
@@ -96,8 +96,9 @@ const NavRail = ({ links }) => {
         ></NavLink>
       )}
       {isMounted ? (
-        token ? (
+        loggedin ? (
           <NavLink
+            className="hidden md:flex"
             name="Dashboard"
             key={"dashboard"}
             href={"/dashboard"}
@@ -106,6 +107,7 @@ const NavRail = ({ links }) => {
           ></NavLink>
         ) : (
           <NavLink
+            className="hidden md:flex"
             name="Login"
             key={"login"}
             theme={theme}
