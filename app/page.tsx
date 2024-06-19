@@ -5,6 +5,7 @@ import logo from "../public/assets/images/Asset 9@4x.png";
 import bros from "../public/assets/images/Mario and Adrian A.jpg";
 import MyButton from "./ui/MyButton";
 
+
 const displayFont = localFont({ src: "../public/fonts/jellies.regular.ttf" });
 //TODO: fetch specials from server
 const specials = [

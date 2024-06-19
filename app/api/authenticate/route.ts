@@ -2,8 +2,10 @@ import serverErrorHandler from "@/app/lib/serverErrorHandler";
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
+import dbConnect from "@/app/lib/connectDatabase";
 
 export async function POST(request: NextRequest) {
+  await dbConnect();
   const token = request.headers.get("authToken");
 
   if (!token) {

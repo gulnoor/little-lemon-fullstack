@@ -17,7 +17,7 @@ import menuItem from "../lib/models/menuItem";
 // import MyButton from "../ui/MyButton";
 
 const Menu = async () => {
-  // await dbConnect();
+  await dbConnect();
 
   const data = await menuItem.find({});
   const menu = data.map((item) => ({

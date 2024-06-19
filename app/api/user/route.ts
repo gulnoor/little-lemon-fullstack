@@ -45,6 +45,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   }
 }
 export async function GET(request: NextRequest) {
+  await dbConnect();
   //FIXME: //!Don't use token in "GET" request. not safe 
   unstable_noStore();
   const token = request.headers.get("authToken");

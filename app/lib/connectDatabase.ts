@@ -20,6 +20,8 @@ if (!cached) {
 }
 
 async function dbConnect() {
+  // setup mongoose models
+
   if (cached.conn) {
     return cached.conn;
   }
