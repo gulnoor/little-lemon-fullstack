@@ -45,6 +45,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   }
 }
 export async function GET(request: NextRequest) {
+  //FIXME: //!Don't use token in "GET" request. not safe 
   unstable_noStore();
   const token = request.headers.get("authToken");
 
@@ -55,7 +56,7 @@ export async function GET(request: NextRequest) {
     });
   }
   try {
-    // FIXME: Older tokens that didn't have expiry are still working
+    //FIXME: //!Older tokens that didn't have expiry are still working
     const decodedUser = jwt.verify(token, process.env.JWT_SEKRET);
     if (!decodedUser.id) {
       return NextResponse.json({

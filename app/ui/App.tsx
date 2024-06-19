@@ -42,7 +42,7 @@ const App = ({ children }) => {
     let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
-      if (window.scrollY > 25) {
+      if (window.scrollY > 16) {
         setTransparent(false);
       } else {
         setTransparent(true);
@@ -64,17 +64,16 @@ const App = ({ children }) => {
   }, []);
 
   return (
-    <AlertProvider>
       <div
         ref={appRef}
         suppressHydrationWarning
-        className={`${theme}  text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)] `}
+        className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)] `}
         id="app"
       >
         <NavRail links={LINKS}></NavRail>
         <main
           id="main"
-          className="p-2 pt-[65px] md:p-6 md:pl-0  overflow-clip md:ml-[110px]"
+          className="p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
         >
           <AppBar
             style={{
@@ -98,7 +97,7 @@ const App = ({ children }) => {
             <Toolbar>
               <div className="flex flex-grow">
                 <Image src={logo} height={33} className=""></Image>
-                <p className="flex ml-[10px] justify-center items-center  text-[var(--md-sys-color-primary)]">
+                <p className="flex ml-[12px] justify-center items-center text-[var(--md-sys-color-on-surface)]">
                   LITTLE LEMON
                 </p>
               </div>
@@ -121,7 +120,6 @@ const App = ({ children }) => {
         </main>
         <Footer />
       </div>
-    </AlertProvider>
   );
 };
 

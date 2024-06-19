@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
 export const CartContext = createContext(null);
 
@@ -9,7 +9,7 @@ const cartReducer = (prevState, action) => {
   console.log("action: ", action.type);
   const payload = action.payload ? action.payload : {};
   console.log("payload:", payload);
-  // const { id, name, price } = payload;
+  // //const { id, name, price } = payload;
   switch (action.type) {
     case "add":
       const existingItem = prevState.find(
@@ -47,6 +47,10 @@ const cartReducer = (prevState, action) => {
 };
 const CartProvider = ({ children }) => {
   const [cartState, updateCart] = useReducer(cartReducer, []);
+  const [cartTotal, setCartTotal] = useState(0);
+  const calculateTotal = (items) => {
+    return items.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
   return (
     <CartContext.Provider value={{ cartState, updateCart }}>
       {children}

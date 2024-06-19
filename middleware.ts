@@ -10,7 +10,10 @@ export async function middleware(request: NextRequest) {
   let token = request.headers.get("Authorization");
   let body = {};
   try {
-    if (request.method === "POST") {
+    if (
+      request.method === "POST" &&
+      !request.url.endsWith("/api/authenticate")
+    ) {
       body = await request.json();
     }
     console.log(
@@ -23,8 +26,8 @@ export async function middleware(request: NextRequest) {
     const requestHeaders = new Headers(request.headers);
     if (token && token.startsWith("Bearer ")) {
       token = token.replace("Bearer ", "");
-      requestHeaders.set("authToken", token);
     }
+    requestHeaders.set("authToken", token);
 
     const modifiedRequest = new Request(request.url, {
       headers: requestHeaders,
@@ -33,9 +36,9 @@ export async function middleware(request: NextRequest) {
       request: modifiedRequest,
     });
   } catch (err) {
-    return NextResponse.json({ error: err.message });
+    return NextResponse.json({ type: "error", message: err.message });
   }
 }
 export const config = {
-  matcher: ["/api/order", "/api/reservation", "/api/user"],
+  matcher: ["/api/order", "/api/reservation", "/api/user", "/api/authenticate"],
 };

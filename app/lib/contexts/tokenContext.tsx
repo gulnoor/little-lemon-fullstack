@@ -1,9 +1,34 @@
 "use client";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { AlertContext } from "./AlertContext";
 
 export const TokenContext = createContext({ token: "" });
-
 const TokenProvider = ({ children }) => {
+  const { openAlert } = useContext(AlertContext);
+  const [token, setToken] = useState(getToken());
+  const authenticate = async () => {
+    let response = null;
+    try {
+      response = await fetch("/api/authenticate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.status === 500) {
+        return openAlert({
+          type: "error",
+          message: `user authentication failed due to : ${response.statusText}`,
+        });
+      }
+      response = await response.json();
+      response.type !== "success" ? setToken("") : null;
+      // openAlert(response);
+    } catch (err) {
+      // openAlert({ type: "error", message: err.message });
+    }
+  };
   function getToken() {
     if (
       typeof window !== "undefined" &&
@@ -16,9 +41,11 @@ const TokenProvider = ({ children }) => {
     }
     return "";
   }
-  // TODO: use isClient state and verify token from server after reading it from local storage
-  const [token, setToken] = useState(getToken());
+  // // TODO: use isClient state and verify token from server after reading it from local storage
 
+  useEffect(() => {
+    authenticate();
+  }, []);
   useEffect(() => {
     window.localStorage.setItem("token", token);
   }, [token]);

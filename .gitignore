@@ -22,6 +22,7 @@
 .anima
 .vscode
 TODO.md
+littlelemon.code-workspace
 
 # debug
 npm-debug.log*
