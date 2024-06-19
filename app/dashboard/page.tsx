@@ -20,8 +20,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/user", {
-          method: "GET",
+        const response = await fetch("/api/authenticate", {
+          method: "POST",
           headers: {
             "Content-type": "application/json",
             Authorization: `Bearer ${token}`,

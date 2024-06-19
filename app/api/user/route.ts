@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
 import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
+import reservation from "@/app/lib/models/reservation";
 import serverErrorHandler from "@/app/lib/serverErrorHandler";
 import { unstable_noStore } from "next/cache";
 
@@ -51,6 +52,7 @@ export async function GET(request: NextRequest) {
   unstable_noStore();
   const token = request.headers.get("authToken");
   const OrderModel = Order;
+  const Reservation = reservation;
 
   if (!token) {
     return NextResponse.json({
