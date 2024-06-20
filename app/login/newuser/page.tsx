@@ -5,10 +5,11 @@ import { MyTextField } from "@/app/ui/material3-inputs/inputs";
 import { useContext } from "react";
 import { AlertContext } from "@/app/lib/contexts/AlertContext";
 import { ThemeContext } from "@/app/lib/contexts/themeContext";
-
+import { useRouter } from "next/navigation";
 const NewUser = () => {
   //TODO: move focus/ highlight/scroll to invalid input when submit is clicked
   const { openAlert } = useContext(AlertContext);
+const router = useRouter();
 
   const { theme } = useContext(ThemeContext);
   const submitHandler = async (values) => {
