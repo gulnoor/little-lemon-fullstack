@@ -74,5 +74,5 @@ select:-webkit-autofill:focus {
 }
 
 .animate__faster {
-  --animate-duration: 400ms;
+  --animate-duration: 350ms;
 }

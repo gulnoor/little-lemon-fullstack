@@ -1,15 +1,15 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
+import { Badge } from "@mui/material";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
+import { CartContext } from "../lib/contexts/cartContext";
+import { usePathname } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 import sun from "@/public/assets/nav-icons/light_mode_FILL0_wght400_GRAD0_opsz24.svg";
 import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24.svg";
 import cart from "@/public/assets/nav-icons/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg";
-import { Badge } from "@mui/material";
-import { CartContext } from "../lib/contexts/cartContext";
-import { usePathname } from "next/navigation";
 
 export const NavLink = (props) => {
   return (
@@ -18,8 +18,13 @@ export const NavLink = (props) => {
         ${props.className}
         flex flex-col 
         py-3
+        md:w-full
         justify-center items-center
-        ${props.path === props.href ? "text-[var(--md-sys-color-primary)]" : ""}`}
+        ${
+          props.path === props.href
+            ? "text-[var(--md-sys-color-primary)] md:border-l-[3px] md:border-[var(--md-sys-color-primary)] "
+            : ""
+        }`}
       key={props.name}
       href={props.href}
       onClick={props.onClick}
@@ -43,7 +48,7 @@ export const NavLink = (props) => {
 
 const NavRail = ({ links }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { token, loggedin } = useContext(TokenContext);
+  const { loggedin } = useContext(TokenContext);
   const { cartState } = useContext(CartContext);
   const [isMounted, setIsMounted] = useState(false);
   const path = usePathname();
@@ -63,7 +68,7 @@ const NavRail = ({ links }) => {
     h-fit md:h-full
     w-full md:w-[140px] 
     bg-[var(--md-sys-color-surface-container-highest)] md:bg-transparent
-    md:p-4 md:py-20
+     md:px-0 md:py-20
     z-50
     "
     >
@@ -79,18 +84,19 @@ const NavRail = ({ links }) => {
           ></NavLink>
         )
       )}
-      {(
+      {
         <Badge
           invisible={cart.length > 0}
+          className="md:w-full"
           badgeContent={cartState.length}
           color="primary"
-          style={{
-            width: "fit-content",
-          }}
           sx={{
             "& span": {
               top: "14px",
               right: "8px",
+              "@media screen and (min-width: 768px)": {
+                right: "45px",
+              },
             },
           }}
         >
@@ -105,7 +111,7 @@ const NavRail = ({ links }) => {
             Cart
           </NavLink>
         </Badge>
-      )}
+      }
       {isMounted && (
         <NavLink
           path={path}
