@@ -1,7 +1,7 @@
 "use client";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { CartContext } from "../lib/contexts/cartContext";
 import {
   Button,
@@ -13,6 +13,7 @@ import {
 import MyButton from "./MyButton";
 
 const Cart = ({ tailwindcss }) => {
+  
   const { cartState, updateCart, cartTotal } = useContext(CartContext);
   return (
     <div
@@ -28,7 +29,7 @@ const Cart = ({ tailwindcss }) => {
     ${tailwindcss}`}
     >
       <h2 className="p-4">Cart</h2>
-      <List className="rounded-xl overflow-scroll">
+      <List id = "cartlist" className="rounded-xl overflow-scroll ">
         {cartState.map((item) => {
           return (
             <ListItem
@@ -66,7 +67,7 @@ const Cart = ({ tailwindcss }) => {
       </List>
       <h2>Total: </h2>
       <h3>{`$${cartTotal}`}</h3>
-      <MyButton href="/checkout">Checkout</MyButton>
+      <MyButton href="/checkout">Proceed to Payment</MyButton>
     </div>
   );
 };

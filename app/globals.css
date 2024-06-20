@@ -76,3 +76,11 @@ select:-webkit-autofill:focus {
 .animate__faster {
   --animate-duration: 350ms;
 }
+#cartlist {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#cartlist::-webkit-scrollbar {
+  display: none;
+
+}

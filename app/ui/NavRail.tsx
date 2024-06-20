@@ -22,7 +22,7 @@ export const NavLink = (props) => {
         justify-center items-center
         ${
           props.path === props.href
-            ? "text-[var(--md-sys-color-primary)] md:border-l-[3px] md:border-[var(--md-sys-color-primary)] "
+            ? "text-[var(--md-sys-color-primary)] border-b-[3px] md:border-b-0 md:border-l-[3px] border-[var(--md-sys-color-primary)] "
             : ""
         }`}
       key={props.name}
@@ -104,7 +104,7 @@ const NavRail = ({ links }) => {
             path={path}
             className="p-0"
             key={"cart"}
-            href={"/checkout"}
+            href={"/cart"}
             image={cart}
             theme={theme}
           >
@@ -129,7 +129,7 @@ const NavRail = ({ links }) => {
         loggedin ? (
           <NavLink
             path={path}
-            className="hidden md:flex"
+            className="hidden md:flex "
             name="Dashboard"
             key={"dashboard"}
             href={"/dashboard"}

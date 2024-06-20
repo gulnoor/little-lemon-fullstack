@@ -115,6 +115,7 @@ const App = ({ children }) => {
             </div>
             {isMounted && (
               <MaterialUISwitch
+                  className="animate__animated animate__faster animate__zoomIn"
                 theme={muitheme}
                 checked={theme === "dark" ? true : false}
                 onChange={(e) => {
@@ -126,6 +127,7 @@ const App = ({ children }) => {
             {isMounted ? (
               loggedin ? (
                 <IconButton
+                  className="animate__animated animate__faster animate__zoomIn"
                   onClick={() => router.push("/dashboard")}
                   edge={"end"}
                 >

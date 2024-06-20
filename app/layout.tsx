@@ -35,6 +35,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `
+            try{
               const userTheme = localStorage.getItem('theme');
               document.documentElement.classList.remove('dark');
               document.documentElement.classList.remove('light');
@@ -43,13 +44,13 @@ export default function RootLayout({
                 } else {
                   document.documentElement.classList.add('light');
               }
-              try{
                 if (userTheme) {
                 document.documentElement.setAttribute("data-mui-color-scheme" ,userTheme);
                 } else {
                   document.documentElement.setAttribute("data-mui-color-scheme",'light');
               }
-              }catch (err){console.log(err)}`,
+              }catch (err){console.log(err)}
+              `,
           }}
         />
       </head>
