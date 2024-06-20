@@ -9,10 +9,12 @@ import {
 import Image from "next/image";
 import React, { useContext, useState } from "react";
 import { CartContext } from "../lib/contexts/cartContext";
+import { AlertContext } from "../lib/contexts/AlertContext";
 
 const MenuItem = ({ item }) => {
   const { updateCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+  const { openAlert } = useContext(AlertContext);
   return (
     <>
       <ListItem
@@ -27,11 +29,11 @@ const MenuItem = ({ item }) => {
       >
         <ListItemAvatar>
           <Image
-            className="w-[70px] h-[90px] md:w-[150px] md:h-[150px] object-cover mr-3"
+            className="w-[70px] h-[90px] md:w-[100px] md:h-[100px] object-cover mr-3"
             style={{ borderRadius: "18px" }}
             src={item.image}
-            width={150}
-            height={150}
+            width={100}
+            height={100}
             alt={item.name}
           ></Image>
         </ListItemAvatar>
@@ -44,7 +46,12 @@ const MenuItem = ({ item }) => {
           </ListItemText>
           <div className="flex mt-auto justify-end items-center">
             <Button
-              variant="outlined"
+              variant="contained"
+              style={{
+                minWidth: "25px",
+                height: "25px",
+                padding: "0px",
+              }}
               onClick={() => {
                 setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
               }}
@@ -53,7 +60,12 @@ const MenuItem = ({ item }) => {
             </Button>
             <span className="px-4">{quantity}</span>
             <Button
-              variant="outlined"
+              style={{
+                minWidth: "25px",
+                height: "25px",
+                padding: "0px",
+              }}
+              variant="contained"
               onClick={() => {
                 setQuantity((prev) => prev + 1);
               }}
@@ -61,7 +73,8 @@ const MenuItem = ({ item }) => {
               +
             </Button>
             <Button
-              onClick={() =>
+              className="!ml-3"
+              onClick={() => {
                 updateCart({
                   type: "add",
                   payload: {
@@ -70,8 +83,12 @@ const MenuItem = ({ item }) => {
                     name: item.name,
                     quantity,
                   },
-                })
-              }
+                });
+                openAlert({
+                  type: "success",
+                  message: `${quantity}x ${item.name} added to cart`,
+                });
+              }}
             >
               Add to Cart
             </Button>

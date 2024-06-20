@@ -1,13 +1,15 @@
 "use client";
 import { createContext, useMemo, useState } from "react";
 import Alert from "@mui/material/Alert";
-import { Snackbar } from "@mui/material";
+import { Slide, Snackbar, useMediaQuery, useTheme } from "@mui/material";
 
 export const AlertContext = createContext(null);
 
 const AlertProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
+  const theme = useTheme();
+  const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
   const openAlert = useMemo(() => {
     return (alert) => {
       setAlert(alert);
@@ -20,17 +22,20 @@ const AlertProvider = ({ children }) => {
         return;
       }
       setOpen(false);
-      //   setAlert({ type: "", message: "" });
     };
   }, []);
 
   return (
     <AlertContext.Provider value={{ openAlert }}>
       <Snackbar
-        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        anchorOrigin={
+          isMediumScreen
+            ? { horizontal: "right", vertical: "bottom" }
+            : { horizontal: "center", vertical: "top" }
+        }
         onClose={handleClose}
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={4000}
       >
         <Alert
           onClose={handleClose}

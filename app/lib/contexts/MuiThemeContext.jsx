@@ -43,16 +43,13 @@ const MUICustomThemeProvider = ({ children }) => {
                 },
                 style: {
                   borderRadius: "999px",
-                  minHeight: "48px",
                 },
               },
               {
                 props: {
                   variant: "text",
                 },
-                style: {
-                  minWidth: "48px",
-                },
+                style: {},
               },
               {
                 props: {
@@ -60,10 +57,8 @@ const MUICustomThemeProvider = ({ children }) => {
                 },
                 style: {
                   border: "2px solid",
-                  minWidth: "48px",
                   borderRadius: "999px",
                   boxSizing: "border-box",
-                  minHeight: "48px",
                   "&:hover": {
                     border: "2px solid",
                   },
