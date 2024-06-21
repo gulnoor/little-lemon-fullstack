@@ -11,10 +11,21 @@ import sun from "@/public/assets/nav-icons/light_mode_FILL0_wght400_GRAD0_opsz24
 import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24.svg";
 import cart from "@/public/assets/nav-icons/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg";
 
-export const NavLink = (props) => {
+const NavIcon = (props) => {
   return (
-    <Link
-      className={`
+    <Image
+      className={`nav-icon transition-all ${
+        props.path === props.href ? "active-nav scale-125" : ""
+      }`}
+      src={props.image}
+      width={25}
+      height={25}
+      alt={`${props.name} icon`}
+    />
+  );
+};
+export const NavLink = (props) => {
+  const className = `
         ${props.className}
         flex flex-col 
         py-3
@@ -24,22 +35,19 @@ export const NavLink = (props) => {
           props.path === props.href
             ? "text-[var(--md-sys-color-primary)] border-b-[3px] md:border-b-0 md:border-l-[3px] border-[var(--md-sys-color-primary)] "
             : ""
-        }`}
+        }`;
+  return props.name === "theme" ? (
+    <div className={className} key={props.name} onClick={props.onClick}>
+      <NavIcon {...props} />
+    </div>
+  ) : (
+    <Link
+      className={className}
       key={props.name}
       href={props.href}
       onClick={props.onClick}
     >
-      {
-        <Image
-          className={`nav-icon transition-all ${
-            props.path === props.href ? "active-nav scale-125" : ""
-          }`}
-          src={props.image}
-          width={25}
-          height={25}
-          alt={`${props.name} icon`}
-        />
-      }
+      <NavIcon {...props} />
       <p>{props.name}</p>
       <p>{props.children}</p>
     </Link>
@@ -115,6 +123,7 @@ const NavRail = ({ links }) => {
       {isMounted && (
         <NavLink
           path={path}
+          name="theme"
           className="
           hidden md:flex 
           md:mt-auto "
