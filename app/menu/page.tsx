@@ -57,7 +57,7 @@ const Menu = async () => {
             <MenuItem key={item.id} item={item}></MenuItem>
           ))}
         </List>
-        <Cart tailwindcss="hidden lg:flex flex-col lg:w-1/2" />
+        <Cart tailwindcss="hidden lg:flex flex-col lg:w-1/2 h-[98vh]" />
       </section>
     </>
   );

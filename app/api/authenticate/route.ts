@@ -1,4 +1,4 @@
-import serverErrorHandler from "@/app/lib/serverErrorHandler";
+import serverErrorParser from "@/app/lib/serverErrorHandler";
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
@@ -8,8 +8,8 @@ import order from "@/app/lib/models/order";
 
 export async function POST(request: NextRequest) {
   await dbConnect();
-  const Order = order;
-  const Reservation = reservation;
+  // // const Order = order;
+  // //const Reservation = reservation;
   const token = request.headers.get("authToken");
 
   if (!token) {
@@ -42,6 +42,6 @@ export async function POST(request: NextRequest) {
       message: "user does not exist",
     });
   } catch (err) {
-    return serverErrorHandler(err);
+    return NextResponse.json(serverErrorParser(err));
   }
 }

@@ -4,7 +4,7 @@ import User from "@/app/lib/models/user";
 import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
 import reservation from "@/app/lib/models/reservation";
-import serverErrorHandler from "@/app/lib/serverErrorHandler";
+import serverErrorParser from "@/app/lib/serverErrorHandler";
 
 export async function POST(request: NextRequest) {
   await dbConnect();
@@ -49,6 +49,6 @@ export async function POST(request: NextRequest) {
       message: "user does not exist",
     });
   } catch (err) {
-    return serverErrorHandler(err);
+    return NextResponse.json(serverErrorParser(err));
   }
 }

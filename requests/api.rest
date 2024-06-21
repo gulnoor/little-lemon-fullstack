@@ -1,6 +1,11 @@
+POST http://localhost:3000/api/register HTTP/1.1
+Content-Type: : application/json
+
+{"email":"testuser","password":"testpassword2","firstName":"test"}
+###
 POST http://localhost:3000/api/login HTTP/1.1
 Content-Type: : application/json
-lo
+
 {"email":"testuser","password":"testpassword2"}
 ###
 POST http://localhost:3000/api/order HTTP/1.1
@@ -37,6 +42,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c
 GET http://localhost:3000/api/user HTTP/1.1
 Content-Type: : application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyIiwiaWQiOiI2NjZiZTllZWRkMmMzY2E2NDRhYzFkNDAiLCJpYXQiOjE3MTgzNDk4ODl9.Ebu3aIPB-hWw5-So1StphxrBARFSNxeB4Dp0mLmun40
+
+
+###
+POST http://localhost:3000/api/checkout HTTP/1.1
+Content-Type: : application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyIiwiaWQiOiI2Njc1Yjc4ZWU1NjM0YmNjYmQ1M2M2YTYiLCJpYXQiOjE3MTg5OTA3NDQsImV4cCI6MTcxODk5MjU0NH0.POXwZLJIiVjFQgQRxajQ4Zek3oJKfhoCcpYGSCabXZA
+
+{}
 ###
 GET http://localhost:3000/api/menu HTTP/1.1
 ###

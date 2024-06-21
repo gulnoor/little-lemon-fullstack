@@ -19,7 +19,6 @@ const Cart = ({ tailwindcss }) => {
       className={`
     sticky
     gap-2
-    h-[98vh]
     top-2
     px-6
     py-4

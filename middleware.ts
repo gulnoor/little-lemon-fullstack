@@ -14,7 +14,11 @@ export async function middleware(request: NextRequest) {
       request.method === "POST" &&
       !request.url.endsWith("/api/authenticate")
     ) {
-      body = await request.json();
+      try {
+        body = await request.json();
+      } catch (error) {
+        console.error(" middleware couldn't parse request body");
+      }
     }
     console.log(
       `-------------------------
@@ -40,5 +44,11 @@ export async function middleware(request: NextRequest) {
   }
 }
 export const config = {
-  matcher: ["/api/order", "/api/reservation", "/api/user", "/api/authenticate"],
+  matcher: [
+    "/api/order",
+    "/api/reservation",
+    "/api/user",
+    "/api/authenticate",
+    "/api/checkout",
+  ],
 };

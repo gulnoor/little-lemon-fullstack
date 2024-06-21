@@ -9,7 +9,6 @@ const AlertProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
   const [alert, setAlert] = useState({ type: "", message: "" });
   const theme = useTheme();
-  console.log(theme.vars.palette.tertiary);
   const isMediumScreen = useMediaQuery(theme.breakpoints.up("md"));
   const openAlert = useMemo(() => {
     return (alert) => {
