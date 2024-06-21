@@ -4,16 +4,9 @@ import NavRail, { NavLink } from "./NavRail";
 import Footer from "./footer";
 import AlertProvider from "@/app/lib/contexts/AlertContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import { AppBar, IconButton, Slide, Toolbar } from "@mui/material";
-import { MaterialUISwitch } from "./ToggleButton";
-import { useTheme } from "@mui/material/styles";
-import Image from "next/image";
-import logo from "@/public/assets/images/Asset 9@4x.png";
-import { TokenContext } from "../lib/contexts/tokenContext";
-import MyButton from "./MyButton";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import TokenProvider from "../lib/contexts/tokenContext";
+import CartProvider from "../lib/contexts/cartContext";
+import MyAppBar from "./MyAppBar";
 const LINKS = [
   {
     name: "Home",
@@ -33,41 +26,11 @@ const LINKS = [
 ];
 const App = ({ children }) => {
   const appRef = useRef(null);
-  const router = useRouter();
 
-  const { loggedin } = useContext(TokenContext);
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  const [isVisible, setIsVisible] = useState(true);
-  const [isMounted, setIsMounted] = useState(false);
-  const muitheme = useTheme();
-  const [checked, setChecked] = useState(false);
-  const [transparent, setTransparent] = useState(true);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     appRef.current.classList.add(theme);
-
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      if (window.scrollY > 16) {
-        setTransparent(false);
-      } else {
-        setTransparent(true);
-      }
-      if (window.scrollY > lastScrollY && window.scrollY > 50) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      lastScrollY = window.scrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    setIsMounted(true);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   return (
@@ -77,79 +40,21 @@ const App = ({ children }) => {
       className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)] `}
       id="app"
     >
-      <NavRail links={LINKS}></NavRail>
-      <main
-        id="main"
-        className="p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
-      >
-        <AppBar
-          style={{
-            transform: isVisible ? "translateY(0)" : "translateY(-100%)",
-            transition: "transform 0.3s ease-in-out",
-            // backgroundColor:transparent? "transparent":,
-            background: transparent
-              ? "none"
-              : "var(--md-sys-color-surface-container-high)",
-            boxShadow: transparent ? "none" : "0px 1px 12px #2c2828e5",
-            color: "var(--md-sys-color-on-surface)",
-          }}
-          sx={{
-            justifyContent: "center",
-            minHeight: "60px",
-            "@media screen and (min-width: 768px)": {
-              display: "none",
-            },
-          }}
-        >
-          <Toolbar>
-            <div className="flex flex-grow">
-              <Image
-                alt="company logo"
-                src={logo}
-                height={33}
-                className=""
-              ></Image>
-              <p className="flex ml-[12px] justify-center items-center text-[var(--md-sys-color-on-surface)]">
-                LITTLE LEMON
-              </p>
-            </div>
-            {isMounted && (
-              <MaterialUISwitch
-                  className="animate__animated animate__faster animate__zoomIn"
-                theme={muitheme}
-                checked={theme === "dark" ? true : false}
-                onChange={(e) => {
-                  setChecked(e.target.checked);
-                  toggleTheme();
-                }}
-              />
-            )}
-            {isMounted ? (
-              loggedin ? (
-                <IconButton
-                  className="animate__animated animate__faster animate__zoomIn"
-                  onClick={() => router.push("/dashboard")}
-                  edge={"end"}
-                >
-                  <AccountCircle className="mx-3" />
-                </IconButton>
-              ) : (
-                <Link
-                  style={{
-                    paddingLeft: "10px",
-                    color: "var(--md-sys-color-on-surface)",
-                  }}
-                  href={"/login"}
-                >
-                  LOGIN
-                </Link>
-              )
-            ) : null}
-          </Toolbar>
-        </AppBar>
-        {children}
-      </main>
-      <Footer />
+      <AlertProvider>
+        <TokenProvider>
+          <CartProvider>
+            <NavRail links={LINKS}></NavRail>
+            <main
+              id="main"
+              className="p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
+            >
+              <MyAppBar />
+              {children}
+            </main>
+            <Footer />
+          </CartProvider>
+        </TokenProvider>
+      </AlertProvider>
     </div>
   );
 };

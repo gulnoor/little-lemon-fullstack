@@ -165,6 +165,28 @@ const MUICustomThemeProvider = ({ children }) => {
               },
             ],
           },
+          MuiAlert: {
+            variants: [
+              {
+                props: {
+                  severity: "success",
+                },
+                style: {
+                  backgroundColor: "var(--md-sys-color-tertiary-container)",
+                  color: "var(--md-sys-color-on-tertiary-container)",
+                },
+              },
+              {
+                props: {
+                  severity: "error",
+                },
+                style: {
+                  backgroundColor: "var(--md-sys-color-error-container)",
+                  color: "var(--md-sys-color-on-error-container)",
+                },
+              },
+            ],
+          },
         },
       }),
     []

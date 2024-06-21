@@ -4,13 +4,10 @@ import "./globals.css";
 import "./ui/material3-tokens/dark.css";
 import "./ui/material3-tokens/light.css";
 import ThemeProvider from "./lib/contexts/themeContext";
-import TokenProvider from "./lib/contexts/tokenContext";
 import App from "./ui/App";
 import localFont from "next/font/local";
-import CartProvider from "./lib/contexts/cartContext";
 import MUICustomThemeProvider from "./lib/contexts/MuiThemeContext";
 import "animate.css";
-import AlertProvider from "./lib/contexts/AlertContext";
 import dbConnect from "./lib/connectDatabase";
 // import dynamic from "next/dynamic";
 // const NoSSRTokenProvider = dynamic(() => import("./lib/contexts/tokenContext"), { ssr: false });
@@ -58,13 +55,7 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <MUICustomThemeProvider>
             <ThemeProvider>
-              <AlertProvider>
-                <TokenProvider>
-                  <CartProvider>
-                    <App>{children}</App>
-                  </CartProvider>
-                </TokenProvider>
-              </AlertProvider>
+              <App>{children}</App>
             </ThemeProvider>
           </MUICustomThemeProvider>
         </AppRouterCacheProvider>

@@ -47,8 +47,8 @@ const AlertProvider = ({ children }) => {
             minHeight: "60px",
             justifyContent: "center",
             alignItems: "center",
-            bgcolor: theme.vars.palette.tertiaryContainer,
-            color: theme.vars.palette.onTertiaryContainer,
+            // bgcolor: theme.vars.palette.tertiaryContainer,
+            // color: theme.vars.palette.onTertiaryContainer,
           }}
           severity={alert.type}
         >
