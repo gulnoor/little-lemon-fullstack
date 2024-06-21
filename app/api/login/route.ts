@@ -20,7 +20,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     const passwordCorrect = await bcrypt.compare(password, user.passwordHash);
     if (passwordCorrect) {
       const token = jwt.sign({ email, id: user.id }, process.env.JWT_SEKRET, {
-        expiresIn: 1800,
+        expiresIn: 60 * 60 * 3,
       });
       return NextResponse.json({
         type: "success",

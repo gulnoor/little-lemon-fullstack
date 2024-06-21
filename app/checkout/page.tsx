@@ -5,9 +5,11 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { AlertContext } from "../lib/contexts/AlertContext";
 import { TokenContext } from "../lib/contexts/tokenContext";
+import { ThemeContext } from "../lib/contexts/themeContext";
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const Checkout = () => {
   const { openAlert } = useContext(AlertContext);
+  const { theme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
   const [secret, setSecret] = useState(undefined);
 
@@ -40,7 +42,10 @@ const Checkout = () => {
       <Elements
         options={{
           clientSecret: secret,
-          appearance: {},
+          appearance: {
+            theme: theme === "dark" ? "night" : "stripe",
+            labels: "floating",
+          },
         }}
         stripe={stripe}
       >
