@@ -5,7 +5,6 @@ import logo from "../public/assets/images/Asset 9@4x.png";
 import bros from "../public/assets/images/Mario and Adrian A.jpg";
 import MyButton from "./ui/MyButton";
 
-
 const displayFont = localFont({ src: "../public/fonts/jellies.regular.ttf" });
 //TODO: fetch specials from server
 const specials = [
@@ -71,10 +70,10 @@ export default function Home() {
           <h5 className="text-center sm:text-left sm:mb-5">
             traditional recipes served with a modern twist
           </h5>
-          <MyButton style={"sm:mb-4"} href={"/menu"} variant={"outlined"}>
+          <MyButton style={"sm:mb-4 w-full xsm:w-fit"} href={"/menu"} variant={"outlined"}>
             VIEW MENU
           </MyButton>
-          <MyButton href={"/booking"} variant={""}>
+          <MyButton style={"w-full xsm:w-fit"}  href={"/booking"} variant={""}>
             RESERVE A TABLE
           </MyButton>
         </div>
@@ -86,16 +85,18 @@ export default function Home() {
         />
       </section>
       <OurSpecials items={specials} />
-      <h1 className="m-6 md:m-10">About Us</h1>
       <section
         className="
+      
       mb-[60px] md:mb-0 
       flex flex-wrap-reverse 
       justify-between items-center 
-      bg-[var(--md-sys-color-surface-container-highest)]"
+      max-w-[1000px] mx-auto
+      "
       >
         <article className="flex flex-col w-full lg:w-3/5 my-4">
-          <p className="text-justify">
+          <h1 className="my-6 md:my-10">About Us</h1>
+          <p className="text-justify text-lg">
             Based in Chicago, Illinois, Little Lemon is a family-owned
             Mediterranean restaurant, focused on traditional recipes served with
             a modern twist. The chefs draw inspiration from Italian, Greek, and
@@ -105,7 +106,7 @@ export default function Home() {
             the day.
           </p>
           <br />
-          <p className="text-justify">
+          <p className="text-justify text-lg">
             Little Lemon is owned by two Italian brothers, Mario and Adrian, who
             moved to the United States to pursue their shared dream of owning a
             restaurant. To craft the menu, Mario relies on family recipes and
@@ -119,7 +120,7 @@ export default function Home() {
           className="w-full h-full lg:w-[35%] lg:h-[400px]"
           style={{
             objectFit: "cover",
-            borderRadius: "60px",
+            borderRadius: "26px",
           }}
           src={bros}
           alt="Mario and Adrian"

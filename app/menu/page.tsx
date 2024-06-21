@@ -14,7 +14,6 @@ import Cart from "../ui/Cart";
 import MenuItem from "../ui/MenuItem";
 import dbConnect from "../lib/connectDatabase";
 import menuItem from "../lib/models/menuItem";
-// import MyButton from "../ui/MyButton";
 
 const Menu = async () => {
   await dbConnect();
@@ -39,10 +38,17 @@ const Menu = async () => {
           className="menuheroimg animate__animated animate__faster animate__zoomIn"
           alt={"hero image"}
           src={bgimg2}
+          width={800}
+          height={0}
         />
       </div>
       <section className="p-0 md:pt-6 flex overflow-clip flex-wrap justify-around ">
-        <List className="lg:w-[60%] flex flex-col gap-2 ">
+        <List sx={{
+          "@media screen and (min-width: 1024px)":{
+            px:"16px",
+            py:"0px"
+          }
+        }} className="lg:w-1/2 flex flex-col gap-2 ">
           {menu.map((item) => (
             <MenuItem key={item.id} item={item}></MenuItem>
           ))}

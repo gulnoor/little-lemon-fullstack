@@ -25,7 +25,7 @@ const Cart = ({ tailwindcss }) => {
     top-2
     rounded-xl
     bg-[var(--md-sys-color-surface-container)]
-    lg:w-[38%]
+    lg:w-1/2
     ${tailwindcss}`}
     >
       <h2 className="p-4">Cart</h2>

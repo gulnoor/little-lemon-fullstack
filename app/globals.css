@@ -30,7 +30,7 @@ body {
 }
 @layer base {
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl;
+    @apply text-5xl md:text-6xl;
   }
   h2 {
     @apply text-xl sm:text-2xl md:text-3xl;
@@ -82,5 +82,4 @@ select:-webkit-autofill:focus {
 }
 #cartlist::-webkit-scrollbar {
   display: none;
-
 }

@@ -20,7 +20,7 @@
 .DS_Store
 *.pem
 .anima
-.vscode
+/.vscode/
 TODO.md
 littlelemon.code-workspace
 

@@ -26,7 +26,7 @@ export const OurSpecials = ({ items }) => {
         640: {
           slidesPerView: 2,
         },
-        1024: {
+        1200: {
           slidesPerView: 3,
         },
       },
@@ -44,7 +44,7 @@ export const OurSpecials = ({ items }) => {
       <h1 className="m-6 md:m-10">Our Specials</h1>
       <swiper-container
         init="false"
-        class="flex rounded-3xl md:m-10 p-2 h-[500px]"
+        class="flex p-2 h-[400px] w-5/6 lg:w-3/4 mx-auto right-0 left-0"
         ref={swiperElRef}
         navigation="true"
         pagination="true"
@@ -52,24 +52,26 @@ export const OurSpecials = ({ items }) => {
       >
         {items.map((item) => (
           <swiper-slide
-            class=" overflow-hidden rounded-2xl p-6 flex flex-col justify-center items-center bg-[var(--md-sys-color-tertiary-container)]"
+            class="overflow-hidden rounded-2xl flex flex-col justify-start items-start bg-[var(--md-sys-color-surface-container-high)]"
             key={item.name}
           >
-            <h2 className="h-2/4 text-center  text-[var(--md-sys-color-on-tertiary-container)]">
-              {item.name}
-            </h2>
             <Image
               style={{
                 height: "60%",
+                width: "100%",
                 objectFit: "cover",
                 borderRadius: "16px",
+                flexShrink: "0",
               }}
-              width={300}
+              width={400}
               height={0}
               src={item.image}
               alt={item.name}
             />
-            <p className="p-6 overflow-clip text-ellipsis h-2/4">
+            <h2 className="p-4 text-[var(--md-sys-color-on-surface)]">
+              {item.name}
+            </h2>
+            <p className="mx-4 line-clamp-3 text-[var(--md-sys-color-on-surface-variant)]">
               {item.description}
             </p>
           </swiper-slide>

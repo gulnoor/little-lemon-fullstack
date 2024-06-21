@@ -18,7 +18,7 @@ const Footer = () => {
         className="
       flex flex-col
       md:mb-0 
-      bg-[var(--md-sys-color-primary-container)] 
+      bg-[var(--md-sys-color-surface-container-high)] 
       text-[var(--md-sys-color-on-primary-container)]"
       >
         <h2 className="px-4">Find us on social media</h2>
@@ -45,7 +45,7 @@ const Footer = () => {
         {/* TODO: add divider */}
         <div
           className="
-        bg-[var(--md-sys-color-on-primary-container)] 
+        bg-[var(--md-sys-color-surface-container-highest)] 
         w-full h-[1px] my-1"
         ></div>
         <Image

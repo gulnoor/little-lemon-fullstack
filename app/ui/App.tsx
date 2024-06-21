@@ -37,7 +37,7 @@ const App = ({ children }) => {
     <div
       ref={appRef}
       suppressHydrationWarning
-      className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-surface)] `}
+      className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-background)] `}
       id="app"
     >
       <AlertProvider>
