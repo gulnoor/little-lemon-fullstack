@@ -18,7 +18,7 @@ const Checkout = () => {
     fetchClientSecret();
   }, []);
   return secret ? (
-    <div>
+    <section>
       <StripeForm
         key={secret}
         stripe={stripe}
@@ -27,7 +27,7 @@ const Checkout = () => {
           appearance: {},
         }}
       ></StripeForm>
-    </div>
+    </section>
   ) : (
     <h1>creating intent</h1>
   );

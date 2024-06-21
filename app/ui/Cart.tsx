@@ -13,23 +13,27 @@ import {
 import MyButton from "./MyButton";
 
 const Cart = ({ tailwindcss }) => {
-  
   const { cartState, updateCart, cartTotal } = useContext(CartContext);
   return (
     <div
-      style={{ padding: "12px", position: "sticky" }}
       className={`
-    flex-col
+    sticky
     gap-2
-    h-[100vh]
+    h-[98vh]
     top-2
+    px-6
+    py-4
     rounded-xl
     bg-[var(--md-sys-color-surface-container)]
-    lg:w-1/2
+    
     ${tailwindcss}`}
     >
-      <h2 className="p-4">Cart</h2>
-      <List id = "cartlist" className="rounded-xl overflow-scroll ">
+      <List
+        style={{ padding: "0px", flexGrow: "1" }}
+        id="cartlist"
+        className="rounded-xl overflow-scroll "
+      >
+        <h2 className="p-4">Cart</h2>
         {cartState.map((item) => {
           return (
             <ListItem
@@ -65,9 +69,15 @@ const Cart = ({ tailwindcss }) => {
           );
         })}
       </List>
-      <h2>Total: </h2>
-      <h3>{`$${cartTotal}`}</h3>
-      <MyButton href="/checkout">Proceed to Payment</MyButton>
+      {
+        <div className="flex flex-col  gap-3 b-0 mt-auto px-4">
+          <h2>Total: </h2>
+          <h3>{`$${cartTotal}`}</h3>
+          <MyButton disable={cartState.length < 1} href="/checkout">
+            Proceed to Payment
+          </MyButton>
+        </div>
+      }
     </div>
   );
 };

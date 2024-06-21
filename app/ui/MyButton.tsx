@@ -8,9 +8,14 @@ const MyButton = ({
   style,
   onClick,
   textSize,
+  disable,
 }) => {
-  let bg = "bg-[var(--md-sys-color-primary)]";
-  let textColor = "text-[var(--md-sys-color-on-primary)]";
+  let bg = disable
+    ? "bg-[var(--md-sys-color-surface-container-high)]"
+    : "bg-[var(--md-sys-color-primary)]";
+  let textColor = disable
+    ? "text-[var(--md-sys-color-on-surface-variant)]"
+    : "text-[var(--md-sys-color-on-primary)]";
   let border = "";
   if (variant === "outlined") {
     bg = "bg-transparent";
@@ -25,14 +30,18 @@ const MyButton = ({
   ${bg} ${textColor} ${border} 
   flex justify-center items-center 
   px-4 py-3 
-  w-fit 
+  w-full xsm:w-fit
   min-h-[48px] 
   rounded-full 
   ${style}
   `;
 
   return (
-    <Link onClick={onClick} href={href} className={tailwindCSS}>
+    <Link
+      onClick={disable ? (e) => e.preventDefault() : onClick}
+      href={disable ? "" : href}
+      className={tailwindCSS}
+    >
       <h4 className={`${textSize}`}>{children}</h4>
     </Link>
   );

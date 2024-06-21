@@ -31,7 +31,7 @@ const AlertProvider = ({ children }) => {
       <Snackbar
         anchorOrigin={
           isMediumScreen
-            ? { horizontal: "right", vertical: "bottom" }
+            ? { horizontal: "left", vertical: "bottom" }
             : { horizontal: "center", vertical: "top" }
         }
         onClose={handleClose}

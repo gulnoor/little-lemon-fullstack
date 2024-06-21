@@ -14,6 +14,7 @@ import Cart from "../ui/Cart";
 import MenuItem from "../ui/MenuItem";
 import dbConnect from "../lib/connectDatabase";
 import menuItem from "../lib/models/menuItem";
+import Cart2 from "../ui/Cart2";
 
 const Menu = async () => {
   await dbConnect();
@@ -53,29 +54,9 @@ const Menu = async () => {
             <MenuItem key={item.id} item={item}></MenuItem>
           ))}
         </List>
-        <Cart tailwindcss="hidden lg:flex" />
+        <Cart tailwindcss="hidden lg:flex flex-col lg:w-1/2" />
 
-        {/* <Card className="hidden lg:block lg:w-[49%]">
-          <CardMedia
-            component="img"
-            alt="green iguana"
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
-          </CardActions>
-        </Card> */}
+
       </section>
     </>
   );
