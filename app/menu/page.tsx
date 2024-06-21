@@ -44,19 +44,20 @@ const Menu = async () => {
         />
       </div>
       <section className="p-0 md:pt-6 flex overflow-clip flex-wrap justify-around ">
-        <List sx={{
-          "@media screen and (min-width: 1024px)":{
-            px:"16px",
-            py:"0px"
-          }
-        }} className="lg:w-1/2 flex flex-col gap-2 ">
+        <List
+          sx={{
+            "@media screen and (min-width: 1024px)": {
+              px: "16px",
+              py: "0px",
+            },
+          }}
+          className="lg:w-1/2 flex flex-col gap-2 "
+        >
           {menu.map((item) => (
             <MenuItem key={item.id} item={item}></MenuItem>
           ))}
         </List>
         <Cart tailwindcss="hidden lg:flex flex-col lg:w-1/2" />
-
-
       </section>
     </>
   );

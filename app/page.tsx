@@ -70,10 +70,14 @@ export default function Home() {
           <h5 className="text-center sm:text-left sm:mb-5">
             traditional recipes served with a modern twist
           </h5>
-          <MyButton style={"sm:mb-4 w-full xsm:w-fit"} href={"/menu"} variant={"outlined"}>
+          <MyButton
+            style={"sm:mb-4 w-full xsm:w-fit"}
+            href={"/menu"}
+            variant={"outlined"}
+          >
             VIEW MENU
           </MyButton>
-          <MyButton style={"w-full xsm:w-fit"}  href={"/booking"} variant={""}>
+          <MyButton style={"w-full xsm:w-fit"} href={"/booking"} variant={""}>
             RESERVE A TABLE
           </MyButton>
         </div>

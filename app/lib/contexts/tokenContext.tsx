@@ -20,7 +20,7 @@ const TokenProvider = ({ children }) => {
       if (response.status === 500) {
         return openAlert({
           type: "error",
-          message: `user authentication failed due to : ${response.statusText}`,
+          message: `user authentication failed due to : ${response.message}`,
         });
       }
       response = await response.json();
