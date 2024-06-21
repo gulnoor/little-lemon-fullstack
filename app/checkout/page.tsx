@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import StripeForm from "../ui/Stripe";
 import { loadStripe } from "@stripe/stripe-js";
-const stripe = loadStripe("pk_test_51PTenJImdZ3lHFXLlWgDHAR7ZwlfbTEM0KQpLWHwfGJjMbeIAgCGKLQqXffnYeZcx7yEEfX2KFugKQapDwMopAW800COUJn99r");
+const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const Checkout = () => {
   const [secret, setSecret] = useState(undefined);
   const fetchClientSecret = useCallback(async () => {
