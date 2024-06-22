@@ -7,7 +7,6 @@ import { ThemeContext } from "../lib/contexts/themeContext";
 import TokenProvider from "../lib/contexts/tokenContext";
 import CartProvider from "../lib/contexts/cartContext";
 import MyAppBar from "./MyAppBar";
-import IsMountedProvider from "../lib/contexts/mountedContext";
 const LINKS = [
   {
     name: "Home",
@@ -27,9 +26,7 @@ const LINKS = [
 ];
 const App = ({ children }) => {
   const appRef = useRef(null);
-
   const { theme } = useContext(ThemeContext);
-
   useEffect(() => {
     appRef.current.classList.add(theme);
   }, []);
@@ -41,23 +38,21 @@ const App = ({ children }) => {
       className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-background)] `}
       id="app"
     >
-      <IsMountedProvider>
-        <AlertProvider>
-          <TokenProvider>
-            <CartProvider>
-              <NavRail links={LINKS}></NavRail>
-              <main
-                id="main"
-                className="min-h-screen p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
-              >
-                <MyAppBar />
-                {children}
-              </main>
-              <Footer />
-            </CartProvider>
-          </TokenProvider>
-        </AlertProvider>
-      </IsMountedProvider>
+      <AlertProvider>
+        <TokenProvider>
+          <CartProvider>
+            <NavRail links={LINKS}></NavRail>
+            <main
+              id="main"
+              className="min-h-screen p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
+            >
+              <MyAppBar />
+              {children}
+            </main>
+            <Footer />
+          </CartProvider>
+        </TokenProvider>
+      </AlertProvider>
     </div>
   );
 };

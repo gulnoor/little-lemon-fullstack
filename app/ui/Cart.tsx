@@ -16,6 +16,7 @@ import { IsMountedContext } from "../lib/contexts/mountedContext";
 const Cart = ({ tailwindcss }) => {
   const { cartState, updateCart, cartTotal } = useContext(CartContext);
   const { isMounted } = useContext(IsMountedContext);
+
   return (
     <div
       className={`
@@ -26,7 +27,6 @@ const Cart = ({ tailwindcss }) => {
     py-4
     rounded-xl
     bg-[var(--md-sys-color-surface-container)]
-    
     ${tailwindcss}`}
     >
       <List

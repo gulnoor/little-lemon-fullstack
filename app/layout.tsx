@@ -8,6 +8,7 @@ import ThemeProvider from "./lib/contexts/themeContext";
 import MUICustomThemeProvider from "./lib/contexts/MuiThemeContext";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import App from "./ui/App";
+import IsMountedProvider from "./lib/contexts/mountedContext";
 // import dynamic from "next/dynamic";
 // const NoSSRTokenProvider = dynamic(() => import("./lib/contexts/tokenContext"), { ssr: false });
 require("@/app/lib/connectDatabase");
@@ -54,7 +55,9 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <MUICustomThemeProvider>
             <ThemeProvider>
-              <App>{children}</App>
+              <IsMountedProvider>
+                <App>{children}</App>
+              </IsMountedProvider>
             </ThemeProvider>
           </MUICustomThemeProvider>
         </AppRouterCacheProvider>
