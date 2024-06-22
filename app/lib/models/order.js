@@ -8,6 +8,8 @@ const orderSchema = new mongoose.Schema({
       ref: "menuItem",
     },
   ],
+  paymentStatus: { type: String, default: "pending" },
+  paymentIntentId: { type: String, required: true },
 });
 
 orderSchema.set("toJSON", {

@@ -35,8 +35,14 @@ const Checkout = () => {
       openAlert({ type: "error", message: "couldn't parse response" });
     }
     if (data.type === "success") {
+      console.log(data.order);
+
       setSecret(data.clientSecret);
-      return data.clientSecret;
+      openAlert({
+        type: "success",
+        message: "order received" + JSON.stringify(data.order),
+      });
+      return;
     } else {
       openAlert(data);
       data.message.startsWith("User authentication failed")
@@ -45,8 +51,7 @@ const Checkout = () => {
     }
   }, []);
   useEffect(() => {
-    //TODO: Authenticate (and redirect to login) before opening payment page
-    fetchClientSecret();
+    // fetchClientSecret();
   }, []);
   return secret ? (
     <section>
@@ -70,7 +75,7 @@ const Checkout = () => {
       </Elements>
     </section>
   ) : (
-    <h2 className="p-6">Connecting to stripe</h2>
+    <button onClick={fetchClientSecret}>Credit Card</button>
   );
 };
 

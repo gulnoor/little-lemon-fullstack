@@ -1,11 +1,12 @@
 import jwt from "jsonwebtoken";
-import { NextRequest} from "next/server";
-import User from "./models/user";
+import { NextRequest } from "next/server";
+import user from "./models/user";
 import serverErrorParser from "./serverErrorHandler";
 import dbConnect from "./connectDatabase";
 
 const authenticate = async (request: NextRequest) => {
   dbConnect();
+  const User = user;
   const token = request.headers.get("authToken");
 
   if (!token) {
@@ -29,7 +30,7 @@ const authenticate = async (request: NextRequest) => {
       return {
         type: "success",
         message: "Authentication successfull",
-        body: user.toJSON(),
+        user: user,
       };
     }
     //token received but user not found
@@ -38,7 +39,7 @@ const authenticate = async (request: NextRequest) => {
       message: "user does not exist",
     };
   } catch (err) {
-    return (serverErrorParser(err));
+    return serverErrorParser(err);
   }
 };
 export default authenticate;

@@ -11,8 +11,7 @@ export async function middleware(request: NextRequest) {
   let body = {};
   try {
     if (
-      request.method === "POST" &&
-      !request.url.endsWith("/api/authenticate")
+      request.method === "POST"
     ) {
       try {
         body = await request.json();
@@ -32,6 +31,7 @@ export async function middleware(request: NextRequest) {
       token = token.replace("Bearer ", "");
     }
     requestHeaders.set("authToken", token);
+    requestHeaders.set("body", body);
 
     const modifiedRequest = new Request(request.url, {
       headers: requestHeaders,

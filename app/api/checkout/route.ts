@@ -1,19 +1,24 @@
+import dbConnect from "@/app/lib/connectDatabase";
 import authenticate from "@/app/lib/jwtAuthentication";
+import ordermodel from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
 //TODO: confirm payment success
+
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const calculateTotal = (items) => {
   return items.reduce((total, item) => total + item.price * item.quantity, 0);
 };
+
 export async function POST(request: NextRequest) {
-  console.log("creating intent");
+  await dbConnect();
+  const Order = ordermodel;
   const authenticationStatus = await authenticate(request);
   if (authenticationStatus.type === "success") {
     const items = await request.json();
     if (items.length < 1) {
       return NextResponse.json({ type: "error", message: "Cart empty" });
     }
-    const amount = calculateTotal(items)*100;
+    const amount = calculateTotal(items) * 100;
     try {
       const paymentIntent = await stripe.paymentIntents.create({
         amount,
@@ -22,9 +27,33 @@ export async function POST(request: NextRequest) {
           enabled: true,
         },
       });
+      //TODO: create order in database with payment status pending
+      const user = authenticationStatus.user;
+      // FIXME: //!any random item id can create an order
+      // Verify items ids in request body before saving order
+      // ...........
+      // save order to orders collection
+      const itemIds = items.map((item) => item.id);
+
+      const order = new Order({
+        items: itemIds,
+        userId: user.id,
+        paymentIntentId: paymentIntent.id,
+      });
+      if (order.items.length < 1) {
+        return NextResponse.json({
+          type: "error",
+          message: "Order cannot be empty",
+        });
+      }
+      const savedOrder = await order.save();
+      // update orders in user document
+      user.orders = user.orders.concat(savedOrder.id);
+      await user.save();
       return NextResponse.json({
         type: "success",
         clientSecret: paymentIntent.client_secret,
+        // order: savedOrder.toJSON(),
       });
     } catch (e) {
       console.error(e);

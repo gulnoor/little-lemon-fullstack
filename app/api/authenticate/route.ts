@@ -2,8 +2,8 @@ import serverErrorParser from "@/app/lib/serverErrorHandler";
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import User from "@/app/lib/models/user";
-import reservation from "@/app/lib/models/reservation";
 import dbConnect from "@/app/lib/connectDatabase";
+import reservation from "@/app/lib/models/reservation";
 import order from "@/app/lib/models/order";
 
 export async function POST(request: NextRequest) {
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     });
   }
   try {
-    //FIXME: //!Older tokens that didn't have expiry are still working
+    //FIXME://!Older tokens that didn't have expiry are still working
     const decodedUser = jwt.verify(token, process.env.JWT_SEKRET);
     if (!decodedUser.id) {
       return NextResponse.json({
