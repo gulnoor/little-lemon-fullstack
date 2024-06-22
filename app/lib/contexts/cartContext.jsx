@@ -40,6 +40,8 @@ const cartReducer = (prevState, action) => {
           );
     case "delete":
       return prevState.filter((item) => item.id !== payload.id);
+    case "clear":
+      return [];
 
     default:
       return prevState;

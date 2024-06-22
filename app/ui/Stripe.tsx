@@ -7,6 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { Button } from "@mui/material";
 import { AlertContext } from "../lib/contexts/AlertContext";
+import { CartContext } from "../lib/contexts/cartContext";
 
 const StripeForm = ({}) => {
   const stripe = useStripe();
@@ -14,6 +15,7 @@ const StripeForm = ({}) => {
 
   const [errorMessage, setErrorMessage] = useState(null);
   const { openAlert } = useContext(AlertContext);
+  const { updateCart } = useContext(CartContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,6 +43,8 @@ const StripeForm = ({}) => {
       // Your customer will be redirected to your `return_url`. For some payment
       // methods like iDEAL, your customer will be redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
+      updateCart({ type: "clear" });
+      openAlert({ type: "success", message: "payment successful" });
       console.log("success");
     }
   };

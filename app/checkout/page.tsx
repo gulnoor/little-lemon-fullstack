@@ -6,9 +6,11 @@ import { Elements } from "@stripe/react-stripe-js";
 import { AlertContext } from "../lib/contexts/AlertContext";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
+import { CartContext } from "../lib/contexts/cartContext";
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const Checkout = () => {
   const { openAlert } = useContext(AlertContext);
+  const { cartState } = useContext(CartContext);
   const { theme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
   const [secret, setSecret] = useState(undefined);
@@ -16,6 +18,7 @@ const Checkout = () => {
   const fetchClientSecret = useCallback(async () => {
     const response = await fetch("/api/checkout", {
       method: "POST",
+      body: JSON.stringify(cartState),
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -45,6 +48,11 @@ const Checkout = () => {
           appearance: {
             theme: theme === "dark" ? "night" : "stripe",
             labels: "floating",
+            rules: {
+              ".Input": {
+                backgroundColor: "var(--md-sys-color-error)",
+              },
+            },
           },
         }}
         stripe={stripe}
@@ -53,7 +61,7 @@ const Checkout = () => {
       </Elements>
     </section>
   ) : (
-    <h1>Connecting to stripe</h1>
+    <h2 className="p-6">Connecting to stripe</h2>
   );
 };
 
