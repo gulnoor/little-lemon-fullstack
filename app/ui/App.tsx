@@ -46,7 +46,7 @@ const App = ({ children }) => {
             <NavRail links={LINKS}></NavRail>
             <main
               id="main"
-              className="p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
+              className="min-h-screen p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
             >
               <MyAppBar />
               {children}

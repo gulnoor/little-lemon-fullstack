@@ -14,7 +14,10 @@ const Checkout = () => {
   const { theme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
   const [secret, setSecret] = useState(undefined);
-//FIXME: //! add cart, checkout, back to cart, clear cart, back to checkout, payment successful 
+
+  //FIXME: //! add cart, checkout, back to cart, clear cart, back to checkout, payment successful
+  //? I think it was fixed by adding amount calc to checkout route
+
   const fetchClientSecret = useCallback(async () => {
     const response = await fetch("/api/checkout", {
       method: "POST",
@@ -43,6 +46,7 @@ const Checkout = () => {
   return secret ? (
     <section>
       <Elements
+        key={secret}
         options={{
           clientSecret: secret,
           appearance: {
@@ -57,7 +61,7 @@ const Checkout = () => {
         }}
         stripe={stripe}
       >
-        <StripeForm key={secret}></StripeForm>
+        <StripeForm></StripeForm>
       </Elements>
     </section>
   ) : (

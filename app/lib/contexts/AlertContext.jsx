@@ -35,7 +35,7 @@ const AlertProvider = ({ children }) => {
         }
         onClose={handleClose}
         open={open}
-        autoHideDuration={4000}
+        autoHideDuration={6000}
       >
         <Alert
           onClose={handleClose}

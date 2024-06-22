@@ -1,4 +1,5 @@
 .light {
+  color-scheme: light;
   --svg-filter: invert(9%) sepia(19%) saturate(404%) hue-rotate(5deg)
     brightness(97%) contrast(97%);
   --svg-filter-active: invert(24%) sepia(15%) saturate(6505%) hue-rotate(35deg)

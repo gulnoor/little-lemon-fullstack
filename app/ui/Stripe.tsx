@@ -51,8 +51,10 @@ const StripeForm = ({}) => {
   return (
     <form className="w-full md:w-1/2" onSubmit={handleSubmit}>
       <h2 className="pb-4">Enter Payment Details</h2>
-      <PaymentElement></PaymentElement>
-      <Button type="submit">Submit</Button>
+      <PaymentElement className="pb-4"></PaymentElement>
+      <Button variant="contained" type="submit">
+        Confirm Payment
+      </Button>
       {errorMessage && <div>{errorMessage}</div>}
     </form>
   );

@@ -28,7 +28,7 @@ const Cart = ({ tailwindcss }) => {
     ${tailwindcss}`}
     >
       <List
-        style={{ padding: "0px", flexGrow: "1" }}
+        style={{ padding: "0px" }}
         id="cartlist"
         className="rounded-xl overflow-scroll "
       >
@@ -69,7 +69,7 @@ const Cart = ({ tailwindcss }) => {
         })}
       </List>
       {
-        <div className="flex flex-col  gap-3 b-0 mt-auto px-4">
+        <div className="flex flex-col flex-grow gap-3 b-0 mt-auto px-4">
           <h2>Total: </h2>
           <h3>{`$${cartTotal}`}</h3>
           <MyButton disable={cartState.length < 1} href="/checkout">

@@ -133,6 +133,7 @@ const BookingForm = () => {
       lastName: yup.string().optional(),
       email: yup.string().email(),
       specialRequest: yup.string().optional(),
+      contact: yup.string().required(),
     }),
   });
   useEffect(() => {

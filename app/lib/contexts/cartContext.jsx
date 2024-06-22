@@ -4,13 +4,14 @@ import { createContext, useEffect, useReducer, useState } from "react";
 export const CartContext = createContext(null);
 
 const cartReducer = (prevState, action) => {
-  console.clear();
   console.log("previous state: ", prevState);
   console.log("action: ", action.type);
   const payload = action.payload ? action.payload : {};
   console.log("payload:", payload);
   // //const { id, name, price } = payload;
   switch (action.type) {
+    case "load":
+      return action.payload;
     case "add":
       const existingItem = prevState.find(
         (cartItem) => cartItem.id === payload.id
@@ -54,6 +55,18 @@ const CartProvider = ({ children }) => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
   };
   useEffect(() => {
+    let localCart = [];
+    try {
+      localCart = JSON.parse(window.localStorage.getItem("cart"));
+    } catch (e) {
+      console.log("couldn't parse local cart");
+    }
+    localCart?.length > 1
+      ? updateCart({ type: "load", payload: localCart })
+      : window.localStorage.setItem("cart", JSON.stringify([]));
+  }, []);
+  useEffect(() => {
+    window.localStorage.setItem("cart", JSON.stringify(cartState));
     setCartTotal(calculateTotal(cartState));
   }, [cartState]);
   return (

@@ -75,7 +75,7 @@ export default function Home() {
             href={"/menu"}
             variant={"outlined"}
           >
-            VIEW MENU
+            ORDER ONLINE
           </MyButton>
           <MyButton style={"w-full xsm:w-fit"} href={"/booking"} variant={""}>
             RESERVE A TABLE
