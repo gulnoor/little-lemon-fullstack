@@ -14,7 +14,7 @@ const Checkout = () => {
   const { theme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
   const [secret, setSecret] = useState(undefined);
-
+//FIXME: //! add cart, checkout, back to cart, clear cart, back to checkout, payment successful 
   const fetchClientSecret = useCallback(async () => {
     const response = await fetch("/api/checkout", {
       method: "POST",
