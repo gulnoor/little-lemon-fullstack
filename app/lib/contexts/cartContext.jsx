@@ -48,8 +48,20 @@ const cartReducer = (prevState, action) => {
       return prevState;
   }
 };
+const readLocal = () => {
+  let localCart = [];
+  if (typeof window !== undefined) {
+    try {
+      localCart = JSON.parse(window.localStorage.getItem("cart"));
+      return localCart === null ? [] : localCart;
+    } catch (e) {
+      console.log("couldn't parse local cart");
+    }
+  }
+  return localCart;
+};
 const CartProvider = ({ children }) => {
-  const [cartState, updateCart] = useReducer(cartReducer, []);
+  const [cartState, updateCart] = useReducer(cartReducer, readLocal());
   const [cartTotal, setCartTotal] = useState(0);
   const calculateTotal = (items) => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);

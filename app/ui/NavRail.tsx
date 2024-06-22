@@ -92,7 +92,7 @@ const NavRail = ({ links }) => {
           ></NavLink>
         )
       )}
-      {
+      {isMounted && (
         <Badge
           invisible={cart.length > 0}
           className="md:w-full"
@@ -119,7 +119,7 @@ const NavRail = ({ links }) => {
             Cart
           </NavLink>
         </Badge>
-      }
+      )}
       {isMounted && (
         <NavLink
           path={path}

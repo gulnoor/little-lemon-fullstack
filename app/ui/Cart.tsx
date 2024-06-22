@@ -11,9 +11,11 @@ import {
   ListItemText,
 } from "@mui/material";
 import MyButton from "./MyButton";
+import { IsMountedContext } from "../lib/contexts/mountedContext";
 
 const Cart = ({ tailwindcss }) => {
   const { cartState, updateCart, cartTotal } = useContext(CartContext);
+  const { isMounted } = useContext(IsMountedContext);
   return (
     <div
       className={`
@@ -33,40 +35,41 @@ const Cart = ({ tailwindcss }) => {
         className="rounded-xl overflow-scroll "
       >
         <h2 className="p-4">Cart</h2>
-        {cartState.map((item) => {
-          return (
-            <ListItem
-              divider
-              className=" bg-[var(--md-sys-color-surface-container-high)]"
-              key={item?.id}
-            >
-              <ListItemText
-                className="pl-4 w-full"
-                primary={item?.name}
-                secondary={item?.price}
-              />
-              <div className="ml-auto flex items-center">
-                <Button
-                  onClick={() => updateCart({ type: "inc", payload: item })}
-                >
-                  +
-                </Button>
-                <p>{item?.quantity}</p>
-                <Button
-                  onClick={() => updateCart({ type: "dec", payload: item })}
-                >
-                  -
-                </Button>
-              </div>
-              <ListItemButton
-                className="w-fit"
-                onClick={() => updateCart({ type: "delete", payload: item })}
+        {isMounted &&
+          cartState.map((item) => {
+            return (
+              <ListItem
+                divider
+                className=" bg-[var(--md-sys-color-surface-container-high)]"
+                key={item?.id}
               >
-                <DeleteIcon className="w-fit" />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
+                <ListItemText
+                  className="pl-4 w-full"
+                  primary={item?.name}
+                  secondary={item?.price}
+                />
+                <div className="ml-auto flex items-center">
+                  <Button
+                    onClick={() => updateCart({ type: "inc", payload: item })}
+                  >
+                    +
+                  </Button>
+                  <p>{item?.quantity}</p>
+                  <Button
+                    onClick={() => updateCart({ type: "dec", payload: item })}
+                  >
+                    -
+                  </Button>
+                </div>
+                <ListItemButton
+                  className="w-fit"
+                  onClick={() => updateCart({ type: "delete", payload: item })}
+                >
+                  <DeleteIcon className="w-fit" />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
       </List>
       {
         <div className="flex flex-col flex-grow gap-3 b-0 mt-auto px-4">

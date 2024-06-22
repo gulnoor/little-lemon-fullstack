@@ -7,6 +7,7 @@ import { AlertContext } from "../lib/contexts/AlertContext";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
 import { CartContext } from "../lib/contexts/cartContext";
+import { useRouter } from "next/navigation";
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const Checkout = () => {
   const { openAlert } = useContext(AlertContext);
@@ -14,6 +15,7 @@ const Checkout = () => {
   const { theme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
   const [secret, setSecret] = useState(undefined);
+  const router = useRouter();
 
   //FIXME: //! add cart, checkout, back to cart, clear cart, back to checkout, payment successful
   //? I think it was fixed by adding amount calc to checkout route
@@ -37,6 +39,9 @@ const Checkout = () => {
       return data.clientSecret;
     } else {
       openAlert(data);
+      data.message.startsWith("User authentication failed")
+        ? router.push("/login")
+        : null;
     }
   }, []);
   useEffect(() => {
