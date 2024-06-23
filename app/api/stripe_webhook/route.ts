@@ -19,7 +19,6 @@ export async function POST(request, response) {
   switch (event.type) {
     case "payment_intent.succeeded":
       const paymentIntent = event.data.object;
-      // TODO: update order status in database: add paymentIntent.id to order document and search by intent then update order status
       try {
         const updatedOrder = await Order.findOneAndUpdate(
           { paymentIntentId: paymentIntent.id },

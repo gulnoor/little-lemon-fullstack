@@ -55,7 +55,6 @@ const Login = () => {
       animate__animated animate__fadeInUp animate__faster flex flex-col gap-8 justify-center w-full md:w-3/4 max-w-[600px]"
     >
       <h2>Sign in to your account</h2>
-      {/* TODO: add error message components */}
       <TextField
         sx={{
           maxWidth: "600px",

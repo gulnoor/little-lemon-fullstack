@@ -42,7 +42,6 @@ const Footer = () => {
             <p>Email: littlelemon@example.com</p>
           </div>
         </div>
-        {/* TODO: add divider */}
         <div
           className="
         bg-[var(--md-sys-color-surface-container-highest)] 

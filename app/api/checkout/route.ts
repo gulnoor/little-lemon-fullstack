@@ -2,7 +2,6 @@ import dbConnect from "@/app/lib/connectDatabase";
 import authenticate from "@/app/lib/jwtAuthentication";
 import ordermodel from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
-//TODO: confirm payment success
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const calculateTotal = (items) => {
@@ -27,9 +26,8 @@ export async function POST(request: NextRequest) {
           enabled: true,
         },
       });
-      //TODO: create order in database with payment status pending
       const user = authenticationStatus.user;
-      // FIXME: //!any random item id can create an order
+      //! any random item id can create an order
       // Verify items ids in request body before saving order
       // ...........
       // save order to orders collection

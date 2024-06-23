@@ -18,7 +18,7 @@ const Checkout = () => {
   const [secret, setSecret] = useState(undefined);
   const router = useRouter();
 
-  //FIXME: //! add cart, checkout, back to cart, clear cart, back to checkout, payment successful
+  //! add cart, checkout, back to cart, clear cart, back to checkout, payment successful
   //? I think it was fixed by adding amount calc to checkout route
 
   const fetchClientSecret = useCallback(async () => {

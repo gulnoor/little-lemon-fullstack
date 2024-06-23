@@ -1,8 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Front-End Project Overview
+
+This project is a full stack application built with [Next.js 14](https://nextjs.org/), showcasing modern web development practices, responsive design, and integration with various APIs and libraries. It leverages server-side rendering and static site generation features of Next.js, providing a fast and seamless user experience.
+
+## Demo
+
+The project is deployed on Vercel and can be accessed [here](https://www.littlelemon.live/).
+
+## Key Features
+
+- **Authentication:** Implements secure authentication flow using JSON Web Token for a personalized user experience.
+- **Theme Switcher:** Material Design 3 tokens generated from [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/) are used as CSS variables to allow users to switch between light and dark themes. Inline script was added to the head of the document to prevent the flash of unstyled content (FOUC) when the page loads. The script checks the user's local storage for a theme preference and sets the theme class on root element accordingly.
+- **API Integration:** Demonstrates integration with external APIs, including Stripe for payment processing and MongoDB for data storage.
+- **State Management:** Employs React context for state management across components.
+- **Responsive Design:** Utilizes CSS and SCSS for a responsive layout that adapts to various screen sizes and devices.
+- **Performance Optimization:** Leverages Next.js features like automatic code splitting and image optimization for improved performance.
+
+## Technologies Used
+
+- **Frontend:** React, Next.js, MUI
+- **Styling:** SCSS, Emotion, Tailwind CSS
+- **Database:** MongoDB, Mongoose
+- **Payment Processing:** Stripe
+- **Other Libraries:** Formik (form management), Yup (form validation), Swiper
+
+## Project Structure
+
+- `app/`: Contains all pages.
+- `app/api/`: Contains all api endpoints.
+- `app/ui`: reuseable React UI components.
+- `app/lib/context`: Contains all the context providers.
+- `app/lib/models`: mongoose model schemas
+- `public/`: Static assets like images and fonts.
+- `requests/`: API requests for testing the backend with VS Code REST Client extension.
+- `middleware.ts`: Middleware for parsing api requests.
 
 ## Getting Started
 
-First, run the development server:
+To get the project up and running on your local machine, follow these steps:
+
+1. Clone the repository to your local machine.
+2. Install the dependencies by running `npm install`.
+3. Start the development server with `npm run dev`.
 
 ```bash
 npm run dev
@@ -14,23 +52,4 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
