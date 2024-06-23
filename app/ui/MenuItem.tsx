@@ -10,6 +10,24 @@ import Image from "next/image";
 import React, { useContext, useState } from "react";
 import { CartContext } from "../lib/contexts/cartContext";
 import { AlertContext } from "../lib/contexts/AlertContext";
+export const CartButtons = ({ quantity, plusClick, minusClick, variant }) => {
+  const style = {
+    minWidth: "25px",
+    height: "25px",
+    padding: "0px",
+  };
+  return (
+    <>
+      <Button variant={variant} style={style} onClick={minusClick}>
+        -
+      </Button>
+      <span className="px-2 md:px-4">{quantity}</span>
+      <Button style={style} variant={variant} onClick={plusClick}>
+        +
+      </Button>
+    </>
+  );
+};
 
 const MenuItem = ({ item }) => {
   const { updateCart } = useContext(CartContext);

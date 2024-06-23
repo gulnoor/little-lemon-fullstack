@@ -77,17 +77,16 @@ const Checkout = () => {
     </section>
   ) : (
     <section>
-      <h2 className="p-4 text-2xl">Choose payment method</h2>
+      <h2 className="py-4 text-2xl">Choose payment method</h2>
       <Button sx={{
         height: "100px",
         width: "100%",
         borderRadius: "16px",
-        margin: "10px",
         fontSize: "1.2rem",
         fontWeight: "bold",
         backgroundColor: "var(--md-sys-color-surface-container)",
         "@media screen and (min-width: 475px)":{
-          width: "200px"
+          width: "250px"
         }
 
       }} variant="outlined" onClick={fetchClientSecret}>Credit Card</Button>

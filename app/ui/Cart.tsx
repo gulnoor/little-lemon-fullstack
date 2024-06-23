@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import MyButton from "./MyButton";
 import { IsMountedContext } from "../lib/contexts/mountedContext";
+import { CartButtons } from "./MenuItem";
+import Link from "next/link";
 
 const Cart = ({ tailwindcss }) => {
   const { cartState, updateCart, cartTotal } = useContext(CartContext);
@@ -23,7 +25,7 @@ const Cart = ({ tailwindcss }) => {
     sticky
     gap-2
     top-2
-    px-6
+    px-2 md:px-6
     py-4
     rounded-xl
     bg-[var(--md-sys-color-surface-container)]
@@ -44,23 +46,15 @@ const Cart = ({ tailwindcss }) => {
                 key={item?.id}
               >
                 <ListItemText
-                  className="pl-4 w-full"
+                  className=" md:pl-4 w-full"
                   primary={item?.name}
                   secondary={item?.price}
                 />
-                <div className="ml-auto flex items-center">
-                  <Button
-                    onClick={() => updateCart({ type: "inc", payload: item })}
-                  >
-                    +
-                  </Button>
-                  <p>{item?.quantity}</p>
-                  <Button
-                    onClick={() => updateCart({ type: "dec", payload: item })}
-                  >
-                    -
-                  </Button>
-                </div>
+                <CartButtons
+                  quantity={item?.quantity}
+                  plusClick={() => updateCart({ type: "inc", payload: item })}
+                  minusClick={() => updateCart({ type: "dec", payload: item })}
+                />
                 <ListItemButton
                   className="w-fit"
                   onClick={() => updateCart({ type: "delete", payload: item })}
@@ -75,9 +69,17 @@ const Cart = ({ tailwindcss }) => {
         <div className="flex flex-col flex-grow gap-3 b-0 mt-auto px-4">
           <h2>Total: </h2>
           <h3>{`$${cartTotal}`}</h3>
-          <MyButton disable={cartState.length < 1} href="/checkout">
-            Proceed to Payment
-          </MyButton>
+          <Link className="w-full" href={"/checkout"}>
+            <Button
+              sx={{
+                width: "100%",
+                maxWidth:"450px",
+              }}
+              variant="contained"
+            >
+              Proceed to Payment
+            </Button>
+          </Link>
         </div>
       }
     </div>

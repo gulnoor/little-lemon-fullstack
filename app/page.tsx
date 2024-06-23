@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import logo from "../public/assets/images/Asset 9@4x.png";
 import bros from "../public/assets/images/Mario and Adrian A.jpg";
 import MyButton from "./ui/MyButton";
+import Link from "next/link";
+import { Button } from "@mui/material";
 
 const displayFont = localFont({ src: "../public/fonts/jellies.regular.ttf" });
 //TODO: fetch specials from server
@@ -70,16 +72,32 @@ export default function Home() {
           <h5 className="text-center sm:text-left sm:mb-5">
             traditional recipes served with a modern twist
           </h5>
-          <MyButton
-            style={"sm:mb-4 w-full xsm:w-fit"}
-            href={"/menu"}
-            variant={"outlined"}
-          >
-            ORDER ONLINE
-          </MyButton>
-          <MyButton style={"w-full xsm:w-fit"} href={"/booking"} variant={""}>
-            RESERVE A TABLE
-          </MyButton>
+          <Link className=" sm:mb-4 w-full xsm:w-fit" href={"/menu"}>
+            <Button
+              sx={{
+                fontSize: "1.3rem",
+                width: "100%",
+                maxWidth: "450px",
+                minHeight: "48px",
+              }}
+              variant="outlined"
+            >
+              Order Online
+            </Button>
+          </Link>
+          <Link className="w-full xsm:w-fit" href={"/booking"}>
+            <Button
+              sx={{
+                fontSize: "1.3rem",
+                width: "100%",
+                maxWidth: "450px",
+                minHeight: "48px",
+              }}
+              variant="contained"
+            >
+              Reserve a Table
+            </Button>
+          </Link>
         </div>
         <Image
           className="hidden sm:block"
