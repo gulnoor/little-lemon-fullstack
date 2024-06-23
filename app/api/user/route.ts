@@ -5,10 +5,12 @@ import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
 import reservation from "@/app/lib/models/reservation";
 import serverErrorParser from "@/app/lib/serverErrorHandler";
+import menuItem from "@/app/lib/models/menuItem";
 
 export async function POST(request: NextRequest) {
   await dbConnect();
   const token = request.headers.get("authToken");
+  const MenuItemModel = menuItem;
   const OrderModel = Order;
   const Reservation = reservation;
 
@@ -32,7 +34,7 @@ export async function POST(request: NextRequest) {
     if (user) {
       await user.populate({
         path: "orders",
-        select: "items",
+        select: "items paymentStatus",
         populate: { path: "items" },
       });
       await user.populate("reservations");

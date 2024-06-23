@@ -16,9 +16,12 @@ orderSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     /* eslint-disable no-underscore-dangle */
     /* eslint-disable no-param-reassign */
-    returnedObject.id = returnedObject._id.toString();
+    returnedObject.id = returnedObject._id
+      ? returnedObject._id.toString()
+      : returnedObject.id;
     delete returnedObject._id;
     delete returnedObject.__v;
+    delete returnedObject.paymentIntentId;
   },
 });
 export default mongoose.models?.order || mongoose.model("order", orderSchema);

@@ -8,6 +8,7 @@ import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
 import { CartContext } from "../lib/contexts/cartContext";
 import { useRouter } from "next/navigation";
+import { Button } from "@mui/material";
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const Checkout = () => {
   const { openAlert } = useContext(AlertContext);
@@ -75,7 +76,22 @@ const Checkout = () => {
       </Elements>
     </section>
   ) : (
-    <button onClick={fetchClientSecret}>Credit Card</button>
+    <section>
+      <h2 className="p-4 text-2xl">Choose payment method</h2>
+      <Button sx={{
+        height: "100px",
+        width: "100%",
+        borderRadius: "16px",
+        margin: "10px",
+        fontSize: "1.2rem",
+        fontWeight: "bold",
+        backgroundColor: "var(--md-sys-color-surface-container)",
+        "@media screen and (min-width: 475px)":{
+          width: "200px"
+        }
+
+      }} variant="outlined" onClick={fetchClientSecret}>Credit Card</Button>
+    </section>
   );
 };
 

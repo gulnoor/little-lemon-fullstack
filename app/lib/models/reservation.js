@@ -16,7 +16,9 @@ reservationSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     /* eslint-disable no-underscore-dangle */
     /* eslint-disable no-param-reassign */
-    returnedObject.id = returnedObject._id.toString();
+    returnedObject.id = returnedObject._id
+      ? returnedObject._id.toString()
+      : returnedObject.id;
     delete returnedObject._id;
     delete returnedObject.__v;
   },

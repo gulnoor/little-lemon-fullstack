@@ -1,3 +1,4 @@
+import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const webhook_secret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -18,9 +19,22 @@ export async function POST(request, response) {
   switch (event.type) {
     case "payment_intent.succeeded":
       const paymentIntent = event.data.object;
-      // TODO: update order status in database: add paymentIntent.id to order document and search by intent then update
+      // TODO: update order status in database: add paymentIntent.id to order document and search by intent then update order status
+      try {
+        const updatedOrder = await Order.findOneAndUpdate(
+          { paymentIntentId: paymentIntent.id },
+          { paymentStatus: "paid" },
+          { new: true }
+        );
+        updatedOrder
+          ? null
+          : console.log("matching order not found for the intent");
+      } catch (error) {
+        console.error(error);
+      }
 
       console.log("PaymentIntent was successful!");
+
       break;
     case "payment_method.attached":
       const paymentMethod = event.data.object;

@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const NewUser = () => {
   //TODO: move focus/ highlight/scroll to invalid input when submit is clicked
   const { openAlert } = useContext(AlertContext);
-const router = useRouter();
+  const router = useRouter();
 
   const { theme } = useContext(ThemeContext);
   const submitHandler = async (values) => {

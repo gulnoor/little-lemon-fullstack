@@ -1,5 +1,6 @@
 "use client";
 import EventSeatIcon from "@mui/icons-material/EventSeat";
+import Ordericon from "@mui/icons-material/RestaurantMenu";
 import React, { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { AlertContext } from "../lib/contexts/AlertContext";
@@ -16,7 +17,7 @@ import errorParser from "../lib/clientErrorHandler";
 const Dashboard = () => {
   const { openAlert } = useContext(AlertContext);
   const { token } = useContext(TokenContext);
-  const [data, setData] = useState({ body: { reservations: [] } });
+  const [data, setData] = useState({ body: { reservations: [], orders: [] } });
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,9 +43,9 @@ const Dashboard = () => {
     fetchData();
   }, []);
   return (
-    <>
+    <div className="flex flex-wrap justify-between">
       <List
-        className=""
+        className="w-[49%]"
         sx={{
           borderRadius: "16px",
           bgcolor: "var(--md-sys-color-surface-container)",
@@ -87,7 +88,51 @@ const Dashboard = () => {
             </>
           ))}
       </List>
-    </>
+      <List
+        className="w-[49%]"
+        sx={{
+          borderRadius: "16px",
+          bgcolor: "var(--md-sys-color-surface-container)",
+        }}
+      >
+        {data.body.orders &&
+          data.body.orders.map((order) => (
+            <>
+              <ListItem key={order.id}>
+                <ListItemIcon>
+                  <Ordericon />
+                </ListItemIcon>
+                <ListItemText
+                  primary={order.paymentStatus}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {"Persons - "}
+                      </Typography>
+                      {order.persons}
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {"        Time -  "}
+                      </Typography>
+                      {order.time}
+                    </React.Fragment>
+                  }
+                ></ListItemText>
+              </ListItem>
+              <Divider variant="middle" component="li" />
+            </>
+          ))}
+      </List>
+    </div>
   );
 };
 
