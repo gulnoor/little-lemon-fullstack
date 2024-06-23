@@ -21,16 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://littlelemon.live",
     title: "Little Lemon",
-    description:
-      "Based in Chicago, Illinois, Little Lemon is a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist",
-    images: [
-      {
-        url: "https://little-lemon.vercel.app/assets/images/food.jpg",
-        width: 800,
-        height: 600,
-        alt: "Little Lemon",
-      },
-    ],
+    description: "Order online or book a table",
   },
 };
 const GoogleSans = localFont({
