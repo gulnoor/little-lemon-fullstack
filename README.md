@@ -1,4 +1,4 @@
-# Front-End Project Overview
+# Project Overview
 
 This project is a full stack application built with [Next.js 14](https://nextjs.org/), showcasing modern web development practices, responsive design, and integration with various APIs and libraries. It leverages server-side rendering and static site generation features of Next.js, providing a fast and seamless user experience.
 
