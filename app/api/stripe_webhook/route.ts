@@ -18,7 +18,10 @@ export async function POST(request, response) {
     );
   } catch (err) {
     console.error(err);
-    return NextResponse.json({ type: "error", message: err.message });
+    return NextResponse.json(
+      { type: "error", message: err.message },
+      { status: 400 }
+    );
   }
   // console.log("event", event);
   switch (event.type) {
