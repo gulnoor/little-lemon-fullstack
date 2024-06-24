@@ -3,19 +3,15 @@ import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const webhook_secret = process.env.STRIPE_WEBHOOK_SECRET;
-console.log("webhook_secret", webhook_secret);
-console.log("stripe", process.env.STRIPE_SECRET_KEY);
-
+import { headers } from "next/headers";
+import Stripe from "stripe";
 export async function POST(request, response) {
   await dbConnect();
-  const sig = request.headers.get("stripe-signature");
-  let event;
+  const body = await req.text();
+  const signature = headers().get("Stripe-Signature") as string;
+  let event: Stripe.Event;
   try {
-    event = stripe.webhooks.constructEvent(
-      await request.text(),
-      sig,
-      webhook_secret
-    );
+    event = stripe.webhooks.constructEvent(body, signature, webhook_secret);
   } catch (err) {
     console.error(err);
     return NextResponse.json(
