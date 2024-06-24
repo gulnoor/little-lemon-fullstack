@@ -1,8 +1,13 @@
+import dbConnect from "@/app/lib/connectDatabase";
 import Order from "@/app/lib/models/order";
 import { NextRequest, NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const webhook_secret = process.env.STRIPE_WEBHOOK_SECRET;
+console.log("webhook_secret", webhook_secret);
+console.log("stripe", process.env.STRIPE_SECRET_KEY);
+
 export async function POST(request, response) {
+  await dbConnect();
   const sig = request.headers.get("stripe-signature");
   let event;
   try {
@@ -18,6 +23,7 @@ export async function POST(request, response) {
   // console.log("event", event);
   switch (event.type) {
     case "payment_intent.succeeded":
+      console.log("PaymentIntent was successful!");
       const paymentIntent = event.data.object;
       try {
         const updatedOrder = await Order.findOneAndUpdate(
@@ -31,8 +37,6 @@ export async function POST(request, response) {
       } catch (error) {
         console.error(error);
       }
-
-      console.log("PaymentIntent was successful!");
 
       break;
     case "payment_method.attached":

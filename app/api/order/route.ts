@@ -8,7 +8,6 @@ export async function POST(request: NextRequest, response: NextResponse) {
   await dbConnect();
   try {
     const token = request.headers.get("authToken");
-
     // decode token
     // ! Older tokens that didn't have expiry are still working
     const decodedUser = jwt.verify(token, process.env.JWT_SEKRET);
@@ -20,10 +19,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
     if (user) {
       // !any random item id can create an order
       // Verify items ids in request body before saving order
-      // ...........
       // save order to orders collection
       const body = await request.json();
-
       const order = new Order({ ...body, userId: user.id });
       if (order.items.length < 1) {
         return new Response("Order cannot be empty");
