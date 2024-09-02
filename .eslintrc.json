@@ -1,3 +1,9 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "vitest-globals/env": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:vitest-globals/recommended"
+  ]
 }

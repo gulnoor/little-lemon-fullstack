@@ -19,7 +19,6 @@ export async function POST(request, response) {
       { status: 400 }
     );
   }
-  // console.log("event", event);
   switch (event.type) {
     case "payment_intent.succeeded":
       console.log("PaymentIntent was successful!");
@@ -31,7 +30,7 @@ export async function POST(request, response) {
           { new: true }
         );
         updatedOrder
-          ? null
+          ? console.log("order status updated")
           : console.log("matching order not found for the intent");
       } catch (error) {
         console.error(error);

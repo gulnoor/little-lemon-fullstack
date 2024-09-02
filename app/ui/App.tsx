@@ -1,12 +1,14 @@
 "use client";
-import { useContext, useEffect, useRef, useState } from "react";
-import NavRail, { NavLink } from "./NavRail";
+import { Provider } from "react-redux";
+import { useContext, useEffect, useRef } from "react";
+import NavRail from "./NavRail";
 import Footer from "./footer";
 import AlertProvider from "@/app/lib/contexts/AlertContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
 import TokenProvider from "../lib/contexts/tokenContext";
 import CartProvider from "../lib/contexts/cartContext";
 import MyAppBar from "./MyAppBar";
+import { store } from "@/app/lib/reduxStore/store";
 const LINKS = [
   {
     name: "Home",
@@ -38,21 +40,23 @@ const App = ({ children }) => {
       className={`${theme} text-[var(--md-sys-color-on-surface)] bg-[var(--md-sys-color-background)] `}
       id="app"
     >
-      <AlertProvider>
-        <TokenProvider>
-          <CartProvider>
-            <NavRail links={LINKS}></NavRail>
-            <main
-              id="main"
-              className="min-h-screen p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
-            >
-              <MyAppBar />
-              {children}
-            </main>
-            <Footer />
-          </CartProvider>
-        </TokenProvider>
-      </AlertProvider>
+      <Provider store={store}>
+        <AlertProvider>
+          <TokenProvider>
+            <CartProvider>
+              <NavRail links={LINKS}></NavRail>
+              <main
+                id="main"
+                className="min-h-screen p-2 pt-[65px] md:p-6 md:pl-0 overflow-clip md:ml-[110px]"
+              >
+                <MyAppBar />
+                {children}
+              </main>
+              <Footer />
+            </CartProvider>
+          </TokenProvider>
+        </AlertProvider>
+      </Provider>
     </div>
   );
 };

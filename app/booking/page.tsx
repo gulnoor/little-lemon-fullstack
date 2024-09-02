@@ -100,6 +100,7 @@ const handleSubmit = async (values, token, openAlert) => {
     openAlert({ type: "error", message: err.message });
   }
 };
+
 const BookingForm = () => {
   const chipRefs = useRef([]);
   const { openAlert } = useContext(AlertContext);
@@ -163,8 +164,10 @@ const BookingForm = () => {
     };
   };
 
+
   return (
     <>
+
       <StyledHero className="animate__animated animate__faster animate__zoomIn">
         <Styledh1>Reservation</Styledh1>
         <Image

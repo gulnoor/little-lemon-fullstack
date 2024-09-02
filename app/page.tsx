@@ -3,9 +3,9 @@ import OurSpecials from "./ui/OurSpecials";
 import localFont from "next/font/local";
 import logo from "../public/assets/images/Asset 9@4x.png";
 import bros from "../public/assets/images/Mario and Adrian A.jpg";
-import MyButton from "./ui/MyButton";
 import Link from "next/link";
 import { Button } from "@mui/material";
+
 
 const displayFont = localFont({ src: "../public/fonts/jellies.regular.ttf" });
 //TODO: fetch specials from server
@@ -45,7 +45,11 @@ const specials = [
     image: "/assets/images/menu/pasta-primavera-1-768x1152.jpg",
   },
 ];
+
+
+
 export default function Home() {
+
   return (
     <>
       <section
@@ -55,6 +59,7 @@ export default function Home() {
         min-h-[520px] md:min-h-[670px]
         animate__animated animate__zoomIn animate__faster"
       >
+        {"asd"}
         <div
           className="
         flex flex-col 
@@ -109,7 +114,6 @@ export default function Home() {
       <OurSpecials items={specials} />
       <section
         className="
-      
       mb-[60px] md:mb-0 
       flex flex-wrap-reverse 
       justify-between items-center 
