@@ -4,12 +4,12 @@ import Image from "next/image";
 import { Badge } from "@mui/material";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
-import { CartContext } from "../lib/contexts/cartContext";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import sun from "@/public/assets/nav-icons/light_mode_FILL0_wght400_GRAD0_opsz24.svg";
 import moon from "@/public/assets/nav-icons/dark_mode_FILL0_wght400_GRAD0_opsz24.svg";
 import cart from "@/public/assets/nav-icons/shopping_cart_FILL0_wght400_GRAD0_opsz24.svg";
+import { useSelector } from "react-redux";
 
 const NavIcon = (props) => {
   return (
@@ -57,7 +57,7 @@ export const NavLink = (props) => {
 const NavRail = ({ links }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { loggedin } = useContext(TokenContext);
-  const { cartState } = useContext(CartContext);
+  const cartState = useSelector((state) => state.cart);
   const [isMounted, setIsMounted] = useState(false);
   const path = usePathname();
 

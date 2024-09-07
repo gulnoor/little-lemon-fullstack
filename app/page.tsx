@@ -5,6 +5,7 @@ import logo from "../public/assets/images/Asset 9@4x.png";
 import bros from "../public/assets/images/Mario and Adrian A.jpg";
 import Link from "next/link";
 import { Button } from "@mui/material";
+import TestButton from "./ui/TestButton";
 
 
 const displayFont = localFont({ src: "../public/fonts/jellies.regular.ttf" });
@@ -59,7 +60,6 @@ export default function Home() {
         min-h-[520px] md:min-h-[670px]
         animate__animated animate__zoomIn animate__faster"
       >
-        {"asd"}
         <div
           className="
         flex flex-col 

@@ -2,7 +2,6 @@
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useCallback, useContext } from "react";
-import { CartContext } from "../lib/contexts/cartContext";
 import {
   Button,
   List,
@@ -10,13 +9,16 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import MyButton from "./MyButton";
 import { IsMountedContext } from "../lib/contexts/mountedContext";
 import { CartButtons } from "./MenuItem";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment, removeItem } from "../lib/reduxStore/cartSlice";
 
 const Cart = ({ tailwindcss }) => {
-  const { cartState, updateCart, cartTotal } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartState = useSelector((state) => state.cart);
+  console.log(cartState);
   const { isMounted } = useContext(IsMountedContext);
 
   return (
@@ -52,12 +54,12 @@ const Cart = ({ tailwindcss }) => {
                 />
                 <CartButtons
                   quantity={item?.quantity}
-                  plusClick={() => updateCart({ type: "inc", payload: item })}
-                  minusClick={() => updateCart({ type: "dec", payload: item })}
+                  plusClick={() => dispatch(increment(item))}
+                  minusClick={() => dispatch(decrement(item))}
                 />
                 <ListItemButton
                   className="w-fit"
-                  onClick={() => updateCart({ type: "delete", payload: item })}
+                  onClick={() => dispatch(removeItem(item))}
                 >
                   <DeleteIcon className="w-fit" />
                 </ListItemButton>
@@ -68,12 +70,12 @@ const Cart = ({ tailwindcss }) => {
       {
         <div className="flex flex-col flex-grow gap-3 b-0 mt-auto px-4">
           <h2>Total: </h2>
-          <h3>{`$${cartTotal}`}</h3>
+          {/* <h3>{`$${cartTotal}`}</h3> */}
           <Link className="w-full" href={"/checkout"}>
             <Button
               sx={{
                 width: "100%",
-                maxWidth:"450px",
+                maxWidth: "450px",
               }}
               variant="contained"
             >

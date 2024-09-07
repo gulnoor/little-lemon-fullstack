@@ -8,8 +8,9 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
-import { CartContext } from "../lib/contexts/cartContext";
 import { AlertContext } from "../lib/contexts/AlertContext";
+import { addToCart } from "../lib/reduxStore/cartSlice";
+import { useDispatch } from "react-redux";
 export const CartButtons = ({ quantity, plusClick, minusClick, variant }) => {
   const style = {
     minWidth: "25px",
@@ -30,7 +31,7 @@ export const CartButtons = ({ quantity, plusClick, minusClick, variant }) => {
 };
 
 const MenuItem = ({ item }) => {
-  const { updateCart } = useContext(CartContext);
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const { openAlert } = useContext(AlertContext);
   return (
@@ -93,15 +94,14 @@ const MenuItem = ({ item }) => {
             <Button
               className="!ml-3"
               onClick={() => {
-                updateCart({
-                  type: "add",
-                  payload: {
+                dispatch(
+                  addToCart({
                     id: item.id,
                     price: item.price,
                     name: item.name,
                     quantity,
-                  },
-                });
+                  })
+                );
                 openAlert({
                   type: "success",
                   message: `${quantity}x ${item.name} added to cart`,

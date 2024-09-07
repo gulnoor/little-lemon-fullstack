@@ -6,13 +6,13 @@ import { Elements } from "@stripe/react-stripe-js";
 import { AlertContext } from "../lib/contexts/AlertContext";
 import { TokenContext } from "../lib/contexts/tokenContext";
 import { ThemeContext } from "../lib/contexts/themeContext";
-import { CartContext } from "../lib/contexts/cartContext";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
+import { useSelector } from "react-redux";
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 const Checkout = () => {
   const { openAlert } = useContext(AlertContext);
-  const { cartState } = useContext(CartContext);
+  const { cartState } = useSelector((state) => state.cart);
   const { theme } = useContext(ThemeContext);
   const { token } = useContext(TokenContext);
   const [secret, setSecret] = useState(undefined);
@@ -78,18 +78,23 @@ const Checkout = () => {
   ) : (
     <section>
       <h2 className="py-4 text-2xl">Choose payment method</h2>
-      <Button sx={{
-        height: "100px",
-        width: "100%",
-        borderRadius: "16px",
-        fontSize: "1.2rem",
-        fontWeight: "bold",
-        backgroundColor: "var(--md-sys-color-surface-container)",
-        "@media screen and (min-width: 475px)":{
-          width: "250px"
-        }
-
-      }} variant="outlined" onClick={fetchClientSecret}>Credit Card</Button>
+      <Button
+        sx={{
+          height: "100px",
+          width: "100%",
+          borderRadius: "16px",
+          fontSize: "1.2rem",
+          fontWeight: "bold",
+          backgroundColor: "var(--md-sys-color-surface-container)",
+          "@media screen and (min-width: 475px)": {
+            width: "250px",
+          },
+        }}
+        variant="outlined"
+        onClick={fetchClientSecret}
+      >
+        Credit Card
+      </Button>
     </section>
   );
 };

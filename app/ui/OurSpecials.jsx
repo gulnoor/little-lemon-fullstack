@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/element/css/effect-coverflow";
 register();
 
-export const OurSpecials = ({ items }) => {
+const OurSpecials = ({ items }) => {
   const swiperElRef = useRef(null);
 
   useEffect(() => {

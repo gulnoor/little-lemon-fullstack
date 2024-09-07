@@ -7,7 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { Button } from "@mui/material";
 import { AlertContext } from "../lib/contexts/AlertContext";
-import { CartContext } from "../lib/contexts/cartContext";
+import { clearCart } from "../lib/reduxStore/cartSlice";
 
 const StripeForm = ({}) => {
   const stripe = useStripe();
@@ -15,7 +15,6 @@ const StripeForm = ({}) => {
 
   const [errorMessage, setErrorMessage] = useState(null);
   const { openAlert } = useContext(AlertContext);
-  const { updateCart } = useContext(CartContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,7 +42,7 @@ const StripeForm = ({}) => {
       // Your customer will be redirected to your `return_url`. For some payment
       // methods like iDEAL, your customer will be redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
-      updateCart({ type: "clear" });
+      clearCart();
       openAlert({ type: "success", message: "payment successful" });
       console.log("success");
     }
@@ -52,11 +51,13 @@ const StripeForm = ({}) => {
     <form className="w-full md:w-1/2" onSubmit={handleSubmit}>
       <h2 className="pb-4">Enter Payment Details</h2>
       <PaymentElement className="pb-4"></PaymentElement>
-      <Button sx={
-        {
+      <Button
+        sx={{
           width: "100%",
-        }
-      } variant="contained" type="submit">
+        }}
+        variant="contained"
+        type="submit"
+      >
         Confirm Payment
       </Button>
       {errorMessage && <div>{errorMessage}</div>}
